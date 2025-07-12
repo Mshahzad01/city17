@@ -7,4 +7,6 @@ class AppColors {
 
   static const textcolor = Color(0xffF4F4F4);
   static const bottombarcolor = Color(0xff20222D);
+
+  static const cardcolor = Color(0xff2D3042);
 }

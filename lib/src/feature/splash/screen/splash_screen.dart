@@ -4,7 +4,7 @@ import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 class SplashScreen extends StatefulWidget {
   static const routename = "/splash";
