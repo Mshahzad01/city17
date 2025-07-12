@@ -19,13 +19,12 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
 
   final List<String> items = ['Home', 'Offers', 'Finance', 'Settings'];
 
-  final List _pages = [HomeScreen(),HomeScreen(),HomeScreen(),HomeScreen() ];
+  final _pages = [HomeScreen(), HomeScreen(), HomeScreen(), HomeScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-  appBar: PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(90),
 
         child: SafeArea(
@@ -70,12 +69,9 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           ),
         ),
       ),
-      body:(_pages[selectedIndex]),
-      
-      
-      
-       //Center(child: Text),
+      body: IndexedStack(index: selectedIndex, children: _pages),
 
+      //Center(child: Text),
       bottomNavigationBar: Container(
         color: AppColors.bottombarcolor,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -103,10 +99,10 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                 ),
                 child: Text(
                   items[index],
-                  style:context.myTextTheme.titleSmall?.copyWith(
+                  style: context.myTextTheme.titleSmall?.copyWith(
                     fontSize: 12,
                     color: AppColors.textcolor,
-                  )
+                  ),
                 ),
               ),
             );
