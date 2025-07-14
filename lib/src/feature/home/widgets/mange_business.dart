@@ -2,6 +2,7 @@ import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/model/display_model.dart';
+import 'package:city17/src/feature/home/screen/location_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -67,7 +68,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
                                       ),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                             onTap: () => Navigator.pushNamed(context, LocationSetting.routename,),
                                   child: SvgPicture.asset(
                                     AssetString.settingicon,
                                   ),

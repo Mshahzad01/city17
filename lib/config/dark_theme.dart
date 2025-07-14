@@ -13,6 +13,10 @@ class DarkTheme {
       //   elevation: 0,
       // ),
 
+      appBarTheme: AppBarTheme(
+        color: AppColors.appbackgroundcolor
+      ),
+
 
 
       iconTheme: const IconThemeData(color: Colors.white),

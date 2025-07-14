@@ -89,9 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<dynamic> showmodelbottomshett(BuildContext contxt) {
+    final _formKey = GlobalKey<FormState>();
+    final nameController = TextEditingController();
+    final addressController = TextEditingController();
+    final secondNameController = TextEditingController();
+
     return showModalBottomSheet(
       context: contxt,
-      isScrollControlled: true, // <- very important
+      isScrollControlled: true,
       builder: (innercontext) {
         final bottomPadding = MediaQuery.of(innercontext).viewInsets.bottom;
 
@@ -103,68 +108,99 @@ class _HomeScreenState extends State<HomeScreen> {
             color: AppColors.bottombarcolor,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Add a display location",
-                  style: context.myTextTheme.titleMedium,
-                ),
-                SizedBox(height: 16),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Business Name",
-                    filled: true,
-                    fillColor: AppColors.cardcolor,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Add a display location",
+                    style: contxt.myTextTheme.titleMedium,
                   ),
-                ),
+                  SizedBox(height: 16),
 
-                SizedBox(height: 10),
-
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Business address",
-                    filled: true,
-                    fillColor: AppColors.cardcolor,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
+                  TextFormField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      hintText: "Business Name",
+                      filled: true,
+                      fillColor: AppColors.cardcolor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Business name is required';
+                      }
+                      return null;
+                    },
                   ),
-                ),
 
-                SizedBox(height: 10),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Business Name",
-                    filled: true,
-                    fillColor: AppColors.cardcolor,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
+                  SizedBox(height: 10),
+
+                  TextFormField(
+                    controller: addressController,
+                    decoration: InputDecoration(
+                      hintText: "Business Address",
+                      filled: true,
+                      fillColor: AppColors.cardcolor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Address is required';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(height: 15),
 
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Add",
-                      style: innercontext.myTextTheme.bodyMedium?.copyWith(
-                        color: AppColors.textbuttoncolor,
+                  SizedBox(height: 10),
+
+                  TextFormField(
+                    controller: secondNameController,
+                    decoration: InputDecoration(
+                      hintText: "Business Category",
+                      filled: true,
+                      fillColor: AppColors.cardcolor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Business is  required';
+                      }
+                      return null;
+                    },
+                  ),
+
+                  SizedBox(height: 15),
+
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: TextButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.pop(innercontext);
+                        }
+                      },
+                      child: Text(
+                        "Add",
+                        style: innercontext.myTextTheme.bodyMedium?.copyWith(
+                          color: AppColors.textbuttoncolor,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
