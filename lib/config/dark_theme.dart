@@ -21,16 +21,16 @@ class DarkTheme {
 
       
       textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: Colors.white),
-        bodyMedium: TextStyle(color: Colors.white,fontFamily: 'Myfonts'),
+        bodyLarge: TextStyle(color: Colors.white,fontFamily: 'myfont'),
+        bodyMedium: TextStyle(color: Colors.white,fontFamily: 'myfont'),
 
 
 
-        titleLarge:  TextStyle(color: AppColors.textcolor,fontSize: 24,fontWeight: FontWeight.w700,fontFamily: 'Myfonts'),
+        titleLarge:  TextStyle(color: AppColors.textcolor,fontSize: 18,fontWeight: FontWeight.w700,fontFamily: 'myfont'),
         
-        titleMedium:  TextStyle(color: AppColors.textcolor,fontSize: 16,fontWeight: FontWeight.w700,fontFamily: 'Myfonts'),
+        titleMedium:  TextStyle(color: AppColors.textcolor,fontSize: 15,fontWeight: FontWeight.w700,fontFamily: 'myfont'),
         
-        titleSmall:  TextStyle(color: AppColors.textcolor,fontSize: 14,fontWeight: FontWeight.w700,fontFamily: 'Myfonts')
+        titleSmall:  TextStyle(color: AppColors.textcolor,fontSize: 14,fontWeight: FontWeight.w700,fontFamily: 'myfont')
 
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(

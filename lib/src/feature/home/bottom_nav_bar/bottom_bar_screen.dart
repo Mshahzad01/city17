@@ -24,18 +24,20 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90),
+      appBar: AppBar(
+        backgroundColor: AppColors.appbackgroundcolor,
+        bottom:    
+      PreferredSize(
+        preferredSize: Size.fromHeight(30),
 
-        child: SafeArea(
-          child: Padding(
+      child:    Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
                 Row(
                   children: [
                     CircleAvatar(
-                      backgroundImage: NetworkImage(AssetString.networkimage),
+                      backgroundImage: AssetImage(AssetString.userimage),
                       radius: 24,
                     ),
                     SizedBox(width: 12),
@@ -64,11 +66,30 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                     ),
                   ],
                 ),
+
+                Container(
+                  margin: EdgeInsets.only(top: 15),
+                  height: .5,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 26, 24, 24).withValues(alpha: 0.1),
+                    boxShadow: [
+
+                      BoxShadow(
+                        blurRadius: 03,
+                       // spreadRadius: 01
+                      )
+                    ]
+                  ),
+                )
               ],
             ),
           ),
-        ),
+        
       ),
+      
+      ),
+   
       body: IndexedStack(index: selectedIndex, children: _pages),
 
       //Center(child: Text),

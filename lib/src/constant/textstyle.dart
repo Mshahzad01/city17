@@ -1,18 +1,22 @@
-// import 'package:flutter/material.dart';
-// import 'package:task1/src/constant/app_color.dart';
-// class AppTextStyles {
-//   static final title = TextStyle(
-//     fontFamily: 'Myfonts',
-//     color: AppColors.white,
-//     fontWeight: FontWeight.bold,
-//     fontSize: 18,
-//   );
+import 'package:city17/src/constant/app_color.dart';
+import 'package:flutter/material.dart';
 
-//   static final subtitle = TextStyle(
-//     fontFamily: 'Myfonts',
-//     color: AppColors.subtitleText,
-//     fontSize: 12,
-//   );
+class AppTextStyles {
+  static final title = TextStyle(
+    fontFamily: 'Myfonts',
+    color: AppColors.textcolor,
+    fontWeight: FontWeight.bold,
+    fontSize: 30,
+  );
+
+  static final subtitle = TextStyle(
+    fontFamily: 'Myfonts',
+    color: AppColors.textcolor,
+    fontSize: 12,
+  );
+
+}
+
 
 //   static final appbartitle = TextStyle(
 //     fontFamily: 'Myfonts',
