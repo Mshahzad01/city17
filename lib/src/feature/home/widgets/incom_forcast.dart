@@ -97,7 +97,7 @@ class _IncomForcastState extends State<IncomForcast> {
             builder: (context, state) {
               if (graphrep[1] == slectedgraph) {
                 if (state is chartdatasate) {
-                  print("data not load");
+              
                   return Container(
                     height: 200,
                     width: double.infinity,

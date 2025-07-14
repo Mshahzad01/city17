@@ -18,6 +18,8 @@ class AppColors {
 
   static const redtextcolor  = Color(0xffEE6C77);
 
+  static const circulcolor = Color(0xffFF5E5E);
+
 
 
 

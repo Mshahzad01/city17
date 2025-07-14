@@ -30,7 +30,7 @@ class DarkTheme {
         
         titleMedium:  TextStyle(color: AppColors.textcolor,fontSize: 15,fontWeight: FontWeight.w700,fontFamily: 'myfont'),
         
-        titleSmall:  TextStyle(color: AppColors.textcolor,fontSize: 14,fontWeight: FontWeight.w700,fontFamily: 'myfont')
+        titleSmall:  TextStyle(color: AppColors.textcolor,fontSize: 12,fontWeight: FontWeight.w700,fontFamily: 'myfont')
 
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
