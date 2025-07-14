@@ -54,7 +54,7 @@ class _IncomForcastState extends State<IncomForcast> {
                 ),
                 padding: EdgeInsets.only(left: 22),
                 value: slectedgraph,
-                isExpanded: true,
+              //  isExpanded: true,
                 onChanged: (String? newValue) {
                   setState(() {
                     slectedgraph = newValue!;
