@@ -14,13 +14,9 @@ class AppColors {
 
   static const purpletextcolor = Color(0xff5565AF);
 
-  static const greencolor  = Color(0xff32CD32);
+  static const greencolor = Color(0xff32CD32);
 
-  static const redtextcolor  = Color(0xffEE6C77);
+  static const redtextcolor = Color(0xffEE6C77);
 
   static const circulcolor = Color(0xffFF5E5E);
-
-
-
-
 }

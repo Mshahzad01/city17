@@ -22,8 +22,10 @@ mixin AssetString {
   static const drowpdownicon = "assets/icon/dropdownicon.svg";
 
   static const dropup = "assets/icon/dropup.svg";
-  static const growthicon= "assets/icon/growthicon.svg";
+  static const growthicon = "assets/icon/growthicon.svg";
 
   static const editicon = "assets/icon/editicon.svg";
   static const locationicon = "assets/icon/locationicon.svg";
+
+  static const addicon = "assets/icon/addicon.svg";
 }

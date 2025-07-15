@@ -2,9 +2,7 @@ import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
-
 import 'package:flutter/material.dart';
-
 
 class SplashScreen extends StatefulWidget {
   static const routename = "/splash";
@@ -16,21 +14,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-
-
-
- void initState() {
+  void initState() {
     super.initState();
-      
 
-      _dely();
-
- }
-   
+    _dely();
+  }
 
   Future<void> _dely() async {
     await Future.delayed(Duration(seconds: 02));
-        Navigator.pushReplacementNamed(context,SplashScreen.routename);
+    Navigator.pushReplacementNamed(context, SplashScreen.routename);
   }
 
   List<String> verticalTexts = const [
@@ -85,9 +77,8 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Image.asset(AssetString.logo, height: 60, width: 150),
 
-                   Image.asset(AssetString.logo,height: 60,width: 150,),
-              
                 SizedBox(height: 6),
                 Text(
                   "Display Manager",
@@ -106,26 +97,27 @@ class _SplashScreenState extends State<SplashScreen> {
             left: 0,
             right: 0,
             child: InkWell(
-              onTap: () => Navigator.pushReplacementNamed(context, BottomNavScreen.rotename,),
+              onTap: () => Navigator.pushReplacementNamed(
+                context,
+                BottomNavScreen.rotename,
+              ),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Color(0xff2D3042),
                 ),
                 margin: EdgeInsets.only(left: 12, right: 12),
-              
+
                 height: 50,
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-              
                     Image.asset(AssetString.googlepic),
-                
-              
+
                     SizedBox(width: 20),
-              
+
                     Text(
                       "Sign in with Google",
                       style: context.myTextTheme.titleMedium?.copyWith(

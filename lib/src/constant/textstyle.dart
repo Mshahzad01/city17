@@ -1,21 +1,20 @@
-import 'package:city17/src/constant/app_color.dart';
-import 'package:flutter/material.dart';
+// import 'package:city17/src/constant/app_color.dart';
+// import 'package:flutter/material.dart';
 
-class AppTextStyles {
-  static final title = TextStyle(
-    fontFamily: 'Myfonts',
-    color: AppColors.textcolor,
-    fontWeight: FontWeight.bold,
-    fontSize: 30,
-  );
+// class AppTextStyles {
+//   static final title = TextStyle(
+//     fontFamily: 'Myfonts',
+//     color: AppColors.textcolor,
+//     fontWeight: FontWeight.bold,
+//     fontSize: 30,
+//   );
 
-  static final subtitle = TextStyle(
-    fontFamily: 'Myfonts',
-    color: AppColors.textcolor,
-    fontSize: 12,
-  );
-
-}
+//   static final subtitle = TextStyle(
+//     fontFamily: 'Myfonts',
+//     color: AppColors.textcolor,
+//     fontSize: 12,
+//   );
+// }
 
 
 //   static final appbartitle = TextStyle(

@@ -1,49 +1,42 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class DarkTheme {
   static ThemeData get theme {
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: AppColors.appbackgroundcolor,
-      // appBarTheme: const AppBarTheme(
-      //   backgroundColor: Colors.black,
 
-      //   foregroundColor: Colors.white,
-      //   elevation: 0,
-      // ),
-
-      appBarTheme: AppBarTheme(
-        color: AppColors.appbackgroundcolor
-      ),
-
-
+      appBarTheme: AppBarTheme(color: AppColors.appbackgroundcolor),
 
       iconTheme: const IconThemeData(color: Colors.white),
 
-      
+      textTheme: TextTheme(
+        bodyLarge: GoogleFonts.poppins(color: Colors.white),
+        bodyMedium: GoogleFonts.poppins(color: Colors.white),
 
-      
-      textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: Colors.white,fontFamily: 'myfont'),
-        bodyMedium: TextStyle(color: Colors.white,fontFamily: 'myfont'),
+        titleLarge: GoogleFonts.poppins(
+          color: AppColors.textcolor,
+          fontSize: 22,
+          fontWeight: FontWeight.w500,
+        ),
 
+        titleMedium: GoogleFonts.poppins(
+          color: AppColors.textcolor,
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+        ),
 
-
-        titleLarge:  TextStyle(color: AppColors.textcolor,fontSize: 18,fontWeight: FontWeight.w700,fontFamily: 'myfont'),
-        
-        titleMedium:  TextStyle(color: AppColors.textcolor,fontSize: 15,fontWeight: FontWeight.w700,fontFamily: 'myfont'),
-        
-        titleSmall:  TextStyle(color: AppColors.textcolor,fontSize: 12,fontWeight: FontWeight.w700,fontFamily: 'myfont')
-
+        titleSmall: GoogleFonts.poppins(
+          color: AppColors.textcolor,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Colors.white12,
         foregroundColor: Colors.white,
       ),
-      // bottomAppBarTheme: BottomAppBarTheme(
-      //   color: Colors.black
-      // )
     );
   }
 }

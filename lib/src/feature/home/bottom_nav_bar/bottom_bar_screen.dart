@@ -3,7 +3,6 @@ import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavScreen extends StatefulWidget {
   static const rotename = "/bottomnav";
@@ -26,19 +25,19 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.appbackgroundcolor,
-        bottom:    
-      PreferredSize(
-        preferredSize: Size.fromHeight(30),
+        automaticallyImplyLeading: false,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(05),
 
-      child:    Padding(
-            padding: const EdgeInsets.all(10.0),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               children: [
                 Row(
                   children: [
                     CircleAvatar(
                       backgroundImage: AssetImage(AssetString.userimage),
-                      radius: 24,
+                      radius: 18,
                     ),
                     SizedBox(width: 12),
 
@@ -46,7 +45,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                       "Hi",
                       style: context.myTextTheme.titleSmall?.copyWith(
                         color: AppColors.textcolor,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                     SizedBox(width: 04),
@@ -55,7 +54,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                       "Ela",
                       style: context.myTextTheme.titleSmall?.copyWith(
                         color: AppColors.textcolor,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                     Spacer(),
@@ -68,28 +67,25 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                 ),
 
                 Container(
-                  margin: EdgeInsets.only(top: 15),
+                  margin: EdgeInsets.only(top: 02),
                   height: .5,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 26, 24, 24).withValues(alpha: 0.1),
-                    boxShadow: [
-
-                      BoxShadow(
-                        blurRadius: 03,
-                       // spreadRadius: 01
-                      )
-                    ]
+                    color: const Color.fromARGB(
+                      255,
+                      99,
+                      90,
+                      90,
+                    ).withValues(alpha: 0.1),
+                    boxShadow: [BoxShadow(blurRadius: 03)],
                   ),
-                )
+                ),
               ],
             ),
           ),
-        
+        ),
       ),
-      
-      ),
-   
+
       body: IndexedStack(index: selectedIndex, children: _pages),
 
       //Center(child: Text),

@@ -69,8 +69,6 @@ List<ChartData> monthData = [
   ChartData('Apr', 85),
 ];
 
-
-
 class ChartData {
   final String day;
   final double value;

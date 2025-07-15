@@ -50,7 +50,7 @@ class PandingAcction extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10),
       padding: EdgeInsets.only(left: 10,right: 10),
-      height: 55,
+      height: 50,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

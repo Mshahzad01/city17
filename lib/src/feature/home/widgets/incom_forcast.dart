@@ -43,51 +43,52 @@ class _IncomForcastState extends State<IncomForcast> {
            
               ),
             ),
-            SizedBox(
-              width: 115,
-
-              child: DropdownButton<String>(
-                underline: Container(
-                  margin: EdgeInsets.only(bottom: 08),
-                  height: 01,
-                  color: Colors.transparent,
-                ),
-                padding: EdgeInsets.only(left: 22),
-                value: slectedgraph,
-              //  isExpanded: true,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    slectedgraph = newValue!;
-                    if (slectedgraph == 'Textual') {
-                      context.read<HomeCubit>().selectdata();
-                    }
-                    if (slectedgraph == 'Graphical') {
-                      context.read<HomeCubit>().newfun();
-                    }
-                  });
-                },
-                dropdownColor: AppColors.appbackgroundcolor,
-                icon: Icon(
-                  Icons.arrow_drop_down,
+         Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+     
+        Padding(
+          padding: const EdgeInsets.only(left: 30),
+          child: Text(
+           slectedgraph,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: AppColors.textcolor,
-                  size: 35,
+                  fontSize: 12,
+                  decoration: TextDecoration.underline
                 ),
-                items: graphrep.map((String graph) {
-                  return DropdownMenuItem(
-                    value: graph,
-                    child: Text(
-                      graph,
-                      style: context.myTextTheme.titleSmall?.copyWith(
-                        color: AppColors.textcolor,
-                        fontSize: 12,
-                        decoration: TextDecoration.underline,
-                        //   backgroundColor:AppColors.textcolor
-                      ), // optional
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
+          ),
+        ),
+
+
+        PopupMenuButton<String>(
+          icon: Icon(
+            Icons.arrow_drop_down,
+            color: AppColors.textcolor,
+            size: 30,
+          ),
+          onSelected: (String value) {
+            setState(() {
+             slectedgraph = value;
+              if (value == 'Textual') {
+                context.read<HomeCubit>().selectdata();
+              } else if (value == 'Graphical') {
+                context.read<HomeCubit>().newfun();
+              }
+            });
+          },
+          itemBuilder: (BuildContext context) {
+            return graphrep.map((String choice) {
+              return PopupMenuItem<String>(
+                value: choice,
+                child: Text(choice),
+              );
+            }).toList();
+          },
+
+          color: AppColors.appbackgroundcolor,
+        ),
+      ],
+    )
           ],
         ),
 
@@ -99,7 +100,7 @@ class _IncomForcastState extends State<IncomForcast> {
                 if (state is chartdatasate) {
               
                   return Container(
-                    height: 200,
+                    height: 180,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -114,9 +115,11 @@ class _IncomForcastState extends State<IncomForcast> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
-                              // mainAxisAlignment:MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                       
+                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+
+                                SizedBox(height: 03,),
                                 Text(
                                   "  \$${state.totalincome[0].income.toString()}",
                                   style: context.myTextTheme.titleLarge
@@ -124,26 +127,27 @@ class _IncomForcastState extends State<IncomForcast> {
                                 ),
 
                                 Text(
-                                  "AUD",
-                                  style: context.myTextTheme.titleSmall
-                                      ?.copyWith(
-                                        color: AppColors.textcolor.withValues(
-                                          alpha: 0.5,
+                                    "AUD",
+                                    style: context.myTextTheme.titleSmall
+                                        ?.copyWith(
+                                          color: AppColors.textcolor.withValues(
+                                            alpha: 0.5,
+                                          ),
+                                          fontSize: 10,
                                         ),
-                                        fontSize: 10,
-                                      ),
-                                ),
+                                  ),
+                              
                               ],
                             ),
 
                             Container(
                               margin: EdgeInsets.only(right: 20, top: 05),
 
-                              height: 25,
-                              width: 50,
+                              height: 20,
+                              width: 45,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(04),
-                                color: Colors.white.withValues(alpha: 0.1),
+                                color: AppColors.greencolor.withValues(alpha: 0.1),
                               ),
 
                               child: Row(
@@ -172,22 +176,22 @@ class _IncomForcastState extends State<IncomForcast> {
 
                             Container(
                               margin: EdgeInsets.only(top: 10, right: 10),
-                              height: 32,
-                              width: 170,
+                              height: 25,
+                              width: 150,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(05),
                                 color: Colors.white.withValues(alpha: 0.1),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  buildtab("Today"),
+                                  buildtab("Today",context),
                                   SizedBox(width: 08),
 
-                                  buildtab("Week"),
+                                  buildtab("Week",context),
                                   SizedBox(width: 08),
 
-                                  buildtab("Month"),
+                                  buildtab("Month",context),
                                   SizedBox(width: 08),
                                 ],
                               ),
@@ -197,7 +201,7 @@ class _IncomForcastState extends State<IncomForcast> {
 
                         SizedBox(height: 05),
                         Container(
-                          height: 146,
+                          height: 138,
                           width: double.infinity,
                           padding: const EdgeInsets.only(right: 0, top: 0),
                           child: SfCartesianChart(
@@ -242,7 +246,7 @@ class _IncomForcastState extends State<IncomForcast> {
                   return Container(
                     padding: EdgeInsets.all(10),
 
-                    height: 200,
+                    height: 180,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -255,27 +259,28 @@ class _IncomForcastState extends State<IncomForcast> {
                       children: [
                         Align(
                           alignment: Alignment.centerRight,
-                          child: Container(
-                            height: 32,
-                            width: 170,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(05),
-                              color: Colors.white.withValues(alpha: 0.1),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                _buildTab("Today", context),
-                                SizedBox(width: 08),
+                          child:  Container(
+                              margin: EdgeInsets.only(top: 08, right: 08),
+                              height: 25,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(05),
+                                color: Colors.white.withValues(alpha: 0.1),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  _buildTab("Today",context),
+                                  SizedBox(width: 05),
 
-                                _buildTab("Week", context),
-                                SizedBox(width: 08),
+                                  _buildTab("Week",context),
+                                  SizedBox(width: 05),
 
-                                _buildTab("Month", context),
-                                SizedBox(width: 08),
-                              ],
-                            ),
-                          ),
+                                  _buildTab("Month",context),
+                                  SizedBox(width: 05),
+                                ],
+                              ),
+                            )
                         ),
 
                         Align(
@@ -284,11 +289,11 @@ class _IncomForcastState extends State<IncomForcast> {
                           child: Container(
                             margin: EdgeInsets.only(right: 10, top: 10),
                             //    padding: EdgeInsets.only(bottom: 02),
-                            height: 30,
-                            width: 60,
+                            height: 25,
+                            width: 55,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(04),
-                              color: Colors.white.withValues(alpha: 0.1),
+                              color: AppColors.greencolor.withValues(alpha: 0.1)
                             ),
 
                             child: Row(
@@ -361,7 +366,7 @@ class _IncomForcastState extends State<IncomForcast> {
     );
   }
 
-  Widget buildtab(String label) {
+  Widget buildtab(String label, BuildContext context) {
     bool isSelected = context.read<HomeCubit>().seletedtype == label;
     return GestureDetector(
       onTap: () {
@@ -372,7 +377,7 @@ class _IncomForcastState extends State<IncomForcast> {
       child: Container(
         height: double.infinity,
         //width: 60,
-        padding: EdgeInsets.symmetric(horizontal: 06, vertical: 06),
+             padding: EdgeInsets.only(top: 04,bottom: 04,left: 04,right: 04),
         decoration: BoxDecoration(
           color: isSelected
               ? Colors.white.withValues(alpha: 0.1)
@@ -383,7 +388,7 @@ class _IncomForcastState extends State<IncomForcast> {
           label,
           style: context.myTextTheme.titleSmall?.copyWith(
             fontFamily: "myfonts",
-            fontSize: 12,
+            fontSize: 11,
           ),
         ),
       ),
@@ -404,12 +409,12 @@ class _IncomForcastState extends State<IncomForcast> {
         // margin: EdgeInsets.only(left: 5, right: 5),
         height: double.infinity,
    
-        padding: EdgeInsets.symmetric(horizontal: 06, vertical: 06),
+        padding: EdgeInsets.only(top: 04,bottom: 04,left: 04,right: 06),
         decoration: BoxDecoration(
           color: isSelected
               ? Colors.white.withValues(alpha: 0.1)
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(04),
         ),
         child: Text(
           label,

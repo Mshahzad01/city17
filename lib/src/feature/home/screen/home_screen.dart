@@ -1,6 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/home/widgets/addBusinessBBsheet.dart';
 import 'package:city17/src/feature/home/widgets/incom_forcast.dart';
 import 'package:city17/src/feature/home/widgets/mange_business.dart';
 import 'package:city17/src/feature/home/widgets/panding_acction.dart';
@@ -89,121 +90,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<dynamic> showmodelbottomshett(BuildContext contxt) {
-    final _formKey = GlobalKey<FormState>();
-    final nameController = TextEditingController();
-    final addressController = TextEditingController();
-    final secondNameController = TextEditingController();
-
     return showModalBottomSheet(
       context: contxt,
       isScrollControlled: true,
       builder: (innercontext) {
         final bottomPadding = MediaQuery.of(innercontext).viewInsets.bottom;
 
-        return Container(
-          margin: EdgeInsets.only(bottom: bottomPadding),
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-            color: AppColors.bottombarcolor,
-          ),
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Add a display location",
-                    style: contxt.myTextTheme.titleMedium,
-                  ),
-                  SizedBox(height: 16),
-
-                  TextFormField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      hintText: "Business Name",
-                      filled: true,
-                      fillColor: AppColors.cardcolor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Business name is required';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  SizedBox(height: 10),
-
-                  TextFormField(
-                    controller: addressController,
-                    decoration: InputDecoration(
-                      hintText: "Business Address",
-                      filled: true,
-                      fillColor: AppColors.cardcolor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Address is required';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  SizedBox(height: 10),
-
-                  TextFormField(
-                    controller: secondNameController,
-                    decoration: InputDecoration(
-                      hintText: "Business Category",
-                      filled: true,
-                      fillColor: AppColors.cardcolor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Business is  required';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  SizedBox(height: 15),
-
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: TextButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.pop(innercontext);
-                        }
-                      },
-                      child: Text(
-                        "Add",
-                        style: innercontext.myTextTheme.bodyMedium?.copyWith(
-                          color: AppColors.textbuttoncolor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        return AddBusinessBS(bottompanding: bottomPadding);
       },
     );
   }
