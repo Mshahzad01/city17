@@ -5,9 +5,12 @@ import 'package:city17/src/feature/location_setting/widget/add_business_widget.d
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../home/widgets/display_by_status_widgt.dart';
+
 class LocationSetting extends StatefulWidget {
+  final int indexx;
   static const routename = "/locationsetting";
-  const LocationSetting({super.key});
+  const LocationSetting({super.key, required this.indexx});
 
   @override
   State<LocationSetting> createState() => _LocationSettingState();
@@ -16,7 +19,13 @@ class LocationSetting extends StatefulWidget {
 class _LocationSettingState extends State<LocationSetting> {
   bool iselected = false;
 
-  final data = dumyDisplays[0];
+  late DisplayLocationModel seleteddata;
+
+  @override
+  void initState() {
+    seleteddata = dumyDisplays[widget.indexx];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +46,11 @@ class _LocationSettingState extends State<LocationSetting> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //add business name address and type
-              AddBusinessWidget(),
+              AddBusinessWidget(
+                address: seleteddata.address,
+                bsname: seleteddata.name,
+                type: seleteddata.type,
+              ),
 
               // ad Binding Offer
               Container(
@@ -52,7 +65,7 @@ class _LocationSettingState extends State<LocationSetting> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
 
-                  color: AppColors.cardcolor,
+                  color: AppColors.secondrybagroundcolor,
                 ),
 
                 child: Column(
@@ -92,7 +105,7 @@ class _LocationSettingState extends State<LocationSetting> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
 
-                  color: AppColors.cardcolor,
+                  color: AppColors.secondrybagroundcolor,
                 ),
 
                 child: Column(
@@ -112,7 +125,7 @@ class _LocationSettingState extends State<LocationSetting> {
                         Transform.scale(
                           scale: 0.5,
                           child: Switch(
-                            activeColor: AppColors.greencolor,
+                            activeColor: AppColors.greentextcolor,
                             value: iselected,
                             onChanged: (bool newvalue) {
                               setState(() {
@@ -150,8 +163,152 @@ class _LocationSettingState extends State<LocationSetting> {
               ),
               SizedBox(height: 15),
 
-              //display business widget
-              //    BusinessDisplyWidget(),
+              Container(
+                padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                margin: EdgeInsets.only(top: 05, bottom: 05),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+
+                  color: AppColors.backgroundcolor,
+                ),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      seleteddata.name,
+                      style: context.myTextTheme.titleMedium,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            seleteddata.address,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+
+                            style: context.myTextTheme.titleMedium?.copyWith(
+                              fontSize: 12,
+
+                              color: AppColors.textcolor.withAlpha(80),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      seleteddata.type,
+                      style: context.myTextTheme.titleSmall,
+                    ),
+
+                    SizedBox(height: 05),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "• ${seleteddata.displaydumydata.length} Display",
+                          style: context.myTextTheme.titleSmall?.copyWith(
+                            color: AppColors.purpletextcolor,
+                          ),
+                        ),
+
+                        Text(
+                          "• ert online",
+
+                          style: context.myTextTheme.titleSmall?.copyWith(
+                            color: AppColors.greentextcolor,
+                          ),
+                        ),
+
+                        Text(
+                          "• ert offline",
+                          style: context.myTextTheme.titleSmall?.copyWith(
+                            color: AppColors.redtextcolor,
+                          ),
+                        ),
+
+                        Text(
+                          "• ert draft",
+                          style: context.myTextTheme.titleSmall?.copyWith(
+                            color: Colors.white.withValues(alpha: 0.3),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10, top: 10),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 1,
+                          color: AppColors.greentextcolor,
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          DisplaysByStatusWidget(
+                            status: DisplayStatus.online,
+                            displays: seleteddata.displaydumydata,
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10, top: 10),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 1,
+                          color: AppColors.textbuttoncolor,
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          DisplaysByStatusWidget(
+                            status: DisplayStatus.offline,
+                            displays: seleteddata.displaydumydata,
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10, top: 10),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 1,
+                          color: AppColors.textcolor.withValues(alpha: 0.1),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          DisplaysByStatusWidget(
+                            status: DisplayStatus.draft,
+                            displays: seleteddata.displaydumydata,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
               GestureDetector(
                 onTap: () {},
                 child: Container(
@@ -161,7 +318,7 @@ class _LocationSettingState extends State<LocationSetting> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: AppColors.cardcolor,
+                    color: AppColors.secondrybagroundcolor,
                   ),
 
                   child: Row(
@@ -170,7 +327,7 @@ class _LocationSettingState extends State<LocationSetting> {
                       Text(
                         "Connect a Display",
                         style: context.myTextTheme.titleMedium?.copyWith(
-                          color: AppColors.textbuttoncolor,
+                          color: AppColors.secondarytextcolor,
                         ),
                       ),
 

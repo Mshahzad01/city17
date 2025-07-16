@@ -1,12 +1,10 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
-
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/cubit/home_cubit.dart';
 import 'package:city17/src/feature/home/cubit/home_state.dart';
 import 'package:city17/src/feature/home/model/income_model.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -40,55 +38,52 @@ class _IncomForcastState extends State<IncomForcast> {
               "Income forecast",
               style: context.myTextTheme.titleLarge?.copyWith(
                 color: AppColors.textcolor,
-           
               ),
             ),
-         Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-     
-        Padding(
-          padding: const EdgeInsets.only(left: 30),
-          child: Text(
-           slectedgraph,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: AppColors.textcolor,
-                  fontSize: 12,
-                  decoration: TextDecoration.underline
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Text(
+                    slectedgraph,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: AppColors.textcolor,
+                      fontSize: 12,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
                 ),
-          ),
-        ),
 
+                PopupMenuButton<String>(
+                  icon: Icon(
+                    Icons.arrow_drop_down,
+                    color: AppColors.textcolor,
+                    size: 30,
+                  ),
+                  onSelected: (String value) {
+                    setState(() {
+                      slectedgraph = value;
+                      if (value == 'Textual') {
+                        context.read<HomeCubit>().selectdata();
+                      } else if (value == 'Graphical') {
+                        context.read<HomeCubit>().newfun();
+                      }
+                    });
+                  },
+                  itemBuilder: (BuildContext context) {
+                    return graphrep.map((String choice) {
+                      return PopupMenuItem<String>(
+                        value: choice,
+                        child: Text(choice),
+                      );
+                    }).toList();
+                  },
 
-        PopupMenuButton<String>(
-          icon: Icon(
-            Icons.arrow_drop_down,
-            color: AppColors.textcolor,
-            size: 30,
-          ),
-          onSelected: (String value) {
-            setState(() {
-             slectedgraph = value;
-              if (value == 'Textual') {
-                context.read<HomeCubit>().selectdata();
-              } else if (value == 'Graphical') {
-                context.read<HomeCubit>().newfun();
-              }
-            });
-          },
-          itemBuilder: (BuildContext context) {
-            return graphrep.map((String choice) {
-              return PopupMenuItem<String>(
-                value: choice,
-                child: Text(choice),
-              );
-            }).toList();
-          },
-
-          color: AppColors.appbackgroundcolor,
-        ),
-      ],
-    )
+                  color: AppColors.backgroundcolor,
+                ),
+              ],
+            ),
           ],
         ),
 
@@ -98,13 +93,12 @@ class _IncomForcastState extends State<IncomForcast> {
             builder: (context, state) {
               if (graphrep[1] == slectedgraph) {
                 if (state is chartdatasate) {
-              
                   return Container(
                     height: 180,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: AppColors.cardcolor,
+                      color: AppColors.secondrybagroundcolor,
                     ),
 
                     child: Column(
@@ -115,11 +109,9 @@ class _IncomForcastState extends State<IncomForcast> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
-                       
-                               crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-
-                                SizedBox(height: 03,),
+                                SizedBox(height: 03),
                                 Text(
                                   "  \$${state.totalincome[0].income.toString()}",
                                   style: context.myTextTheme.titleLarge
@@ -127,16 +119,15 @@ class _IncomForcastState extends State<IncomForcast> {
                                 ),
 
                                 Text(
-                                    "AUD",
-                                    style: context.myTextTheme.titleSmall
-                                        ?.copyWith(
-                                          color: AppColors.textcolor.withValues(
-                                            alpha: 0.5,
-                                          ),
-                                          fontSize: 10,
+                                  "AUD",
+                                  style: context.myTextTheme.titleSmall
+                                      ?.copyWith(
+                                        color: AppColors.textcolor.withValues(
+                                          alpha: 0.5,
                                         ),
-                                  ),
-                              
+                                        fontSize: 10,
+                                      ),
+                                ),
                               ],
                             ),
 
@@ -147,7 +138,9 @@ class _IncomForcastState extends State<IncomForcast> {
                               width: 45,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(04),
-                                color: AppColors.greencolor.withValues(alpha: 0.1),
+                                color: AppColors.greentextcolor.withValues(
+                                  alpha: 0.1,
+                                ),
                               ),
 
                               child: Row(
@@ -185,13 +178,13 @@ class _IncomForcastState extends State<IncomForcast> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  buildtab("Today",context),
+                                  buildtab("Today", context),
                                   SizedBox(width: 08),
 
-                                  buildtab("Week",context),
+                                  buildtab("Week", context),
                                   SizedBox(width: 08),
 
-                                  buildtab("Month",context),
+                                  buildtab("Month", context),
                                   SizedBox(width: 08),
                                 ],
                               ),
@@ -250,7 +243,7 @@ class _IncomForcastState extends State<IncomForcast> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: AppColors.cardcolor,
+                      color: AppColors.secondrybagroundcolor,
                     ),
 
                     child: Column(
@@ -259,28 +252,28 @@ class _IncomForcastState extends State<IncomForcast> {
                       children: [
                         Align(
                           alignment: Alignment.centerRight,
-                          child:  Container(
-                              margin: EdgeInsets.only(top: 08, right: 08),
-                              height: 25,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(05),
-                                color: Colors.white.withValues(alpha: 0.1),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  _buildTab("Today",context),
-                                  SizedBox(width: 05),
+                          child: Container(
+                            margin: EdgeInsets.only(top: 08, right: 08),
+                            height: 25,
+                            width: 150,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(05),
+                              color: Colors.white.withValues(alpha: 0.1),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                _buildTab("Today", context),
+                                SizedBox(width: 05),
 
-                                  _buildTab("Week",context),
-                                  SizedBox(width: 05),
+                                _buildTab("Week", context),
+                                SizedBox(width: 05),
 
-                                  _buildTab("Month",context),
-                                  SizedBox(width: 05),
-                                ],
-                              ),
-                            )
+                                _buildTab("Month", context),
+                                SizedBox(width: 05),
+                              ],
+                            ),
+                          ),
                         ),
 
                         Align(
@@ -293,7 +286,9 @@ class _IncomForcastState extends State<IncomForcast> {
                             width: 55,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(04),
-                              color: AppColors.greencolor.withValues(alpha: 0.1)
+                              color: AppColors.greentextcolor.withValues(
+                                alpha: 0.1,
+                              ),
                             ),
 
                             child: Row(
@@ -377,7 +372,7 @@ class _IncomForcastState extends State<IncomForcast> {
       child: Container(
         height: double.infinity,
         //width: 60,
-             padding: EdgeInsets.only(top: 04,bottom: 04,left: 04,right: 04),
+        padding: EdgeInsets.only(top: 04, bottom: 04, left: 04, right: 04),
         decoration: BoxDecoration(
           color: isSelected
               ? Colors.white.withValues(alpha: 0.1)
@@ -401,15 +396,14 @@ class _IncomForcastState extends State<IncomForcast> {
 
     return GestureDetector(
       onTap: () {
-        
         context.read<HomeCubit>().seletedincometypechange(label);
         context.read<HomeCubit>().selectdata();
       },
       child: Container(
         // margin: EdgeInsets.only(left: 5, right: 5),
         height: double.infinity,
-   
-        padding: EdgeInsets.only(top: 04,bottom: 04,left: 04,right: 06),
+
+        padding: EdgeInsets.only(top: 04, bottom: 04, left: 04, right: 06),
         decoration: BoxDecoration(
           color: isSelected
               ? Colors.white.withValues(alpha: 0.1)

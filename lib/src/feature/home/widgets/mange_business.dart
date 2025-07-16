@@ -6,6 +6,8 @@ import 'package:city17/src/feature/location_setting/screen/location_setting.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'display_by_status_widgt.dart';
+
 class MangeBusiness extends StatefulWidget {
   const MangeBusiness({super.key});
 
@@ -14,303 +16,184 @@ class MangeBusiness extends StatefulWidget {
 }
 
 class _MangeBusinessState extends State<MangeBusiness> {
-  late List<bool> isExpandedList;
-
-  @override
-  void initState() {
-    super.initState();
-    isExpandedList = List.generate(dumyDisplays.length, (_) => false);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+      padding: EdgeInsets.only(left: 10, right: 10, top: 05),
       decoration: BoxDecoration(
-        color: AppColors.cardcolor,
+        color: AppColors.secondrybagroundcolor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
         ),
       ),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 400,
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: dumyDisplays.length,
+        itemBuilder: (BuildContext context, int index) {
+          final data = dumyDisplays[index];
 
-            child: ListView.builder(
-              itemCount: dumyDisplays.length,
-              itemBuilder: (BuildContext context, int index) {
-                final data = dumyDisplays[index];
+          return Container(
+            padding: EdgeInsets.all(02),
+            margin: EdgeInsets.only(top: 05, bottom: 05),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
 
-                return Container(
-                  margin: EdgeInsets.only(),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.splashbroudcolor,
-                  ),
-                  child: Column(
+              color: AppColors.backgroundcolor,
+            ),
+            child: ExpansionTile(
+              childrenPadding: EdgeInsets.only(right: 08, left: 08),
+              tilePadding: EdgeInsets.only(left: 08, right: 08),
+              backgroundColor: AppColors.backgroundcolor,
+              collapsedBackgroundColor: AppColors.backgroundcolor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+
+              showTrailingIcon: false,
+
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(data.name, style: context.myTextTheme.titleMedium),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10,
-                          right: 10,
-                          top: 05,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              data.name,
-                              style: context.myTextTheme.titleMedium
-                                  ?.copyWith(),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  data.address,
-                                  style: context.myTextTheme.titleMedium
-                                      ?.copyWith(
-                                        color: AppColors.textcolor.withAlpha(
-                                          80,
-                                        ),
-                                      ),
-                                ),
-                                InkWell(
-                                  onTap: () => Navigator.pushNamed(
-                                    context,
-                                    LocationSetting.routename,
-                                  ),
-                                  child: SvgPicture.asset(
-                                    AssetString.settingicon,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              data.type,
-                              style: context.myTextTheme.titleSmall?.copyWith(),
-                            ),
-                            SizedBox(height: 05),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  "• ${data.displaydumydata.length} Display",
-                                  style: context.myTextTheme.titleSmall
-                                      ?.copyWith(
-                                        color: AppColors.purpletextcolor,
-                                      ),
-                                ),
-                                //  SizedBox(width: 10),
-                                Text(
-                                  "• ert online",
+                      Expanded(
+                        child: Text(
+                          data.address,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
 
-                                  style: context.myTextTheme.titleSmall
-                                      ?.copyWith(color: AppColors.greencolor),
-                                ),
+                          style: context.myTextTheme.titleMedium?.copyWith(
+                            fontSize: 12,
 
-                                //  SizedBox(width: 10),
-                                Text(
-                                  "• ert offline",
-                                  style: context.myTextTheme.titleSmall
-                                      ?.copyWith(color: AppColors.redtextcolor),
-                                ),
-                                // SizedBox(width: 10),
-                                Text(
-                                  "• wer} draft",
-                                  style: context.myTextTheme.titleSmall
-                                      ?.copyWith(
-                                        color: Colors.white.withValues(
-                                          alpha: 0.3,
-                                        ),
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ],
+                            color: AppColors.textcolor.withAlpha(80),
+                          ),
                         ),
                       ),
-                      ExpansionTile(
-                        backgroundColor: AppColors.splashbroudcolor,
-                        collapsedBackgroundColor: AppColors.splashbroudcolor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        title: Container(
-                          height: 20,
-                          decoration: BoxDecoration(
-                            color: Colors.white.withAlpha(20),
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                          child: Center(
-                            child: SvgPicture.asset(
-                              AssetString.drowpdownicon,
-                            ), // ya dropup
-                          ),
-                        ),
 
-                        showTrailingIcon: false,
-
-                        children: [
-                          //online data
-                          Container(
-                            margin: EdgeInsets.only(bottom: 10),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                width: 1,
-                                color: AppColors.greencolor,
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                _DisplaysByStatusWidget(
-                                  status: DisplayStatus.online,
-                                  displays: dumyDisplays[index].displaydumydata,
-                                ),
-                                _DisplaysByStatusWidget(
-                                  status: DisplayStatus.offline,
-                                  displays: dumyDisplays[index].displaydumydata,
-                                ),
-                              ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: InkWell(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  LocationSetting(indexx: index),
                             ),
                           ),
-                        ],
+                          //LocationSetting(indexx: index),
+                          child: SvgPicture.asset(AssetString.settingicon),
+                        ),
                       ),
                     ],
                   ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+                  Text(data.type, style: context.myTextTheme.titleSmall),
 
-class _DisplaysByStatusWidget extends StatelessWidget {
-  const _DisplaysByStatusWidget({
-    super.key,
-    required this.status,
-    required this.displays,
-  });
-
-  final DisplayStatus status;
-  final List<Display> displays;
-
-  @override
-  Widget build(BuildContext context) {
-    final requiredDisplays = displays.where((e) => e.status == status);
-
-    return Column(
-      children: [
-        Row(
-          children: [
-            CircleAvatar(
-              backgroundColor: status == DisplayStatus.online
-                  ? AppColors.greencolor
-                  : AppColors.circulcolor,
-              radius: 08,
-            ),
-            SizedBox(width: 08),
-            Text(
-              status.title,
-              style: context.myTextTheme.titleMedium?.copyWith(fontSize: 14),
-            ),
-          ],
-        ),
-
-        Column(
-          children: [
-            ...requiredDisplays
-                .map(
-                  (x) => Container(
-                    height: 50,
-                    margin: EdgeInsets.only(top: 8, bottom: 5),
-                    padding: EdgeInsets.only(left: 10, top: 5, bottom: 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.cardcolor,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          x.name,
-                          style: context.myTextTheme.titleMedium?.copyWith(
-                            fontSize: 11,
-                          ),
+                  SizedBox(height: 05),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "• ${data.displaydumydata.length} Display",
+                        style: context.myTextTheme.titleSmall?.copyWith(
+                          color: AppColors.purpletextcolor,
                         ),
-                        SizedBox(height: 5),
-                        Row(
-                          children: [
-                            Text(
-                              x.time.toString(),
-                              style: context.myTextTheme.titleSmall?.copyWith(
-                                fontSize: 10,
-                                color: Colors.white.withOpacity(0.3),
-                              ),
-                            ),
-                            Spacer(),
-                            SvgPicture.asset(AssetString.growthicon),
-                            SizedBox(width: 5),
-                            Text(
-                              x.uptime.toString(),
-                              style: context.myTextTheme.titleSmall,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "\$ ${x.revenue}",
-                              style: context.myTextTheme.titleSmall,
-                            ),
-                            SizedBox(width: 10),
-                            Container(
-                              margin: EdgeInsets.only(right: 5),
-                              height: 15,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: AppColors.greencolor.withOpacity(0.1),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "${x.growth}",
-                                    style: context.myTextTheme.titleSmall
-                                        ?.copyWith(
-                                          color: Colors.green,
-                                          fontSize: 8,
-                                        ),
-                                  ),
-                                  SizedBox(width: 4),
-                                  SvgPicture.asset(
-                                    AssetString.arrowicon,
-                                    color: Colors.green,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                      ),
+
+                      Text(
+                        "• ert online",
+
+                        style: context.myTextTheme.titleSmall?.copyWith(
+                          color: AppColors.greentextcolor,
                         ),
-                      ],
+                      ),
+
+                      Text(
+                        "• ert offline",
+                        style: context.myTextTheme.titleSmall?.copyWith(
+                          color: AppColors.redtextcolor,
+                        ),
+                      ),
+
+                      Text(
+                        "• ert draft",
+                        style: context.myTextTheme.titleSmall?.copyWith(
+                          color: Colors.white.withValues(alpha: 0.3),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+
+              children: [
+                Container(
+                  margin: EdgeInsets.only(bottom: 10, top: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 1,
+                      color: AppColors.greentextcolor,
                     ),
                   ),
-                )
-                .toList(),
-          ],
-        ),
-      ],
+                  child: Column(
+                    children: [
+                      DisplaysByStatusWidget(
+                        status: DisplayStatus.online,
+                        displays: data.displaydumydata,
+                      ),
+                    ],
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(bottom: 10, top: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 1,
+                      color: AppColors.textbuttoncolor,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      DisplaysByStatusWidget(
+                        status: DisplayStatus.offline,
+                        displays: data.displaydumydata,
+                      ),
+                    ],
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(bottom: 10, top: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 1,
+                      color: AppColors.textcolor.withValues(alpha: 0.1),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      DisplaysByStatusWidget(
+                        status: DisplayStatus.draft,
+                        displays: data.displaydumydata,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

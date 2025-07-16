@@ -1,19 +1,49 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
+import 'package:city17/src/constant/string_data.dart';
+import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AddBusinessWidget extends StatefulWidget {
-  const AddBusinessWidget({super.key});
+  final String address;
+  final String bsname;
+  final String type;
+  const AddBusinessWidget({
+    super.key,
+    required this.address,
+    required this.bsname,
+    required this.type,
+  });
 
   @override
   State<AddBusinessWidget> createState() => _AddBusinessWidgetState();
 }
 
 class _AddBusinessWidgetState extends State<AddBusinessWidget> {
-  String selectedcategory = "Resturent";
+  late TextEditingController _businessnamecontroller;
+  late TextEditingController _addressController;
 
-  List<String> businesscategory = ['Resturent', 'Shop', 'Vechile'];
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  List<String> businesscategory = ['Resturent', 'Shop', 'Vechile', 'Hotel'];
+
+  late String selectedcategory;
+
+  @override
+  void initState() {
+    _businessnamecontroller = TextEditingController(text: widget.bsname);
+    _addressController = TextEditingController(text: widget.address);
+    selectedcategory = widget.type;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _businessnamecontroller.dispose();
+    _addressController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,97 +53,116 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
 
-        color: AppColors.cardcolor,
+        color: AppColors.secondrybagroundcolor,
       ),
 
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Name"),
+      child: Form(
+        key: _formkey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(StringData.name),
 
-          SizedBox(height: 05),
+            SizedBox(height: 05),
 
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
+            TextFormField(
+              controller: _businessnamecontroller,
+              style: context.myTextTheme.titleMedium?.copyWith(),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
 
-                borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                fillColor: AppColors.backgroundcolor,
+                filled: true,
+
+                hint: Text(StringData.businessname),
+
+                suffixIcon: Padding(
+                  padding: EdgeInsets.all(10),
+
+                  child: SvgPicture.asset(AssetString.editicon),
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
+                ),
               ),
-              fillColor: AppColors.appbackgroundcolor,
-              filled: true,
-
-              hint: Text("Business Name"),
-
-              suffixIcon: Padding(
-                padding: EdgeInsets.all(10),
-
-                child: SvgPicture.asset(AssetString.editicon),
-              ),
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
-              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Business name is required';
+                }
+                return null;
+              },
             ),
-          ),
 
-          SizedBox(height: 10),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
+            SizedBox(height: 10),
+            TextFormField(
+              controller: _addressController,
+              style: context.myTextTheme.titleMedium?.copyWith(),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
 
-                borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                fillColor: AppColors.backgroundcolor,
+                filled: true,
+                focusColor: AppColors.backgroundcolor,
+
+                hint: Text(StringData.businessaddress),
+
+                suffixIcon: Padding(
+                  padding: EdgeInsets.all(15),
+
+                  child: SvgPicture.asset(AssetString.locationicon),
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
+                ),
               ),
-              fillColor: AppColors.appbackgroundcolor,
-              filled: true,
-              focusColor: AppColors.appbackgroundcolor,
-
-              hint: Text("Hilton 488 Georage St,Sydney"),
-
-              suffixIcon: Padding(
-                padding: EdgeInsets.all(15),
-
-                child: SvgPicture.asset(AssetString.locationicon),
-              ),
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
-              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Business Address is Required';
+                }
+                return null;
+              },
             ),
-          ),
 
-          SizedBox(height: 10),
-          DropdownButtonFormField(
-            value: selectedcategory,
-            focusColor: AppColors.appbackgroundcolor,
-            dropdownColor: AppColors.appbackgroundcolor,
-            borderRadius: BorderRadius.circular(10),
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
+            SizedBox(height: 10),
+            DropdownButtonFormField(
+              value: selectedcategory,
+              focusColor: AppColors.backgroundcolor,
+              dropdownColor: AppColors.backgroundcolor,
+              borderRadius: BorderRadius.circular(10),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
 
-                borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
+                ),
+
+                fillColor: AppColors.backgroundcolor,
+                filled: true,
               ),
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
-              ),
+              items: businesscategory.map((category) {
+                return DropdownMenuItem(value: category, child: Text(category));
+              }).toList(),
 
-              fillColor: AppColors.appbackgroundcolor,
-              filled: true,
+              onChanged: (value) {
+                setState(() {
+                  selectedcategory = value!;
+                });
+              },
             ),
-            items: businesscategory.map((category) {
-              return DropdownMenuItem(value: category, child: Text(category));
-            }).toList(),
-
-            onChanged: (value) {
-              setState(() {
-                selectedcategory = value!;
-              });
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

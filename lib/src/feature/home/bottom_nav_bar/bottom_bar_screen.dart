@@ -24,7 +24,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.appbackgroundcolor,
+        backgroundColor: AppColors.backgroundcolor,
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(05),

@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 class DarkTheme {
   static ThemeData get theme {
     return ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: AppColors.appbackgroundcolor,
+      scaffoldBackgroundColor: AppColors.backgroundcolor,
 
-      appBarTheme: AppBarTheme(color: AppColors.appbackgroundcolor),
+      appBarTheme: AppBarTheme(color: AppColors.backgroundcolor),
 
       iconTheme: const IconThemeData(color: Colors.white),
 
@@ -17,7 +17,7 @@ class DarkTheme {
 
         titleLarge: GoogleFonts.poppins(
           color: AppColors.textcolor,
-          fontSize: 22,
+          fontSize: 18,
           fontWeight: FontWeight.w500,
         ),
 

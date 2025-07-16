@@ -121,7 +121,7 @@ List<DisplayLocationModel> dumyDisplays = [
   DisplayLocationModel(
     name: 'Hilton Hotel',
     type: 'Hotel',
-    address: 'Multan Shalimar Calony',
+    address: 'Multan Shalimar Calony fdada',
     displaydumydata: [
       Display(
         name: 'Display 1',
@@ -188,72 +188,3 @@ List<DisplayLocationModel> dumyDisplays = [
     ],
   ),
 ];
-
-// List<DisplayLocationModel
-//> dummyDisplays = [
-//   DisplayLocationModel(
-
-//     display: 13,
-//     type: "Hotel",
-//     status: Display(
-//       uptime: 99.9,
-//       revenue: 23.00,
-//       growth: 7.1,
-//       status: DisplayStatus.online,
-//       time: 'This week',
-//       totaldisply: 10,
-//       warning: 'These display currently Offline and not generate revenue',
-//     ),
-//     displayOffline: Display(
-//       uptime: 99.9,
-//       time: 'This week',
-//       revenue: 23.00,
-//       growth: 7.1,
-//       status: DisplayStatus.offline,
-//       totaldisply: 03,
-//       warning: 'These display currently Offline and not generate revenue',
-//     ),
-//     displaydrat: Display(
-//       uptime: 99.9,
-//       revenue: 23.00,
-//       growth: 7.1,
-//       time: 'This week',
-//       status: DisplayStatus.draft,
-//       totaldisply: 1,
-//       warning: 'These display currently Offline and not generate revenue',
-//     ),
-//   ),
-
-//   DisplayLocationModel(
-
-//     display: 13,
-//     type: "Hotel",
-//     displayOnline: Display(
-//       uptime: 99.9,
-//       revenue: 23.00,
-//       growth: 7.1,
-//       time: 'This week',
-//       status: DisplayStatus.online,
-//       totaldisply: 13,
-//       warning: 'These display currently Offline and not generate revenue',
-//     ),
-//     displayOffline: Display(
-//       uptime: 99.9,
-//       revenue: 23.00,
-//       growth: 7.1,
-//       time: 'This week',
-//       status: DisplayStatus.offline,
-//       totaldisply: 03,
-//       warning: 'These display currently Offline and not generate revenue',
-//     ),
-//     displaydrat: Display(
-//       uptime: 99.9,
-//       revenue: 23.00,
-//       growth: 7.1,
-//       time: 'This week',
-//       status: DisplayStatus.draft,
-//       totaldisply: 01,
-//       warning: 'These display currently Offline and not generate revenue',
-//     ),
-//   ),
-// ];

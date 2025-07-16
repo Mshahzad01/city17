@@ -13,7 +13,6 @@ class PandingAcction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final data = dumydata[0];
     return Column(
       children: [
@@ -27,7 +26,7 @@ class PandingAcction extends StatelessWidget {
         pandingaction(
           "Due Payment",
           AssetString.clockicon,
-           data.duepayment,
+          data.duepayment,
           context,
         ),
 
@@ -49,13 +48,13 @@ class PandingAcction extends StatelessWidget {
   ) {
     return Container(
       margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.only(left: 10,right: 10),
+      padding: EdgeInsets.only(left: 10, right: 10),
       height: 50,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
 
-        color: AppColors.cardcolor,
+        color: AppColors.secondrybagroundcolor,
       ),
       child: Row(
         children: [
@@ -65,18 +64,16 @@ class PandingAcction extends StatelessWidget {
           Text(title, style: contex.myTextTheme.titleMedium?.copyWith()),
 
           Spacer(),
-          if (status == 0)
-          
-             Icon(Icons.check_circle_outline),
-            
+          if (status == 0) Icon(Icons.check_circle_outline),
 
           if (status != 0)
             Text(
-              status.toString(),textAlign: TextAlign.center,
+              status.toString(),
+              textAlign: TextAlign.center,
               style: contex.myTextTheme.titleSmall?.copyWith(
                 color: Color(0xffE37F47),
                 decoration: TextDecoration.underline,
-                fontSize: 14
+                fontSize: 14,
               ),
             ),
         ],

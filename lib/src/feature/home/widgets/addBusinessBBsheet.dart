@@ -14,11 +14,13 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
   late TextEditingController _nameContoller;
   late TextEditingController _businesscatorycontroller;
   late TextEditingController _addresscontroller;
-  final GlobalKey _formkey = GlobalKey();
 
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   @override
   void initState() {
     _nameContoller = TextEditingController();
+    _businesscatorycontroller = TextEditingController();
+    _addresscontroller = TextEditingController();
     super.initState();
   }
 
@@ -57,7 +59,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 decoration: InputDecoration(
                   hintText: "Business Name",
                   filled: true,
-                  fillColor: AppColors.cardcolor,
+                  fillColor: AppColors.secondrybagroundcolor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide.none,
@@ -78,7 +80,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 decoration: InputDecoration(
                   hintText: "Business Address",
                   filled: true,
-                  fillColor: AppColors.cardcolor,
+                  fillColor: AppColors.secondrybagroundcolor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide.none,
@@ -99,7 +101,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 decoration: InputDecoration(
                   hintText: "Business Category",
                   filled: true,
-                  fillColor: AppColors.cardcolor,
+                  fillColor: AppColors.secondrybagroundcolor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide.none,
@@ -119,14 +121,14 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 alignment: Alignment.bottomRight,
                 child: TextButton(
                   onPressed: () {
-                    // if (_formkey.currentState!.validate()) {
-                    //   Navigator.pop(context);
-                    // }
+                    if (_formkey.currentState!.validate()) {
+                      Navigator.pop(context);
+                    }
                   },
                   child: Text(
                     "Add",
                     style: context.myTextTheme.bodyMedium?.copyWith(
-                      color: AppColors.textbuttoncolor,
+                      color: AppColors.secondarytextcolor,
                     ),
                   ),
                 ),
