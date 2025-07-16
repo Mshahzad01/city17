@@ -1,9 +1,7 @@
 import 'package:city17/config/dark_theme.dart';
 import 'package:city17/config/ongenerated_route.dart';
-import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
+import 'package:city17/src/feature/connect_display/screen/connet_display_setep1.dart';
 import 'package:city17/src/feature/home/cubit/home_cubit.dart';
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,21 +15,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-
-      
-      providers: [
-
-        BlocProvider(create: (_)=> HomeCubit(),),
-      ],
+      providers: [BlocProvider(create: (_) => HomeCubit())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-      
+
         onGenerateRoute: AppRoute.onGenerateRoute,
-      
+
         theme: DarkTheme.theme,
-      
-        initialRoute: BottomNavScreen.rotename,
-      
+
+        // initialRoute: BottomNavScreen.rotename,
+        home: Connectdisplaysetpone(),
+
         /// SplashScreen.routename,
       ),
     );
