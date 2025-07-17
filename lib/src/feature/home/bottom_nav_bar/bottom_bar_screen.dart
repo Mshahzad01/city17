@@ -1,8 +1,11 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../advert_offer/screen/advert_offer_screen.dart';
 
 class BottomNavScreen extends StatefulWidget {
   static const rotename = "/bottomnav";
@@ -18,7 +21,12 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
 
   final List<String> items = ['Home', 'Offers', 'Finance', 'Settings'];
 
-  final _pages = [HomeScreen(), HomeScreen(), HomeScreen(), HomeScreen()];
+  final _pages = [
+    HomeScreen(),
+    AdvertOfferScreen(),
+    HomeScreen(),
+    HomeScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +35,10 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         backgroundColor: AppColors.backgroundcolor,
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(05),
+          preferredSize: Size.fromHeight(myPadding / 2),
 
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: myPadding / 2),
             child: Column(
               children: [
                 Row(
@@ -39,7 +47,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                       backgroundImage: AssetImage(AssetString.userimage),
                       radius: 18,
                     ),
-                    SizedBox(width: 12),
+
+                    SizedBox(width: myPadding),
 
                     Text(
                       "Hi",
@@ -96,7 +105,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(items.length, (index) {
             final isSelected = selectedIndex == index;
-            return GestureDetector(
+            return InkWell(
               onTap: () {
                 setState(() {
                   selectedIndex = index;

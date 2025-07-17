@@ -1,7 +1,9 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/location_setting/enum/business_category_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -26,7 +28,12 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  List<String> businesscategory = ['Resturent', 'Shop', 'Vechile', 'Hotel'];
+  List<BusinessCategoryEnum> businesscategory = [
+    BusinessCategoryEnum.returent,
+    BusinessCategoryEnum.shop,
+    BusinessCategoryEnum.vehicle,
+    BusinessCategoryEnum.hotel,
+  ];
 
   late String selectedcategory;
 
@@ -63,7 +70,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
           children: [
             Text(StringData.name),
 
-            SizedBox(height: 05),
+            SizedBox(height: myPadding / 2),
 
             TextFormField(
               controller: _businessnamecontroller,
@@ -72,7 +79,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
 
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(myPadding),
                 ),
                 fillColor: AppColors.backgroundcolor,
                 filled: true,
@@ -80,13 +87,13 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
                 hint: Text(StringData.businessname),
 
                 suffixIcon: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(myPadding / 2),
 
                   child: SvgPicture.asset(AssetString.editicon),
                 ),
                 contentPadding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
+                  horizontal: myPadding / 2,
+                  vertical: myPadding / 2,
                 ),
               ),
               validator: (value) {
@@ -97,7 +104,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
               },
             ),
 
-            SizedBox(height: 10),
+            SizedBox(height: myPadding / 2),
             TextFormField(
               controller: _addressController,
               style: context.myTextTheme.titleMedium?.copyWith(),
@@ -152,12 +159,14 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
                 filled: true,
               ),
               items: businesscategory.map((category) {
-                return DropdownMenuItem(value: category, child: Text(category));
+                return DropdownMenuItem(
+                  value: category,
+                  child: Text(category.title),
+                );
               }).toList(),
-
               onChanged: (value) {
                 setState(() {
-                  selectedcategory = value!;
+                  selectedcategory = value.toString();
                 });
               },
             ),

@@ -1,5 +1,6 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/connect_display/screen/connet_display_setep1.dart';
 import 'package:city17/src/feature/home/model/display_model.dart';
 import 'package:city17/src/feature/location_setting/widget/add_business_widget.dart';
 import 'package:flutter/material.dart';
@@ -310,7 +311,9 @@ class _LocationSettingState extends State<LocationSetting> {
               ),
 
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, Connectdisplaysetpone.routename);
+                },
                 child: Container(
                   margin: EdgeInsets.only(top: 15, bottom: 15),
 

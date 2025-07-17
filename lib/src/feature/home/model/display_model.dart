@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum DisplayStatus {
   online,
   offline,
@@ -7,6 +9,12 @@ enum DisplayStatus {
     online => "Online",
     offline => "Ofline",
     draft => "Drafts",
+  };
+
+  Color get color => switch (this) {
+    online => Colors.green,
+    offline => Colors.redAccent,
+    draft => Colors.grey,
   };
 }
 

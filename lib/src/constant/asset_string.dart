@@ -2,8 +2,7 @@ mixin AssetString {
   static const googleicon = "assets/icon/bottom1.svg";
   static const googlepic = "assets/image/google.png";
   static const logo = "assets/image/City17.png";
-  static const networkimage =
-      "https://unsplash.com/photos/portrait-of-a-happy-young-woman-8PcQnMCiXn0";
+
   static const arrowicon = "assets/icon/Vector.svg";
   static const line = "assets/icon/line.svg";
   static const userimage = "assets/image/i (1).png";

@@ -5,11 +5,10 @@ import 'package:city17/src/feature/home/model/panding_action_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-// ignore: must_be_immutable
 class PandingAcction extends StatelessWidget {
-  PandingAcction({super.key});
+  const PandingAcction({super.key, this.ischecked = false});
 
-  bool ischecked = false;
+  final bool ischecked;
 
   @override
   Widget build(BuildContext context) {

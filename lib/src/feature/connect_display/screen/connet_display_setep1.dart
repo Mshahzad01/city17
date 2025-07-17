@@ -2,13 +2,20 @@ import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/connect_display/enum/screeen_placement_enum.dart';
+import 'package:city17/src/feature/connect_display/enum/screen_installed_enum.dart';
+import 'package:city17/src/feature/connect_display/screen/disply_setup2.dart';
 import 'package:city17/src/feature/connect_display/widgets/setep_indicator_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../enum/display_orientation_enum.dart';
+import '../enum/displaylocation_enum.dart';
 import '../widgets/custom_radio_widget.dart';
 
 class Connectdisplaysetpone extends StatefulWidget {
-  Connectdisplaysetpone({super.key});
+  const Connectdisplaysetpone({super.key});
+
+  static const routename = "/displyone";
 
   @override
   State<Connectdisplaysetpone> createState() => _ConnectdisplaysetponeState();
@@ -35,10 +42,13 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
     super.dispose();
   }
 
-  String screenType = "Fixed";
-  String screenLocation = "Restaurant";
-  String screenPlacement = "Inside";
-  String screenorination = "Horizantal";
+  DisplayLocationType screenType = DisplayLocationType.fixed;
+
+  ScreenInstallEnum screenlocation = ScreenInstallEnum.resturent;
+
+  ScreeenPlacementEnum screenplacement = ScreeenPlacementEnum.facingoutside;
+  DisplayOrientation screenorination = DisplayOrientation.horizontal;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -94,23 +104,23 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          CustomRadioTile(
-                            label: "Mobile",
-                            value: "Mobile",
-                            groupValue: screenType,
-                            onChanged: (val) =>
-                                setState(() => screenType = val),
-                          ),
-
-                          SizedBox(width: 20),
-
-                          CustomRadioTile(
-                            label: "Fixed",
-                            value: "Fixed",
-                            groupValue: screenType,
-                            onChanged: (val) =>
-                                setState(() => screenType = val),
-                          ),
+                          ...DisplayLocationType.values.map((x) {
+                            return Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Radio<DisplayLocationType>.adaptive(
+                                  value: screenType,
+                                  groupValue: x,
+                                  onChanged: (v) {
+                                    setState(() {
+                                      screenType = x;
+                                    });
+                                  },
+                                ),
+                                Text(x.title),
+                              ],
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -126,52 +136,21 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       padding: EdgeInsets.only(left: 10, top: 10),
                       margin: EdgeInsets.only(top: 10),
                       height: 70,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.backgroundcolor,
                       ),
-                      child: Column(
+                      child: Wrap(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              CustomRadioTile(
-                                label: "Shop",
-                                value: "Shop",
-                                groupValue: screenLocation,
-                                onChanged: (val) =>
-                                    setState(() => screenLocation = val),
-                              ),
-
-                              SizedBox(width: 20),
-
-                              CustomRadioTile(
-                                label: "Resturant",
-                                value: "Resturant",
-                                groupValue: screenLocation,
-                                onChanged: (val) =>
-                                    setState(() => screenLocation = val),
-                              ),
-
-                              SizedBox(width: 20),
-
-                              CustomRadioTile(
-                                label: "Vehicle",
-                                value: "Vehicle",
-                                groupValue: screenLocation,
-                                onChanged: (val) =>
-                                    setState(() => screenLocation = val),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          CustomRadioTile(
-                            label: "Other",
-                            value: "Other",
-                            groupValue: screenLocation,
-                            onChanged: (val) =>
-                                setState(() => screenLocation = val),
-                          ),
+                          ...ScreenInstallEnum.values.map((x) {
+                            return CustomRadioTile<ScreenInstallEnum>(
+                              value: x,
+                              groupValue: screenlocation,
+                              onChanged: (val) =>
+                                  setState(() => screenlocation = x),
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -186,33 +165,21 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                     SizedBox(height: 10),
 
                     Container(
-                      padding: EdgeInsets.only(left: 10),
+                      padding: EdgeInsets.only(left: 10, top: 15),
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.backgroundcolor,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CustomRadioTile(
-                            label: "Facing Outside",
-                            value: "Facing Outside",
-                            groupValue: screenPlacement,
+                      child: Wrap(
+                        children: ScreeenPlacementEnum.values.map((x) {
+                          return CustomRadioTile<ScreeenPlacementEnum>(
+                            value: x,
+                            groupValue: screenplacement,
                             onChanged: (val) =>
-                                setState(() => screenPlacement = val),
-                          ),
-
-                          SizedBox(width: 20),
-
-                          CustomRadioTile(
-                            label: "Inside the Property",
-                            value: "Inside this Property",
-                            groupValue: screenPlacement,
-                            onChanged: (val) =>
-                                setState(() => screenPlacement = val),
-                          ),
-                        ],
+                                setState(() => screenplacement = x),
+                          );
+                        }).toList(),
                       ),
                     ),
                   ],
@@ -291,18 +258,16 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              CustomRadioTile(
-                                label: "Horizantal",
-                                value: "Horizantal",
+                              CustomRadioTile<DisplayOrientation>(
+                                value: DisplayOrientation.horizontal,
                                 groupValue: screenorination,
                                 onChanged: (val) =>
                                     setState(() => screenorination = val),
                               ),
 
                               SizedBox(width: 40),
-                              CustomRadioTile(
-                                label: "Vertical",
-                                value: "Vertical",
+                              CustomRadioTile<DisplayOrientation>(
+                                value: DisplayOrientation.veritcal,
                                 groupValue: screenorination,
                                 onChanged: (val) =>
                                     setState(() => screenorination = val),
@@ -317,6 +282,8 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
               ),
 
               SizedBox(height: 10),
+
+              SizedBox(height: 10),
               Container(
                 padding: EdgeInsets.only(top: 12),
                 decoration: BoxDecoration(
@@ -326,6 +293,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 height: 60,
 
                 child: TextFormField(
+                  controller: _namecontroller,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10, top: 05),
                     fillColor: AppColors.secondrybagroundcolor,
@@ -349,9 +317,15 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 height: 60,
 
                 child: TextFormField(
+                  controller: _sizecontroller,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 10, top: 05),
+                    contentPadding: EdgeInsets.only(
+                      left: 10,
+                      top: 05,
+                      right: 10,
+                    ),
                     fillColor: AppColors.secondrybagroundcolor,
+
                     filled: true,
                     label: Text(StringData.size),
                     suffix: Text(
@@ -367,6 +341,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                   ),
                 ),
               ),
+
               Container(
                 margin: EdgeInsets.only(bottom: 10),
                 padding: EdgeInsets.only(top: 12, right: 05),
@@ -377,17 +352,14 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 height: 90,
 
                 child: TextFormField(
+                  controller: _discriptioncontroller,
+                  maxLines: 2,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10, top: 05),
                     fillColor: AppColors.secondrybagroundcolor,
                     filled: true,
                     label: Text(StringData.adddiscription),
-                    suffix: Text(
-                      StringData.inches,
-                      style: context.myTextTheme.titleSmall?.copyWith(
-                        fontSize: 11,
-                      ),
-                    ),
+                    focusColor: AppColors.secondrybagroundcolor,
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(10),
@@ -395,9 +367,89 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                   ),
                 ),
               ),
+
+              SizedBox(height: 10),
+              GestureDetector(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.info_outline, size: 15),
+                    SizedBox(width: 05),
+                    Text(
+                      StringData.sharewithpotentialbuyes,
+                      style: context.myTextTheme.titleSmall?.copyWith(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: CustomButtonRow(
+        onSaveAsDraft: () {},
+        onNext: () {
+          Navigator.pushNamed(context, ConnectDisplaySetupTwo.routename);
+        },
+        btn1title: StringData.safeasdraft,
+        btn2title: StringData.next,
+      ),
+    );
+  }
+}
+
+class CustomButtonRow extends StatelessWidget {
+  final VoidCallback onSaveAsDraft;
+  final VoidCallback onNext;
+  final String btn1title;
+  final String btn2title;
+
+  const CustomButtonRow({
+    super.key,
+    required this.onSaveAsDraft,
+    required this.onNext,
+    required this.btn1title,
+    required this.btn2title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.only(left: 16, right: 16),
+      height: 60,
+      color: AppColors.bottombarcolor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          GestureDetector(
+            onTap: onSaveAsDraft,
+            // style: ElevatedButton.styleFrom(
+            //   backgroundColor: AppColors.secondrybagroundcolor,
+            // ),
+            child: const Text("Save as Draft"),
+          ),
+          SizedBox(width: 20),
+          GestureDetector(
+            onTap: onNext,
+            child: Container(
+              height: 40,
+              width: 140,
+              decoration: BoxDecoration(
+                color: AppColors.secondrybagroundcolor,
+                borderRadius: BorderRadius.circular(08),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                btn2title,
+                style: context.myTextTheme.titleSmall?.copyWith(
+                  color: AppColors.secondarytextcolor,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

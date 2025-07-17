@@ -1,4 +1,5 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routename = "/splash";
-  SplashScreen({super.key});
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -21,8 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _dely() async {
-    await Future.delayed(Duration(seconds: 02));
-    Navigator.pushReplacementNamed(context, SplashScreen.routename);
+    final navigator = Navigator.of(context);
+    await Future.delayed(Duration(seconds: 05));
+    navigator.pushReplacementNamed(BottomNavScreen.rotename);
   }
 
   List<String> verticalTexts = const [
@@ -39,10 +41,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundcolor,
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Padding(
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -71,12 +76,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 }).toList(),
               ),
             ),
-          ),
-
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                Spacer(),
                 Image.asset(AssetString.logo, height: 60, width: 150),
 
                 SizedBox(height: 6),
@@ -87,55 +90,37 @@ class _SplashScreenState extends State<SplashScreen> {
                     color: AppColors.textcolor.withValues(alpha: 0.4),
                   ),
                 ),
-                SizedBox(height: 40),
-              ],
-            ),
-          ),
+                Spacer(),
 
-          Positioned(
-            bottom: 70,
-            left: 0,
-            right: 0,
-            child: InkWell(
-              onTap: () => Navigator.pushReplacementNamed(
-                context,
-                BottomNavScreen.rotename,
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xff2D3042),
-                ),
-                margin: EdgeInsets.only(left: 12, right: 12),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: myPadding / 1.5,
+                    right: myPadding / 1.5,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.secondrybagroundcolor,
 
-                height: 50,
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(AssetString.googlepic),
-
-                    SizedBox(width: 20),
-
-                    Text(
-                      "Sign in with Google",
-                      style: context.myTextTheme.titleMedium?.copyWith(
-                        color: Colors.white,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: myPadding / 2,
+                        vertical: myPadding / 2,
                       ),
+                      maximumSize: Size(double.infinity, 50),
+                      minimumSize: Size(double.infinity, 50),
                     ),
-                  ],
-                ),
-              ),
-            ),
-          ),
 
-          Positioned(
-            bottom: 20,
-            left: 0,
-            right: 0,
-            child: Column(
-              children: [
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(AssetString.googlepic),
+                        SizedBox(width: myPadding / 2),
+                        Text("Sign in with Google"),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: myPadding),
                 Text(
                   "By proceeding you accept all terms and conditions",
                   style: context.myTextTheme.titleLarge?.copyWith(
@@ -145,20 +130,28 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 SizedBox(height: 4),
 
-                Padding(
-                  padding: EdgeInsets.only(left: 220),
-                  child: Text(
-                    "V1.0 M",
-                    style: context.myTextTheme.titleLarge?.copyWith(
-                      fontSize: 12,
-                      color: Colors.grey.shade300,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
+                      child: Text(
+                        "V1.0 M",
+                        style: context.myTextTheme.titleLarge?.copyWith(
+                          fontSize: 12,
+                          color: Colors.grey.shade300,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

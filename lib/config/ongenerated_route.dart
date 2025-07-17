@@ -3,6 +3,9 @@ import 'package:city17/src/feature/home/screen/home_screen.dart';
 import 'package:city17/src/feature/splash/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../src/feature/connect_display/screen/connet_display_setep1.dart';
+import '../src/feature/connect_display/screen/disply_setup2.dart';
+
 mixin AppRoute {
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -22,6 +25,17 @@ mixin AppRoute {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const HomeScreen(),
+        );
+      case Connectdisplaysetpone.routename:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => Connectdisplaysetpone(),
+        );
+
+      case ConnectDisplaySetupTwo.routename:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const ConnectDisplaySetupTwo(),
         );
 
       // case LocationSetting.routename:

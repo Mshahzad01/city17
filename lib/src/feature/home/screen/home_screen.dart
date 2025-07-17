@@ -1,7 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
-import 'package:city17/src/feature/home/widgets/addBusinessBBsheet.dart';
+import 'package:city17/src/feature/home/widgets/add_business_bsheet.dart';
 import 'package:city17/src/feature/home/widgets/incom_forcast.dart';
 import 'package:city17/src/feature/home/widgets/mange_business.dart';
 import 'package:city17/src/feature/home/widgets/panding_acction.dart';
@@ -32,18 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 IncomForcast(),
                 SizedBox(height: 10),
 
-                Text(
-                  "Panding Action",
-                  style: context.myTextTheme.titleLarge?.copyWith(),
-                ),
+                Text("Panding Action", style: context.myTextTheme.titleLarge),
 
                 PandingAcction(),
 
                 SizedBox(height: 10),
-                Text(
-                  "Manage Business",
-                  style: context.myTextTheme.titleLarge?.copyWith(),
-                ),
+                Text("Manage Business", style: context.myTextTheme.titleLarge),
                 SizedBox(height: 10),
                 MangeBusiness(),
 
@@ -67,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text(
                           "Add a display location",
-                          style: context.myTextTheme.titleMedium?.copyWith(),
+                          style: context.myTextTheme.titleMedium,
                         ),
 
                         SizedBox(width: 10),

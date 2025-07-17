@@ -23,14 +23,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            CircleAvatar(
-              backgroundColor: status == DisplayStatus.draft
-                  ? AppColors.textcolor.withValues(alpha: 0.3)
-                  : status == DisplayStatus.online
-                  ? AppColors.greentextcolor
-                  : AppColors.textbuttoncolor,
-              radius: 08,
-            ),
+            CircleAvatar(backgroundColor: status.color, radius: 08),
             SizedBox(width: 08),
             Text(
               status.title,
@@ -41,84 +34,78 @@ class DisplaysByStatusWidget extends StatelessWidget {
 
         Column(
           children: [
-            ...requiredDisplays
-                .map(
-                  (x) => Container(
-                    height: 50,
-                    margin: EdgeInsets.only(top: 8, bottom: 5),
-                    padding: EdgeInsets.only(left: 10, top: 5, bottom: 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.secondrybagroundcolor,
+            ...requiredDisplays.map(
+              (x) => Container(
+                height: 50,
+                margin: EdgeInsets.only(top: 8, bottom: 5),
+                padding: EdgeInsets.only(left: 10, top: 5, bottom: 2),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.secondrybagroundcolor,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      x.name,
+                      style: context.myTextTheme.titleMedium?.copyWith(
+                        fontSize: 11,
+                      ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    SizedBox(height: 5),
+                    Row(
                       children: [
                         Text(
-                          x.name,
-                          style: context.myTextTheme.titleMedium?.copyWith(
-                            fontSize: 11,
+                          x.time.toString(),
+                          style: context.myTextTheme.titleSmall?.copyWith(
+                            fontSize: 10,
+                            color: Colors.white.withValues(alpha: 0.3),
                           ),
                         ),
-                        SizedBox(height: 5),
-                        Row(
-                          children: [
-                            Text(
-                              x.time.toString(),
-                              style: context.myTextTheme.titleSmall?.copyWith(
-                                fontSize: 10,
-                                color: Colors.white.withOpacity(0.3),
-                              ),
+                        Spacer(),
+                        SvgPicture.asset(AssetString.growthicon),
+                        SizedBox(width: 5),
+                        Text(
+                          x.uptime.toString(),
+                          style: context.myTextTheme.titleSmall,
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "\$ ${x.revenue}",
+                          style: context.myTextTheme.titleSmall,
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          margin: EdgeInsets.only(right: 5),
+                          height: 15,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: AppColors.greentextcolor.withValues(
+                              alpha: 0.1,
                             ),
-                            Spacer(),
-                            SvgPicture.asset(AssetString.growthicon),
-                            SizedBox(width: 5),
-                            Text(
-                              x.uptime.toString(),
-                              style: context.myTextTheme.titleSmall,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              "\$ ${x.revenue}",
-                              style: context.myTextTheme.titleSmall,
-                            ),
-                            SizedBox(width: 10),
-                            Container(
-                              margin: EdgeInsets.only(right: 5),
-                              height: 15,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: AppColors.greentextcolor.withOpacity(
-                                  0.1,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "${x.growth}",
+                                style: context.myTextTheme.titleSmall?.copyWith(
+                                  color: Colors.green,
+                                  fontSize: 8,
                                 ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "${x.growth}",
-                                    style: context.myTextTheme.titleSmall
-                                        ?.copyWith(
-                                          color: Colors.green,
-                                          fontSize: 8,
-                                        ),
-                                  ),
-                                  SizedBox(width: 4),
-                                  SvgPicture.asset(
-                                    AssetString.arrowicon,
-                                    color: Colors.green,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                              SizedBox(width: 4),
+                              SvgPicture.asset(AssetString.arrowicon),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                )
-                .toList(),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ],

@@ -92,7 +92,7 @@ class _IncomForcastState extends State<IncomForcast> {
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
               if (graphrep[1] == slectedgraph) {
-                if (state is chartdatasate) {
+                if (state is Chartdatasate) {
                   return Container(
                     height: 180,
                     width: double.infinity,
@@ -156,12 +156,13 @@ class _IncomForcastState extends State<IncomForcast> {
                                   ),
 
                                   SizedBox(width: 04),
-
                                   SvgPicture.asset(
                                     AssetString.arrowicon,
 
-                                    // ignore: deprecated_member_use
-                                    color: Colors.green,
+                                    colorFilter: ColorFilter.mode(
+                                      Colors.green,
+                                      BlendMode.srcIn,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -178,13 +179,13 @@ class _IncomForcastState extends State<IncomForcast> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  buildtab("Today", context),
+                                  buildtab(IncomeType.day, context),
                                   SizedBox(width: 08),
 
-                                  buildtab("Week", context),
+                                  buildtab(IncomeType.week, context),
                                   SizedBox(width: 08),
 
-                                  buildtab("Month", context),
+                                  buildtab(IncomeType.month, context),
                                   SizedBox(width: 08),
                                 ],
                               ),
@@ -235,7 +236,7 @@ class _IncomForcastState extends State<IncomForcast> {
               }
 
               if (graphrep[0] == slectedgraph) {
-                if (state is dataloadedstate) {
+                if (state is Dataloadedstate) {
                   return Container(
                     padding: EdgeInsets.all(10),
 
@@ -263,13 +264,13 @@ class _IncomForcastState extends State<IncomForcast> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                _buildTab("Today", context),
+                                _buildTab(IncomeType.day, context),
                                 SizedBox(width: 05),
 
-                                _buildTab("Week", context),
+                                _buildTab(IncomeType.week, context),
                                 SizedBox(width: 05),
 
-                                _buildTab("Month", context),
+                                _buildTab(IncomeType.month, context),
                                 SizedBox(width: 05),
                               ],
                             ),
@@ -312,10 +313,12 @@ class _IncomForcastState extends State<IncomForcast> {
 
                                 SvgPicture.asset(
                                   AssetString.arrowicon,
-                                  // ignore: deprecated_member_use
-                                  color: state.percentage == 0
-                                      ? Color(0xff5565AF)
-                                      : Colors.green,
+                                  colorFilter: ColorFilter.mode(
+                                    state.percentage == 0
+                                        ? Color(0xff5565AF)
+                                        : Colors.green,
+                                    BlendMode.srcIn,
+                                  ),
                                 ),
                               ],
                             ),
@@ -361,8 +364,8 @@ class _IncomForcastState extends State<IncomForcast> {
     );
   }
 
-  Widget buildtab(String label, BuildContext context) {
-    bool isSelected = context.read<HomeCubit>().seletedtype == label;
+  Widget buildtab(IncomeType label, BuildContext context) {
+    bool isSelected = context.read<HomeCubit>().incomeType == label;
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -380,7 +383,7 @@ class _IncomForcastState extends State<IncomForcast> {
           borderRadius: BorderRadius.circular(6),
         ),
         child: Text(
-          label,
+          label.title,
           style: context.myTextTheme.titleSmall?.copyWith(
             fontFamily: "myfonts",
             fontSize: 11,
@@ -390,17 +393,16 @@ class _IncomForcastState extends State<IncomForcast> {
     );
   }
 
-  Widget _buildTab(String label, BuildContext context) {
-    final type = context.read<HomeCubit>();
-    final isSelected = type.seletedincometype == label;
+  Widget _buildTab(IncomeType incType, BuildContext context) {
+    final type = context.read<HomeCubit>().incomeType;
+    final isSelected = type == incType;
 
     return GestureDetector(
       onTap: () {
-        context.read<HomeCubit>().seletedincometypechange(label);
+        context.read<HomeCubit>().seletedincometypechange(incType);
         context.read<HomeCubit>().selectdata();
       },
       child: Container(
-        // margin: EdgeInsets.only(left: 5, right: 5),
         height: double.infinity,
 
         padding: EdgeInsets.only(top: 04, bottom: 04, left: 04, right: 06),
@@ -411,7 +413,7 @@ class _IncomForcastState extends State<IncomForcast> {
           borderRadius: BorderRadius.circular(04),
         ),
         child: Text(
-          label,
+          incType.title,
           style: context.myTextTheme.titleSmall?.copyWith(
             fontFamily: "myfonts",
             fontSize: 12,
