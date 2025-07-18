@@ -4,18 +4,18 @@ enum IncomeType {
   month;
 
   String get title => switch (this) {
-    day => "Today",
-    week => "Week",
-    month => "Month",
+    day => 'Today',
+    week => 'Week',
+    month => 'Month',
   };
 
   static IncomeType fromTitle(String title) {
     switch (title) {
-      case "Today":
+      case 'Today':
         return IncomeType.day;
-      case "Week":
+      case 'Week':
         return IncomeType.week;
-      case "Month":
+      case 'Month':
         return IncomeType.month;
       default:
         return IncomeType.day;

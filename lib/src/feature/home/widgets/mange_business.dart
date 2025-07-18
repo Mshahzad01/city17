@@ -20,8 +20,8 @@ class _MangeBusinessState extends State<MangeBusiness> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 05),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 05),
+      decoration: const BoxDecoration(
         color: AppColors.secondarycolor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
@@ -30,14 +30,14 @@ class _MangeBusinessState extends State<MangeBusiness> {
       ),
       child: ListView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: dumyDisplays.length,
         itemBuilder: (BuildContext context, int index) {
           final data = dumyDisplays[index];
 
           return Container(
-            padding: EdgeInsets.all(02),
-            margin: EdgeInsets.only(top: 05, bottom: 05),
+            padding: const EdgeInsets.all(02),
+            margin: const EdgeInsets.only(top: 05, bottom: 05),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
 
@@ -48,8 +48,8 @@ class _MangeBusinessState extends State<MangeBusiness> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ExpansionTile(
-                  childrenPadding: EdgeInsets.only(right: 08, left: 08),
-                  tilePadding: EdgeInsets.only(left: 08, right: 08),
+                  childrenPadding: const EdgeInsets.only(right: 08, left: 08),
+                  tilePadding: const EdgeInsets.only(left: 08, right: 08),
                   backgroundColor: AppColors.primarycolor,
                   iconColor: AppColors.primarycolor,
                   shape: RoundedRectangleBorder(
@@ -104,19 +104,19 @@ class _MangeBusinessState extends State<MangeBusiness> {
                         style: context.myTextTheme.titleSmall,
                       ),
 
-                      SizedBox(height: 05),
+                      const SizedBox(height: 05),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            "• ${data.displaydumydata.length} Display",
+                            '• ${data.displaydumydata.length} Display',
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.linkTextcolor,
                             ),
                           ),
 
                           Text(
-                            "• ert online",
+                            '• ert online',
 
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.successTextcolor,
@@ -124,14 +124,14 @@ class _MangeBusinessState extends State<MangeBusiness> {
                           ),
 
                           Text(
-                            "• ert offline",
+                            '• ert offline',
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.errorTextcolor,
                             ),
                           ),
 
                           Text(
-                            "• ert draft",
+                            '• ert draft',
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: Colors.white.withValues(alpha: 0.3),
                             ),
@@ -142,8 +142,8 @@ class _MangeBusinessState extends State<MangeBusiness> {
                   ),
                   children: DisplayStatus.values.map((x) {
                     return Container(
-                      margin: EdgeInsets.only(bottom: 10, top: 10),
-                      padding: EdgeInsets.symmetric(
+                      margin: const EdgeInsets.only(bottom: 10, top: 10),
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 10,
                       ),

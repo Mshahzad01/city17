@@ -1,4 +1,5 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,7 @@ class CustomRadioTile<T> extends StatelessWidget {
                 fontSize: 12,
               ),
             ),
-            SizedBox(width: 4),
+            const SizedBox(width: myPadding / 3),
             Icon(
               isSelected ? Icons.check_circle : Icons.circle_outlined,
               color: isSelected

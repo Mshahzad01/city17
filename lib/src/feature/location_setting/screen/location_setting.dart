@@ -10,7 +10,7 @@ import '../../home/widgets/display_by_status_widgt.dart';
 
 class LocationSetting extends StatefulWidget {
   final DisplayLocationModel data;
-  static const routename = "/locationsetting";
+  static const routename = '/locationsetting';
   const LocationSetting({super.key, required this.data});
 
   @override
@@ -25,7 +25,7 @@ class _LocationSettingState extends State<LocationSetting> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Location Settings",
+          'Location Settings',
           style: context.myTextTheme.titleMedium?.copyWith(fontSize: 18),
         ),
         centerTitle: true,
@@ -33,7 +33,7 @@ class _LocationSettingState extends State<LocationSetting> {
 
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,8 +47,8 @@ class _LocationSettingState extends State<LocationSetting> {
 
               // ad Binding Offer
               Container(
-                margin: EdgeInsets.only(top: 10),
-                padding: EdgeInsets.only(
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(
                   left: 10,
                   right: 10,
                   top: 05,
@@ -66,7 +66,7 @@ class _LocationSettingState extends State<LocationSetting> {
                   children: [
                     Center(
                       child: Text(
-                        "Bidding offer",
+                        'Bidding offer',
                         style: context.myTextTheme.titleMedium?.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -76,8 +76,8 @@ class _LocationSettingState extends State<LocationSetting> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.info_outline, size: 15),
-                        SizedBox(width: 05),
+                        const Icon(Icons.info_outline, size: 15),
+                        const SizedBox(width: 05),
                         Text(
                           'Let multiple buyers compete, and the highest \noffer wins the hour slot.',
                           style: context.myTextTheme.titleSmall?.copyWith(
@@ -94,8 +94,8 @@ class _LocationSettingState extends State<LocationSetting> {
 
               // ad Fixed price and
               Container(
-                margin: EdgeInsets.only(top: 10),
-                padding: EdgeInsets.only(left: 10, right: 10, bottom: 05),
+                margin: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 05),
 
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -110,7 +110,7 @@ class _LocationSettingState extends State<LocationSetting> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Fixed Price offer",
+                          'Fixed Price offer',
                           style: context.myTextTheme.titleMedium?.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -135,8 +135,8 @@ class _LocationSettingState extends State<LocationSetting> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.info_outline, size: 15),
-                        SizedBox(width: 05),
+                        const Icon(Icons.info_outline, size: 15),
+                        const SizedBox(width: 05),
                         Text(
                           'Allow the buyer to pay you a fixed \n amount for their campaign.',
                           style: context.myTextTheme.titleSmall?.copyWith(
@@ -151,18 +151,18 @@ class _LocationSettingState extends State<LocationSetting> {
                 ),
               ),
 
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
 
               //Display business
               Text(
-                "Display",
+                'Display',
                 style: context.myTextTheme.titleMedium?.copyWith(),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
 
               Container(
-                padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-                margin: EdgeInsets.only(top: 05, bottom: 05),
+                padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                margin: const EdgeInsets.only(top: 05, bottom: 05),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
 
@@ -199,19 +199,19 @@ class _LocationSettingState extends State<LocationSetting> {
                       style: context.myTextTheme.titleSmall,
                     ),
 
-                    SizedBox(height: 05),
+                    const SizedBox(height: 05),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "• ${widget.data.displaydumydata.length} Display",
+                          '• ${widget.data.displaydumydata.length} Display',
                           style: context.myTextTheme.titleSmall?.copyWith(
                             color: AppColors.linkTextcolor,
                           ),
                         ),
 
                         Text(
-                          "• ert online",
+                          '• ert online',
 
                           style: context.myTextTheme.titleSmall?.copyWith(
                             color: AppColors.successTextcolor,
@@ -219,14 +219,14 @@ class _LocationSettingState extends State<LocationSetting> {
                         ),
 
                         Text(
-                          "• ert offline",
+                          '• ert offline',
                           style: context.myTextTheme.titleSmall?.copyWith(
                             color: AppColors.errorTextcolor,
                           ),
                         ),
 
                         Text(
-                          "• ert draft",
+                          '• ert draft',
                           style: context.myTextTheme.titleSmall?.copyWith(
                             color: Colors.white.withValues(alpha: 0.3),
                           ),
@@ -235,8 +235,8 @@ class _LocationSettingState extends State<LocationSetting> {
                     ),
 
                     Container(
-                      margin: EdgeInsets.only(bottom: 10, top: 10),
-                      padding: EdgeInsets.symmetric(
+                      margin: const EdgeInsets.only(bottom: 10, top: 10),
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 10,
                       ),
@@ -258,8 +258,8 @@ class _LocationSettingState extends State<LocationSetting> {
                     ),
 
                     Container(
-                      margin: EdgeInsets.only(bottom: 10, top: 10),
-                      padding: EdgeInsets.symmetric(
+                      margin: const EdgeInsets.only(bottom: 10, top: 10),
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 10,
                       ),
@@ -281,8 +281,8 @@ class _LocationSettingState extends State<LocationSetting> {
                     ),
 
                     Container(
-                      margin: EdgeInsets.only(bottom: 10, top: 10),
-                      padding: EdgeInsets.symmetric(
+                      margin: const EdgeInsets.only(bottom: 10, top: 10),
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 10,
                       ),
@@ -313,7 +313,7 @@ class _LocationSettingState extends State<LocationSetting> {
                   Navigator.pushNamed(context, Connectdisplaysetpone.routename);
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 15, bottom: 15),
+                  margin: const EdgeInsets.only(top: 15, bottom: 15),
 
                   height: 50,
                   width: double.infinity,
@@ -326,15 +326,15 @@ class _LocationSettingState extends State<LocationSetting> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Connect a Display",
+                        'Connect a Display',
                         style: context.myTextTheme.titleMedium?.copyWith(
                           color: AppColors.accentTextcolor,
                         ),
                       ),
 
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
 
-                      SvgPicture.asset("assets/icon/addicon.svg"),
+                      SvgPicture.asset('assets/icon/addicon.svg'),
                     ],
                   ),
                 ),
@@ -344,8 +344,8 @@ class _LocationSettingState extends State<LocationSetting> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.info_outline, size: 15),
-                    SizedBox(width: 05),
+                    const Icon(Icons.info_outline, size: 15),
+                    const SizedBox(width: 05),
                     Text(
                       'Shared with potential buyers',
                       style: context.myTextTheme.titleSmall?.copyWith(

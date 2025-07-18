@@ -37,8 +37,8 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: widget.bottompanding),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         color: AppColors.bottombarcolor,
       ),
@@ -50,15 +50,15 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Add a display location",
+                'Add a display location',
                 style: context.myTextTheme.titleMedium,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
               TextFormField(
                 controller: _nameContoller,
                 decoration: InputDecoration(
-                  hintText: "Business Name",
+                  hintText: 'Business Name',
                   filled: true,
                   fillColor: AppColors.secondarycolor,
                   border: OutlineInputBorder(
@@ -74,12 +74,12 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 },
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               TextFormField(
                 controller: _addresscontroller,
                 decoration: InputDecoration(
-                  hintText: "Business Address",
+                  hintText: 'Business Address',
                   filled: true,
                   fillColor: AppColors.secondarycolor,
                   border: OutlineInputBorder(
@@ -95,12 +95,12 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 },
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               TextFormField(
                 controller: _businesscatorycontroller,
                 decoration: InputDecoration(
-                  hintText: "Business Category",
+                  hintText: 'Business Category',
                   filled: true,
                   fillColor: AppColors.secondarycolor,
                   border: OutlineInputBorder(
@@ -116,7 +116,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 },
               ),
 
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
 
               Align(
                 alignment: Alignment.bottomRight,
@@ -127,7 +127,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                     }
                   },
                   child: Text(
-                    "Add",
+                    'Add',
                     style: context.myTextTheme.bodyMedium?.copyWith(
                       color: AppColors.accentTextcolor,
                     ),

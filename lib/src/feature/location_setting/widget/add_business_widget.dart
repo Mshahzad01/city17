@@ -51,7 +51,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -64,9 +64,9 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(StringData.name),
+            const Text(StringData.name),
 
-            SizedBox(height: myPadding / 2),
+            const SizedBox(height: myPadding / 2),
 
             TextFormField(
               controller: _businessnamecontroller,
@@ -80,14 +80,14 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
                 fillColor: AppColors.primarycolor,
                 filled: true,
 
-                hint: Text(StringData.businessname),
+                hint: const Text(StringData.businessname),
 
                 suffixIcon: Padding(
-                  padding: EdgeInsets.all(myPadding / 2),
+                  padding: const EdgeInsets.all(myPadding / 2),
 
                   child: SvgPicture.asset(AssetString.editicon),
                 ),
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   horizontal: myPadding / 2,
                   vertical: myPadding / 2,
                 ),
@@ -100,7 +100,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
               },
             ),
 
-            SizedBox(height: myPadding / 2),
+            const SizedBox(height: myPadding / 2),
             TextFormField(
               controller: _addressController,
               style: context.myTextTheme.titleMedium?.copyWith(),
@@ -114,14 +114,14 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
                 filled: true,
                 focusColor: AppColors.primarycolor,
 
-                hint: Text(StringData.businessaddress),
+                hint: const Text(StringData.businessaddress),
 
                 suffixIcon: Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
 
                   child: SvgPicture.asset(AssetString.locationicon),
                 ),
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   horizontal: 10,
                   vertical: 10,
                 ),
@@ -134,7 +134,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
               },
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             DropdownButtonFormField(
               value: selectedcategory,
               focusColor: AppColors.primarycolor,
@@ -146,7 +146,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
 
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   horizontal: 10,
                   vertical: 10,
                 ),

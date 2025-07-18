@@ -2,13 +2,15 @@ import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/finance/screen/finance_screen.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
+import 'package:city17/src/feature/setting/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../advert_offer/screen/advert_offer_screen.dart';
 
 class BottomNavScreen extends StatefulWidget {
-  static const rotename = "/bottomnav";
+  static const rotename = '/bottomnav';
 
   const BottomNavScreen({super.key});
 
@@ -22,10 +24,10 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<String> items = ['Home', 'Offers', 'Finance', 'Settings'];
 
   final _pages = [
-    HomeScreen(),
-    AdvertOfferScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    const HomeScreen(),
+    const AdvertOfferScreen(),
+    const FinanceScren(),
+    const SettingScreen(),
   ];
 
   @override
@@ -35,7 +37,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         backgroundColor: AppColors.primarycolor,
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(myPadding / 2),
+          preferredSize: const Size.fromHeight(myPadding / 2),
 
           child: Padding(
             padding: const EdgeInsets.only(left: myPadding / 2),
@@ -43,40 +45,40 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       backgroundImage: AssetImage(AssetString.userimage),
                       radius: 18,
                     ),
 
-                    SizedBox(width: myPadding),
+                    const SizedBox(width: myPadding),
 
                     Text(
-                      "Hi",
+                      'Hi',
                       style: context.myTextTheme.titleSmall?.copyWith(
                         color: AppColors.primaryTextcolor,
                         fontSize: 14,
                       ),
                     ),
-                    SizedBox(width: 04),
+                    const SizedBox(width: 04),
 
                     Text(
-                      "Ela",
+                      'Ela',
                       style: context.myTextTheme.titleSmall?.copyWith(
                         color: AppColors.primaryTextcolor,
                         fontSize: 14,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
 
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.notifications),
+                      icon: const Icon(Icons.notifications),
                     ),
                   ],
                 ),
 
                 Container(
-                  margin: EdgeInsets.only(top: 02),
+                  margin: const EdgeInsets.only(top: 02),
                   height: .5,
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -86,7 +88,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                       90,
                       90,
                     ).withValues(alpha: 0.1),
-                    boxShadow: [BoxShadow(blurRadius: 03)],
+                    boxShadow: [const BoxShadow(blurRadius: 03)],
                   ),
                 ),
               ],

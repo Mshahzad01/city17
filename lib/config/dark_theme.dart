@@ -6,7 +6,7 @@ class DarkTheme {
   static ThemeData get theme {
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: AppColors.primarycolor,
-      appBarTheme: AppBarTheme(color: AppColors.primarycolor),
+      appBarTheme: const AppBarTheme(color: AppColors.primarycolor),
 
       iconTheme: const IconThemeData(color: Colors.white),
 

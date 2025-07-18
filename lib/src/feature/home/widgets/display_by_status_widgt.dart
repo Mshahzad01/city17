@@ -24,7 +24,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(backgroundColor: status.color, radius: 08),
-            SizedBox(width: 08),
+            const SizedBox(width: 08),
             Text(
               status.title,
               style: context.myTextTheme.titleMedium?.copyWith(fontSize: 14),
@@ -37,8 +37,8 @@ class DisplaysByStatusWidget extends StatelessWidget {
             ...requiredDisplays.map(
               (x) => Container(
                 height: 50,
-                margin: EdgeInsets.only(top: 8, bottom: 5),
-                padding: EdgeInsets.only(left: 10, top: 5, bottom: 2),
+                margin: const EdgeInsets.only(top: 8, bottom: 5),
+                padding: const EdgeInsets.only(left: 10, top: 5, bottom: 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.secondarycolor,
@@ -52,7 +52,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
                         fontSize: 11,
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Row(
                       children: [
                         Text(
@@ -62,21 +62,21 @@ class DisplaysByStatusWidget extends StatelessWidget {
                             color: Colors.white.withValues(alpha: 0.3),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         SvgPicture.asset(AssetString.growthicon),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                           x.uptime.toString(),
                           style: context.myTextTheme.titleSmall,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Text(
-                          "\$ ${x.revenue}",
+                          '\$ ${x.revenue}',
                           style: context.myTextTheme.titleSmall,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Container(
-                          margin: EdgeInsets.only(right: 5),
+                          margin: const EdgeInsets.only(right: 5),
                           height: 15,
                           width: 40,
                           decoration: BoxDecoration(
@@ -89,13 +89,13 @@ class DisplaysByStatusWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "${x.growth}",
+                                '${x.growth}',
                                 style: context.myTextTheme.titleSmall?.copyWith(
                                   color: AppColors.successTextcolor,
                                   fontSize: 8,
                                 ),
                               ),
-                              SizedBox(width: 4),
+                              const SizedBox(width: 4),
                               SvgPicture.asset(AssetString.arrowicon),
                             ],
                           ),

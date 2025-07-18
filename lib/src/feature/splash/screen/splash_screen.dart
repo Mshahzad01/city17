@@ -6,7 +6,7 @@ import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const routename = "/splash";
+  static const routename = '/splash';
   const SplashScreen({super.key});
 
   @override
@@ -23,18 +23,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _dely() async {
     final navigator = Navigator.of(context);
-    await Future.delayed(Duration(seconds: 02));
+    await Future.delayed(const Duration(seconds: 02));
     navigator.pushReplacementNamed(BottomNavScreen.rotename);
   }
 
   List<String> verticalTexts = const [
-    "Decentralized Advertisement Network",
-    "Dezentrales Werbenetzwerk",
-    "وکندریقرت ایڈورٹائزنگ نیٹ ورک",
-    "Dezentrales Werbenetzwerk",
-    "분산형 광고 네트워크",
-    "Децентрализованная рекламная сеть",
-    "分散型広告ネットワーク",
+    'Decentralized Advertisement Network',
+    'Dezentrales Werbenetzwerk',
+    'وکندریقرت ایڈورٹائزنگ نیٹ ورک',
+    'Dezentrales Werbenetzwerk',
+    '분산형 광고 네트워크',
+    'Децентрализованная рекламная сеть',
+    '分散型広告ネットワーク',
   ];
 
   @override
@@ -79,18 +79,18 @@ class _SplashScreenState extends State<SplashScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Spacer(),
+                const Spacer(),
                 Image.asset(AssetString.logo, height: 60, width: 150),
 
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Text(
-                  "Display Manager",
+                  'Display Manager',
                   style: context.myTextTheme.titleLarge?.copyWith(
                     fontSize: 12,
                     color: AppColors.primaryTextcolor.withValues(alpha: 0.4),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
 
                 Padding(
                   padding: const EdgeInsets.only(
@@ -102,44 +102,44 @@ class _SplashScreenState extends State<SplashScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.secondarycolor,
 
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: myPadding / 2,
                         vertical: myPadding / 2,
                       ),
-                      maximumSize: Size(double.infinity, 50),
-                      minimumSize: Size(double.infinity, 50),
+                      maximumSize: const Size(double.infinity, 50),
+                      minimumSize: const Size(double.infinity, 50),
                     ),
 
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(AssetString.googlepic),
-                        SizedBox(width: myPadding / 2),
-                        Text("Sign in with Google"),
+                        const SizedBox(width: myPadding / 2),
+                        const Text('Sign in with Google'),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: myPadding),
+                const SizedBox(height: myPadding),
                 Text(
-                  "By proceeding you accept all terms and conditions",
+                  'By proceeding you accept all terms and conditions',
                   style: context.myTextTheme.titleLarge?.copyWith(
                     fontSize: 12,
                     color: AppColors.primaryTextcolor,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 10,
                       ),
                       child: Text(
-                        "V1.0 M",
+                        'V1.0 M',
                         style: context.myTextTheme.titleLarge?.copyWith(
                           fontSize: 12,
                           color: Colors.grey.shade300,

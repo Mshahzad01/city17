@@ -1,6 +1,8 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
+import 'package:city17/src/core/component/customtextfield.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/connect_display/enum/screeen_placement_enum.dart';
 import 'package:city17/src/feature/connect_display/enum/screen_installed_enum.dart';
@@ -15,7 +17,7 @@ import '../widgets/custom_radio_widget.dart';
 class Connectdisplaysetpone extends StatefulWidget {
   const Connectdisplaysetpone({super.key});
 
-  static const routename = "/displyone";
+  static const routename = '/displyone';
 
   @override
   State<Connectdisplaysetpone> createState() => _ConnectdisplaysetponeState();
@@ -64,21 +66,21 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
 
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SetepIndicatorWidget(currentsetyp: 0),
+              const SetepIndicatorWidget(currentsetyp: 0),
 
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Text(
                 StringData.displyinstallationdetils,
                 style: context.myTextTheme.titleLarge?.copyWith(fontSize: 16),
               ),
 
               Container(
-                margin: EdgeInsets.only(top: 16),
-                padding: EdgeInsets.all(10),
+                margin: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.secondarycolor,
@@ -92,40 +94,29 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                         fontSize: 14,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
 
                     Container(
-                      padding: EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 10, top: 15),
                       height: 50,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.primarycolor,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          ...DisplayLocationType.values.map((x) {
-                            return Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Radio<DisplayLocationType>.adaptive(
-                                  value: screenType,
-                                  groupValue: x,
-                                  onChanged: (v) {
-                                    setState(() {
-                                      screenType = x;
-                                    });
-                                  },
-                                ),
-                                Text(x.title),
-                              ],
-                            );
-                          }),
-                        ],
+                      child: Wrap(
+                        spacing: 08,
+                        children: DisplayLocationType.values.map((x) {
+                          return CustomRadioTile<DisplayLocationType>(
+                            value: x,
+                            groupValue: screenType,
+                            onChanged: (val) => setState(() => screenType = x),
+                          );
+                        }).toList(),
                       ),
                     ),
 
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
                       StringData.whereisscreeninstalled,
                       style: context.myTextTheme.titleMedium?.copyWith(
@@ -133,15 +124,17 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: 10, top: 10),
-                      margin: EdgeInsets.only(top: 10),
-                      height: 70,
+                      padding: const EdgeInsets.only(left: 10, top: 10),
+                      margin: const EdgeInsets.only(top: 10),
+                      height: 65,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.primarycolor,
                       ),
                       child: Wrap(
+                        spacing: 05,
+                        runSpacing: 05,
                         children: [
                           ...ScreenInstallEnum.values.map((x) {
                             return CustomRadioTile<ScreenInstallEnum>(
@@ -154,7 +147,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
                       StringData.screenplacement,
                       style: context.myTextTheme.titleMedium?.copyWith(
@@ -162,16 +155,16 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       ),
                     ),
 
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
 
                     Container(
-                      padding: EdgeInsets.only(left: 10, top: 15),
+                      padding: const EdgeInsets.only(left: 10),
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.primarycolor,
                       ),
-                      child: Wrap(
+                      child: Row(
                         children: ScreeenPlacementEnum.values.map((x) {
                           return CustomRadioTile<ScreeenPlacementEnum>(
                             value: x,
@@ -187,14 +180,14 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
               ),
 
               // Customize Screen
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Text(
                 StringData.customizescreen,
                 style: context.myTextTheme.titleLarge?.copyWith(fontSize: 16),
               ),
               Container(
-                margin: EdgeInsets.only(top: 16),
-                padding: EdgeInsets.all(10),
+                margin: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.secondarycolor,
@@ -210,9 +203,9 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 05),
-                      padding: EdgeInsets.only(left: 10, top: 05),
-                      height: 105,
+                      margin: const EdgeInsets.only(top: 05),
+                      padding: const EdgeInsets.only(left: 10, top: 05),
+                      height: 110,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.primarycolor,
@@ -223,38 +216,60 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(left: 10, top: 05),
-                                height: 60,
-                                width: 95,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      AssetString.horizantimage,
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    screenorination =
+                                        DisplayOrientation.horizontal;
+                                  });
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(
+                                    left: 10,
+                                    top: 05,
+                                  ),
+                                  height: 60,
+                                  width: 95,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: const DecorationImage(
+                                      image: AssetImage(
+                                        AssetString.horizantimage,
+                                      ),
+                                      fit: BoxFit.cover,
                                     ),
-                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
 
-                              Container(
-                                margin: EdgeInsets.only(right: 20, top: 05),
-                                height: 60,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      AssetString.verticalimage,
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    screenorination =
+                                        DisplayOrientation.veritcal;
+                                  });
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(
+                                    right: 30,
+                                    top: 05,
+                                  ),
+                                  height: 60,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: const DecorationImage(
+                                      image: AssetImage(
+                                        AssetString.verticalimage,
+                                      ),
+                                      fit: BoxFit.cover,
                                     ),
-                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 05),
+                          const SizedBox(height: myPadding / 1.2),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -265,7 +280,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                                     setState(() => screenorination = val),
                               ),
 
-                              SizedBox(width: 40),
+                              const SizedBox(width: 40),
                               CustomRadioTile<DisplayOrientation>(
                                 value: DisplayOrientation.veritcal,
                                 groupValue: screenorination,
@@ -281,100 +296,27 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 ),
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
-              SizedBox(height: 10),
-              Container(
-                padding: EdgeInsets.only(top: 12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondarycolor,
-                ),
-                height: 60,
+              const SizedBox(height: 10),
 
-                child: TextFormField(
-                  controller: _namecontroller,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 10, top: 05),
-                    fillColor: AppColors.secondarycolor,
-                    filled: true,
-                    label: Text(StringData.name),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
+              CustomTextfield(controller: _namecontroller, hinttext: 'Name'),
+              const SizedBox(height: myPadding / 2),
+
+              CustomTextfield(controller: _sizecontroller, hinttext: 'Size'),
+              const SizedBox(height: myPadding / 2),
+              CustomTextfield(
+                controller: _discriptioncontroller,
+                hinttext: 'Discription',
               ),
 
-              Container(
-                margin: EdgeInsets.only(top: 10, bottom: 10),
-                padding: EdgeInsets.only(top: 12, right: 05),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondarycolor,
-                ),
-                height: 60,
-
-                child: TextFormField(
-                  controller: _sizecontroller,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(
-                      left: 10,
-                      top: 05,
-                      right: 10,
-                    ),
-                    fillColor: AppColors.secondarycolor,
-
-                    filled: true,
-                    label: Text(StringData.size),
-                    suffix: Text(
-                      'Inches',
-                      style: context.myTextTheme.titleSmall?.copyWith(
-                        fontSize: 11,
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
-
-              Container(
-                margin: EdgeInsets.only(bottom: 10),
-                padding: EdgeInsets.only(top: 12, right: 05),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondarycolor,
-                ),
-                height: 90,
-
-                child: TextFormField(
-                  controller: _discriptioncontroller,
-                  maxLines: 2,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 10, top: 05),
-                    fillColor: AppColors.secondarycolor,
-                    filled: true,
-                    label: Text(StringData.adddiscription),
-                    focusColor: AppColors.secondarycolor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               GestureDetector(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.info_outline, size: 15),
-                    SizedBox(width: 05),
+                    const Icon(Icons.info_outline, size: 15),
+                    const SizedBox(width: 05),
                     Text(
                       StringData.sharewithpotentialbuyes,
                       style: context.myTextTheme.titleSmall?.copyWith(
@@ -391,65 +333,10 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
       bottomNavigationBar: CustomButtonRow(
         onSaveAsDraft: () {},
         onNext: () {
-          Navigator.pushNamed(context, ConnectDisplaySetupTwo.routename);
+          Navigator.pushNamed(context, DisplySetupTwo.routename);
         },
         btn1title: StringData.safeasdraft,
         btn2title: StringData.next,
-      ),
-    );
-  }
-}
-
-class CustomButtonRow extends StatelessWidget {
-  final VoidCallback onSaveAsDraft;
-  final VoidCallback onNext;
-  final String btn1title;
-  final String btn2title;
-
-  const CustomButtonRow({
-    super.key,
-    required this.onSaveAsDraft,
-    required this.onNext,
-    required this.btn1title,
-    required this.btn2title,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.only(left: 16, right: 16),
-      height: 60,
-      color: AppColors.bottombarcolor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          GestureDetector(
-            onTap: onSaveAsDraft,
-            // style: ElevatedButton.styleFrom(
-            //   primarycolor: AppColors.secondarycolor,
-            // ),
-            child: const Text("Save as Draft"),
-          ),
-          SizedBox(width: 20),
-          GestureDetector(
-            onTap: onNext,
-            child: Container(
-              height: 40,
-              width: 140,
-              decoration: BoxDecoration(
-                color: AppColors.secondarycolor,
-                borderRadius: BorderRadius.circular(08),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                btn2title,
-                style: context.myTextTheme.titleSmall?.copyWith(
-                  color: AppColors.accentTextcolor,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

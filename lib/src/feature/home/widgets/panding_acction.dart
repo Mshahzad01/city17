@@ -16,21 +16,21 @@ class PandingAcction extends StatelessWidget {
     return Column(
       children: [
         pandingaction(
-          "Panding Advert",
+          'Panding Advert',
           AssetString.advertismenticon,
           data.pandingadvert,
           context,
         ),
 
         pandingaction(
-          "Due Payment",
+          'Due Payment',
           AssetString.clockicon,
           data.duepayment,
           context,
         ),
 
         pandingaction(
-          "Payment Approvals",
+          'Payment Approvals',
           AssetString.orderaprovelicon,
           data.paymentaprroval,
           context,
@@ -46,8 +46,8 @@ class PandingAcction extends StatelessWidget {
     BuildContext contex,
   ) {
     return Container(
-      margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.only(left: 10, right: 10),
+      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       height: 50,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -58,19 +58,19 @@ class PandingAcction extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(icon),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
 
           Text(title, style: contex.myTextTheme.titleMedium?.copyWith()),
 
-          Spacer(),
-          if (status == 0) Icon(Icons.check_circle_outline),
+          const Spacer(),
+          if (status == 0) const Icon(Icons.check_circle_outline),
 
           if (status != 0)
             Text(
               status.toString(),
               textAlign: TextAlign.center,
               style: contex.myTextTheme.titleSmall?.copyWith(
-                color: Color(0xffE37F47),
+                color: const Color(0xffE37F47),
                 decoration: TextDecoration.underline,
                 fontSize: 14,
               ),

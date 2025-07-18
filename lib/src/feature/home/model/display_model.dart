@@ -7,9 +7,9 @@ enum DisplayStatus {
   draft;
 
   String get title => switch (this) {
-    online => "Online",
-    offline => "Ofline",
-    draft => "Drafts",
+    online => 'Online',
+    offline => 'Ofline',
+    draft => 'Drafts',
   };
 
   Color get color => switch (this) {
@@ -43,7 +43,7 @@ class Display {
 
 class DisplayLocationModel {
   final String name;
- final BusinessCategoryEnum type;
+  final BusinessCategoryEnum type;
   final String address;
 
   List<Display> displaydumydata;

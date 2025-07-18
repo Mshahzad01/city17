@@ -1,3 +1,4 @@
+import 'package:city17/src/feature/connect_display/screen/displaysetup_three.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
 import 'package:city17/src/feature/splash/screen/splash_screen.dart';
@@ -12,13 +13,13 @@ mixin AppRoute {
       case SplashScreen.routename:
         return MaterialPageRoute(
           settings: settings,
-          builder: (context) => SplashScreen(),
+          builder: (context) => const SplashScreen(),
         );
 
       case BottomNavScreen.rotename:
         return MaterialPageRoute(
           settings: settings,
-          builder: (context) => BottomNavScreen(),
+          builder: (context) => const BottomNavScreen(),
         );
 
       case HomeScreen.routename:
@@ -29,20 +30,19 @@ mixin AppRoute {
       case Connectdisplaysetpone.routename:
         return MaterialPageRoute(
           settings: settings,
-          builder: (context) => Connectdisplaysetpone(),
+          builder: (context) => const Connectdisplaysetpone(),
         );
 
-      case ConnectDisplaySetupTwo.routename:
+      case DisplySetupTwo.routename:
         return MaterialPageRoute(
           settings: settings,
-          builder: (context) => const ConnectDisplaySetupTwo(),
+          builder: (context) => const DisplySetupTwo(),
         );
-
-      // case LocationSetting.routename:
-      //   return MaterialPageRoute(
-      //     settings: settings,
-      //     builder: (context) => const LocationSetting(indexx: index),
-      //   );
+      case DisplaySetupThree.routename:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const DisplaySetupThree(),
+        );
 
       default:
         return MaterialPageRoute(

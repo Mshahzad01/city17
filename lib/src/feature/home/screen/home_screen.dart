@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const routename = "/home";
+  static const routename = '/home';
   const HomeScreen({super.key});
 
   @override
@@ -22,32 +22,32 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
+            padding: const EdgeInsets.only(left: 15, right: 15),
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IncomForcast(),
-                SizedBox(height: 10),
+                const IncomForcast(),
+                const SizedBox(height: 10),
 
-                Text("Panding Action", style: context.myTextTheme.titleLarge),
+                Text('Panding Action', style: context.myTextTheme.titleLarge),
 
-                PandingAcction(),
+                const PandingAcction(),
 
-                SizedBox(height: 10),
-                Text("Manage Business", style: context.myTextTheme.titleLarge),
-                SizedBox(height: 10),
-                MangeBusiness(),
+                const SizedBox(height: 10),
+                Text('Manage Business', style: context.myTextTheme.titleLarge),
+                const SizedBox(height: 10),
+                const MangeBusiness(),
 
                 InkWell(
                   onTap: () {
                     showmodelbottomshett(context);
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 10),
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    margin: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     height: 55,
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -60,11 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       children: [
                         Text(
-                          "Add a display location",
+                          'Add a display location',
                           style: context.myTextTheme.titleMedium,
                         ),
 
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
 
                         SvgPicture.asset(
                           AssetString.addoutline,

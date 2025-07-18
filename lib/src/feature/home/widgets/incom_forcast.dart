@@ -4,6 +4,7 @@ import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/cubit/home_cubit.dart';
 import 'package:city17/src/feature/home/cubit/home_state.dart';
+import 'package:city17/src/feature/home/enum/graph_reprensentation_enum.dart';
 import 'package:city17/src/feature/home/model/income_model.dart';
 import 'package:city17/src/feature/home/widgets/income_tab_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +26,8 @@ class _IncomForcastState extends State<IncomForcast> {
     super.initState();
   }
 
-  List<String> graphrep = ['Textual', 'Graphical'];
+  GraphReprensentationEnum slectedgraph = GraphReprensentationEnum.textual;
 
-  String slectedgraph = "Textual";
   double percentage = 0;
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _IncomForcastState extends State<IncomForcast> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Income forecast",
+              'Income forecast',
               style: context.myTextTheme.titleLarge?.copyWith(
                 color: AppColors.primaryTextcolor,
               ),
@@ -48,7 +48,7 @@ class _IncomForcastState extends State<IncomForcast> {
                 Padding(
                   padding: const EdgeInsets.only(left: myPadding * 2),
                   child: Text(
-                    slectedgraph,
+                    slectedgraph.title,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppColors.primaryTextcolor,
                       fontSize: 12,
@@ -57,31 +57,30 @@ class _IncomForcastState extends State<IncomForcast> {
                   ),
                 ),
 
-                PopupMenuButton<String>(
-                  icon: Icon(
+                PopupMenuButton<GraphReprensentationEnum>(
+                  icon: const Icon(
                     Icons.arrow_drop_down,
                     color: AppColors.primaryTextcolor,
                     size: 30,
                   ),
-                  onSelected: (String value) {
+                  onSelected: (GraphReprensentationEnum value) {
                     setState(() {
                       slectedgraph = value;
-                      if (value == 'Textual') {
+                      if (value == GraphReprensentationEnum.textual) {
                         context.read<HomeCubit>().selectdata();
-                      } else if (value == 'Graphical') {
+                      } else if (value == GraphReprensentationEnum.graphical) {
                         context.read<HomeCubit>().newfun();
                       }
                     });
                   },
                   itemBuilder: (BuildContext context) {
-                    return graphrep.map((String choice) {
-                      return PopupMenuItem<String>(
+                    return GraphReprensentationEnum.values.map((choice) {
+                      return PopupMenuItem<GraphReprensentationEnum>(
                         value: choice,
-                        child: Text(choice),
+                        child: Text(choice.title),
                       );
                     }).toList();
                   },
-
                   color: AppColors.primarycolor,
                 ),
               ],
@@ -93,7 +92,7 @@ class _IncomForcastState extends State<IncomForcast> {
           padding: const EdgeInsets.all(0),
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
-              if (graphrep[1] == slectedgraph) {
+              if (slectedgraph == GraphReprensentationEnum.graphical) {
                 if (state is Chartdatasate) {
                   return Container(
                     height: 180,
@@ -113,15 +112,15 @@ class _IncomForcastState extends State<IncomForcast> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                SizedBox(height: 03),
+                                const SizedBox(height: 03),
                                 Text(
-                                  "  \$${state.totalincome[0].income.toString()}",
+                                  '  \$${state.totalincome[0].income.toString()}',
                                   style: context.myTextTheme.titleLarge
                                       ?.copyWith(fontSize: 16),
                                 ),
 
                                 Text(
-                                  "AUD",
+                                  'AUD',
                                   style: context.myTextTheme.titleSmall
                                       ?.copyWith(
                                         color: AppColors.primaryTextcolor
@@ -133,7 +132,7 @@ class _IncomForcastState extends State<IncomForcast> {
                             ),
 
                             Container(
-                              margin: EdgeInsets.only(right: 20, top: 05),
+                              margin: const EdgeInsets.only(right: 20, top: 05),
 
                               height: 20,
                               width: 45,
@@ -148,7 +147,7 @@ class _IncomForcastState extends State<IncomForcast> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "${state.totalincome[0].percentage.toString()}%",
+                                    '${state.totalincome[0].percentage.toString()}%',
                                     style: context.myTextTheme.titleSmall
                                         ?.copyWith(
                                           color: AppColors.successTextcolor,
@@ -156,11 +155,11 @@ class _IncomForcastState extends State<IncomForcast> {
                                         ),
                                   ),
 
-                                  SizedBox(width: 04),
+                                  const SizedBox(width: 04),
                                   SvgPicture.asset(
                                     AssetString.arrowicon,
 
-                                    colorFilter: ColorFilter.mode(
+                                    colorFilter: const ColorFilter.mode(
                                       Colors.green,
                                       BlendMode.srcIn,
                                     ),
@@ -170,7 +169,7 @@ class _IncomForcastState extends State<IncomForcast> {
                             ),
 
                             Container(
-                              margin: EdgeInsets.only(top: 10, right: 10),
+                              margin: const EdgeInsets.only(top: 10, right: 10),
                               height: 25,
                               width: 145,
                               decoration: BoxDecoration(
@@ -200,20 +199,20 @@ class _IncomForcastState extends State<IncomForcast> {
                           ],
                         ),
 
-                        SizedBox(height: 05),
+                        const SizedBox(height: 05),
                         Container(
                           height: 138,
                           width: double.infinity,
                           padding: const EdgeInsets.only(right: 0, top: 0),
                           child: SfCartesianChart(
-                            primaryXAxis: CategoryAxis(),
-                            primaryYAxis: NumericAxis(
+                            primaryXAxis: const CategoryAxis(),
+                            primaryYAxis: const NumericAxis(
                               minimum: 0,
                               maximum: 100,
                               interval: 25,
                             ),
 
-                            legend: Legend(isVisible: false),
+                            legend: const Legend(isVisible: false),
                             tooltipBehavior: TooltipBehavior(enable: true),
 
                             series: [
@@ -224,7 +223,7 @@ class _IncomForcastState extends State<IncomForcast> {
                                 name: 'Income',
 
                                 color: AppColors.successTextcolor,
-                                markerSettings: MarkerSettings(
+                                markerSettings: const MarkerSettings(
                                   isVisible: true,
                                   shape: DataMarkerType.circle,
                                   width: 5,
@@ -242,10 +241,10 @@ class _IncomForcastState extends State<IncomForcast> {
                 }
               }
 
-              if (graphrep[0] == slectedgraph) {
+              if (slectedgraph == GraphReprensentationEnum.textual) {
                 if (state is Dataloadedstate) {
                   return Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
 
                     height: 180,
                     width: double.infinity,
@@ -261,7 +260,7 @@ class _IncomForcastState extends State<IncomForcast> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: Container(
-                            margin: EdgeInsets.only(top: 08, right: 08),
+                            margin: const EdgeInsets.only(top: 08, right: 08),
                             height: 25,
                             width: 145,
                             decoration: BoxDecoration(
@@ -272,7 +271,9 @@ class _IncomForcastState extends State<IncomForcast> {
                             child: Row(
                               children: IncomeType.values.map((e) {
                                 return Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 02),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 02,
+                                  ),
                                   child: IncomeTab(
                                     label: e,
                                     onTap: () {
@@ -292,7 +293,7 @@ class _IncomForcastState extends State<IncomForcast> {
                           alignment: Alignment.centerRight,
 
                           child: Container(
-                            margin: EdgeInsets.only(right: 10, top: 10),
+                            margin: const EdgeInsets.only(right: 10, top: 10),
                             //    padding: EdgeInsets.only(bottom: 02),
                             height: 25,
                             width: 55,
@@ -308,21 +309,23 @@ class _IncomForcastState extends State<IncomForcast> {
                               children: [
                                 if (state.percentage == 0)
                                   Text(
-                                    "____",
+                                    '____',
                                     style: context.myTextTheme.titleSmall
-                                        ?.copyWith(color: Color(0xff5565AF)),
+                                        ?.copyWith(
+                                          color: const Color(0xff5565AF),
+                                        ),
                                   ),
 
                                 if (state.percentage != 0)
                                   Text(
-                                    "${state.percentage.toString()}%",
+                                    '${state.percentage.toString()}%',
                                     style: context.myTextTheme.titleSmall
                                         ?.copyWith(
                                           color: AppColors.successTextcolor,
                                         ),
                                   ),
 
-                                SizedBox(width: 04),
+                                const SizedBox(width: 04),
 
                                 SvgPicture.asset(
                                   AssetString.arrowicon,
@@ -341,7 +344,7 @@ class _IncomForcastState extends State<IncomForcast> {
                         Padding(
                           padding: const EdgeInsets.only(left: 15, top: 05),
                           child: Text(
-                            "\$ ${state.values.toString()}",
+                            '\$ ${state.values.toString()}',
 
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.primaryTextcolor,
@@ -353,7 +356,7 @@ class _IncomForcastState extends State<IncomForcast> {
                         Padding(
                           padding: const EdgeInsets.only(left: 80),
                           child: Text(
-                            "AUD",
+                            'AUD',
 
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.primaryTextcolor.withValues(
@@ -368,10 +371,10 @@ class _IncomForcastState extends State<IncomForcast> {
                   );
                 }
 
-                return SizedBox();
+                return const SizedBox();
               }
 
-              return SizedBox();
+              return const SizedBox();
             },
           ),
         ),

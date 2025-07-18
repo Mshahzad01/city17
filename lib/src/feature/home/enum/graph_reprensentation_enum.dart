@@ -3,7 +3,7 @@ enum GraphReprensentationEnum {
   graphical;
 
   String get title => switch (this) {
-    textual => "Textual",
-    graphical => "Graphical",
+    textual => 'Textual',
+    graphical => 'Graphical',
   };
 }
