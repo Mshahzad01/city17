@@ -60,7 +60,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 decoration: InputDecoration(
                   hintText: "Business Name",
                   filled: true,
-                  fillColor: AppColors.secondrybagroundcolor,
+                  fillColor: AppColors.secondarycolor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide.none,
@@ -81,7 +81,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 decoration: InputDecoration(
                   hintText: "Business Address",
                   filled: true,
-                  fillColor: AppColors.secondrybagroundcolor,
+                  fillColor: AppColors.secondarycolor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide.none,
@@ -102,7 +102,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 decoration: InputDecoration(
                   hintText: "Business Category",
                   filled: true,
-                  fillColor: AppColors.secondrybagroundcolor,
+                  fillColor: AppColors.secondarycolor,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide.none,
@@ -129,7 +129,7 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                   child: Text(
                     "Add",
                     style: context.myTextTheme.bodyMedium?.copyWith(
-                      color: AppColors.secondarytextcolor,
+                      color: AppColors.accentTextcolor,
                     ),
                   ),
                 ),

@@ -18,24 +18,27 @@
 
 //   static const blckbtncolor = Color(0x40000000);
 // }
-
 import 'package:flutter/material.dart';
 
 class AppColors {
   // Background Colors
   static const Color primarycolor = Color(0xFF252733);
-  static const Color bottomBar = Color(0xFF20222D);
+  static const Color bottombarcolor = Color(0xFF20222D);
   static const Color secondarycolor = Color(0xFF2D3042);
 
   // Text Colors
-  static const Color primaryText = Color(0xFFF4F4F4);
-  static const Color accentText = Color(0xFFE37F47); // maybe for highlights
-  static const Color linkText = Color(
+  static const Color primaryTextcolor = Color(0xFFF4F4F4);
+  static const Color accentTextcolor = Color(
+    0xFFE37F47,
+  ); // maybe for highlights
+  static const Color linkTextcolor = Color(
     0xFF5565AF,
   ); // like clickable or secondary
-  static const Color successText = Color(0xFF32CD32); // green text (success)
-  static const Color errorText = Color(0xFFEE6C77); // red text (error)
-  static const Color warningText = Color(
+  static const Color successTextcolor = Color(
+    0xFF32CD32,
+  ); // green text (success)
+  static const Color errorTextcolor = Color(0xFFEE6C77); // red text (error)
+  static const Color warningTextcolor = Color(
     0xFFFF5E5E,
   ); // used in warning buttons etc.
 

@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
 
-                      color: AppColors.secondrybagroundcolor,
+                      color: AppColors.secondarycolor,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

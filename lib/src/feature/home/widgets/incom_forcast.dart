@@ -39,7 +39,7 @@ class _IncomForcastState extends State<IncomForcast> {
             Text(
               "Income forecast",
               style: context.myTextTheme.titleLarge?.copyWith(
-                color: AppColors.textcolor,
+                color: AppColors.primaryTextcolor,
               ),
             ),
             Row(
@@ -50,7 +50,7 @@ class _IncomForcastState extends State<IncomForcast> {
                   child: Text(
                     slectedgraph,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: AppColors.textcolor,
+                      color: AppColors.primaryTextcolor,
                       fontSize: 12,
                       decoration: TextDecoration.underline,
                     ),
@@ -60,7 +60,7 @@ class _IncomForcastState extends State<IncomForcast> {
                 PopupMenuButton<String>(
                   icon: Icon(
                     Icons.arrow_drop_down,
-                    color: AppColors.textcolor,
+                    color: AppColors.primaryTextcolor,
                     size: 30,
                   ),
                   onSelected: (String value) {
@@ -82,7 +82,7 @@ class _IncomForcastState extends State<IncomForcast> {
                     }).toList();
                   },
 
-                  color: AppColors.backgroundcolor,
+                  color: AppColors.primarycolor,
                 ),
               ],
             ),
@@ -100,7 +100,7 @@ class _IncomForcastState extends State<IncomForcast> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: AppColors.secondrybagroundcolor,
+                      color: AppColors.secondarycolor,
                     ),
 
                     child: Column(
@@ -124,9 +124,8 @@ class _IncomForcastState extends State<IncomForcast> {
                                   "AUD",
                                   style: context.myTextTheme.titleSmall
                                       ?.copyWith(
-                                        color: AppColors.textcolor.withValues(
-                                          alpha: 0.5,
-                                        ),
+                                        color: AppColors.primaryTextcolor
+                                            .withValues(alpha: 0.5),
                                         fontSize: 10,
                                       ),
                                 ),
@@ -140,7 +139,7 @@ class _IncomForcastState extends State<IncomForcast> {
                               width: 45,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(04),
-                                color: AppColors.greentextcolor.withValues(
+                                color: AppColors.successTextcolor.withValues(
                                   alpha: 0.1,
                                 ),
                               ),
@@ -152,7 +151,7 @@ class _IncomForcastState extends State<IncomForcast> {
                                     "${state.totalincome[0].percentage.toString()}%",
                                     style: context.myTextTheme.titleSmall
                                         ?.copyWith(
-                                          color: Colors.green,
+                                          color: AppColors.successTextcolor,
                                           fontSize: 10,
                                         ),
                                   ),
@@ -173,7 +172,7 @@ class _IncomForcastState extends State<IncomForcast> {
                             Container(
                               margin: EdgeInsets.only(top: 10, right: 10),
                               height: 25,
-                              width: 140,
+                              width: 145,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(05),
                                 color: Colors.white.withValues(alpha: 0.1),
@@ -184,7 +183,7 @@ class _IncomForcastState extends State<IncomForcast> {
                                 children: IncomeType.values.map((e) {
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
-                                      horizontal: 4,
+                                      horizontal: 2,
                                     ),
                                     child: IncomeTab(
                                       label: e,
@@ -224,7 +223,7 @@ class _IncomForcastState extends State<IncomForcast> {
                                 yValueMapper: (ChartData data, _) => data.value,
                                 name: 'Income',
 
-                                color: Color(0xff6AB503),
+                                color: AppColors.successTextcolor,
                                 markerSettings: MarkerSettings(
                                   isVisible: true,
                                   shape: DataMarkerType.circle,
@@ -252,7 +251,7 @@ class _IncomForcastState extends State<IncomForcast> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: AppColors.secondrybagroundcolor,
+                      color: AppColors.secondarycolor,
                     ),
 
                     child: Column(
@@ -264,7 +263,7 @@ class _IncomForcastState extends State<IncomForcast> {
                           child: Container(
                             margin: EdgeInsets.only(top: 08, right: 08),
                             height: 25,
-                            width: 150,
+                            width: 145,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(05),
                               color: Colors.white.withValues(alpha: 0.1),
@@ -273,7 +272,7 @@ class _IncomForcastState extends State<IncomForcast> {
                             child: Row(
                               children: IncomeType.values.map((e) {
                                 return Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 04),
+                                  padding: EdgeInsets.symmetric(horizontal: 02),
                                   child: IncomeTab(
                                     label: e,
                                     onTap: () {
@@ -299,7 +298,7 @@ class _IncomForcastState extends State<IncomForcast> {
                             width: 55,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(04),
-                              color: AppColors.greentextcolor.withValues(
+                              color: AppColors.successTextcolor.withValues(
                                 alpha: 0.1,
                               ),
                             ),
@@ -318,7 +317,9 @@ class _IncomForcastState extends State<IncomForcast> {
                                   Text(
                                     "${state.percentage.toString()}%",
                                     style: context.myTextTheme.titleSmall
-                                        ?.copyWith(color: Colors.green),
+                                        ?.copyWith(
+                                          color: AppColors.successTextcolor,
+                                        ),
                                   ),
 
                                 SizedBox(width: 04),
@@ -327,8 +328,8 @@ class _IncomForcastState extends State<IncomForcast> {
                                   AssetString.arrowicon,
                                   colorFilter: ColorFilter.mode(
                                     state.percentage == 0
-                                        ? Color(0xff5565AF)
-                                        : Colors.green,
+                                        ? AppColors.linkTextcolor
+                                        : AppColors.successTextcolor,
                                     BlendMode.srcIn,
                                   ),
                                 ),
@@ -343,7 +344,7 @@ class _IncomForcastState extends State<IncomForcast> {
                             "\$ ${state.values.toString()}",
 
                             style: context.myTextTheme.titleSmall?.copyWith(
-                              color: AppColors.textcolor,
+                              color: AppColors.primaryTextcolor,
                               fontSize: 30,
                             ),
                           ),
@@ -355,7 +356,9 @@ class _IncomForcastState extends State<IncomForcast> {
                             "AUD",
 
                             style: context.myTextTheme.titleSmall?.copyWith(
-                              color: AppColors.textcolor.withValues(alpha: 0.5),
+                              color: AppColors.primaryTextcolor.withValues(
+                                alpha: 0.5,
+                              ),
                               fontSize: 16,
                             ),
                           ),

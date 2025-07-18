@@ -16,8 +16,8 @@ class SetepIndicatorWidget extends StatelessWidget {
           'Setp ${index + 1}',
           style: context.myTextTheme.titleMedium?.copyWith(
             color: index == currentsetyp
-                ? AppColors.textcolor
-                : AppColors.textcolor.withValues(alpha: 0.4),
+                ? AppColors.primaryTextcolor
+                : AppColors.primaryTextcolor.withValues(alpha: 0.4),
           ),
         );
       }),

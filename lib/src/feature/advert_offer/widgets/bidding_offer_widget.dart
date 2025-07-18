@@ -21,8 +21,8 @@ class _BiddingOfferWidgetState extends State<BiddingOfferWidget> {
         //   // padding: const EdgeInsets.all(10),
         //   child: HorizontalCalendar(
         //     date: selectedDate,
-        //     textColor: Colors.black45,
-        //     backgroundColor: Colors.white,
+        //     primaryTextcolor: Colors.black45,
+        //     primarycolor: Colors.white,
         //     selectedColor: Colors.blue,
         //     showMonth: true,
         //     onDateSelected: (date) {

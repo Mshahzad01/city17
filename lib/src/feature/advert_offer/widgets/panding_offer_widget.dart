@@ -19,7 +19,7 @@ class Pandingofferwidget extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
 
-              color: AppColors.secondrybagroundcolor,
+              color: AppColors.secondarycolor,
             ),
             child: Column(
               children: [
@@ -30,7 +30,7 @@ class Pandingofferwidget extends StatelessWidget {
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    fillColor: AppColors.backgroundcolor,
+                    fillColor: AppColors.primarycolor,
                     filled: true,
                     suffix: Icon(Icons.search, size: 20),
                     contentPadding: EdgeInsets.only(
@@ -48,7 +48,7 @@ class Pandingofferwidget extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: AppColors.backgroundcolor,
+                    color: AppColors.primarycolor,
                   ),
 
                   child: Column(
@@ -61,14 +61,16 @@ class Pandingofferwidget extends StatelessWidget {
           ),
           SizedBox(height: 10),
           TabBar(
-            labelColor: AppColors.textcolor,
-            unselectedLabelColor: AppColors.textcolor.withValues(alpha: 0.3),
-            indicatorColor: AppColors.backgroundcolor,
+            labelColor: AppColors.primaryTextcolor,
+            unselectedLabelColor: AppColors.primaryTextcolor.withValues(
+              alpha: 0.3,
+            ),
+            indicatorColor: AppColors.primarycolor,
             indicatorSize: TabBarIndicatorSize.tab,
             dividerColor: Colors.transparent,
 
             indicator: BoxDecoration(
-              color: AppColors.blckbtncolor,
+              color: AppColors.transparentBlack,
               borderRadius: BorderRadius.circular(08),
             ),
 

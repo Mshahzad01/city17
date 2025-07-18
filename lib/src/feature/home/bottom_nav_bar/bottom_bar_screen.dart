@@ -32,7 +32,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.backgroundcolor,
+        backgroundColor: AppColors.primarycolor,
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(myPadding / 2),
@@ -53,7 +53,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                     Text(
                       "Hi",
                       style: context.myTextTheme.titleSmall?.copyWith(
-                        color: AppColors.textcolor,
+                        color: AppColors.primaryTextcolor,
                         fontSize: 14,
                       ),
                     ),
@@ -62,7 +62,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                     Text(
                       "Ela",
                       style: context.myTextTheme.titleSmall?.copyWith(
-                        color: AppColors.textcolor,
+                        color: AppColors.primaryTextcolor,
                         fontSize: 14,
                       ),
                     ),
@@ -127,7 +127,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                   items[index],
                   style: context.myTextTheme.titleSmall?.copyWith(
                     fontSize: 12,
-                    color: AppColors.textcolor,
+                    color: AppColors.primaryTextcolor,
                   ),
                 ),
               ),

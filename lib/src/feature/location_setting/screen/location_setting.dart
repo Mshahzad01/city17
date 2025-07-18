@@ -58,7 +58,7 @@ class _LocationSettingState extends State<LocationSetting> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
 
-                  color: AppColors.secondrybagroundcolor,
+                  color: AppColors.secondarycolor,
                 ),
 
                 child: Column(
@@ -81,7 +81,9 @@ class _LocationSettingState extends State<LocationSetting> {
                         Text(
                           'Let multiple buyers compete, and the highest \noffer wins the hour slot.',
                           style: context.myTextTheme.titleSmall?.copyWith(
-                            color: AppColors.textcolor.withValues(alpha: 0.3),
+                            color: AppColors.primaryTextcolor.withValues(
+                              alpha: 0.3,
+                            ),
                           ),
                         ),
                       ],
@@ -98,7 +100,7 @@ class _LocationSettingState extends State<LocationSetting> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
 
-                  color: AppColors.secondrybagroundcolor,
+                  color: AppColors.secondarycolor,
                 ),
 
                 child: Column(
@@ -118,7 +120,7 @@ class _LocationSettingState extends State<LocationSetting> {
                         Transform.scale(
                           scale: 0.5,
                           child: Switch(
-                            activeColor: AppColors.greentextcolor,
+                            activeColor: AppColors.successTextcolor,
                             value: iselected,
                             onChanged: (bool newvalue) {
                               setState(() {
@@ -138,7 +140,9 @@ class _LocationSettingState extends State<LocationSetting> {
                         Text(
                           'Allow the buyer to pay you a fixed \n amount for their campaign.',
                           style: context.myTextTheme.titleSmall?.copyWith(
-                            color: AppColors.textcolor.withValues(alpha: 0.3),
+                            color: AppColors.primaryTextcolor.withValues(
+                              alpha: 0.3,
+                            ),
                           ),
                         ),
                       ],
@@ -162,7 +166,7 @@ class _LocationSettingState extends State<LocationSetting> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
 
-                  color: AppColors.backgroundcolor,
+                  color: AppColors.primarycolor,
                 ),
 
                 child: Column(
@@ -184,7 +188,7 @@ class _LocationSettingState extends State<LocationSetting> {
                             style: context.myTextTheme.titleMedium?.copyWith(
                               fontSize: 12,
 
-                              color: AppColors.textcolor.withAlpha(80),
+                              color: AppColors.primaryTextcolor.withAlpha(80),
                             ),
                           ),
                         ),
@@ -202,7 +206,7 @@ class _LocationSettingState extends State<LocationSetting> {
                         Text(
                           "• ${widget.data.displaydumydata.length} Display",
                           style: context.myTextTheme.titleSmall?.copyWith(
-                            color: AppColors.purpletextcolor,
+                            color: AppColors.linkTextcolor,
                           ),
                         ),
 
@@ -210,14 +214,14 @@ class _LocationSettingState extends State<LocationSetting> {
                           "• ert online",
 
                           style: context.myTextTheme.titleSmall?.copyWith(
-                            color: AppColors.greentextcolor,
+                            color: AppColors.successTextcolor,
                           ),
                         ),
 
                         Text(
                           "• ert offline",
                           style: context.myTextTheme.titleSmall?.copyWith(
-                            color: AppColors.redtextcolor,
+                            color: AppColors.errorTextcolor,
                           ),
                         ),
 
@@ -240,7 +244,7 @@ class _LocationSettingState extends State<LocationSetting> {
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                           width: 1,
-                          color: AppColors.greentextcolor,
+                          color: AppColors.successTextcolor,
                         ),
                       ),
                       child: Column(
@@ -263,7 +267,7 @@ class _LocationSettingState extends State<LocationSetting> {
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                           width: 1,
-                          color: AppColors.textbuttoncolor,
+                          color: AppColors.warningTextcolor,
                         ),
                       ),
                       child: Column(
@@ -286,7 +290,9 @@ class _LocationSettingState extends State<LocationSetting> {
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                           width: 1,
-                          color: AppColors.textcolor.withValues(alpha: 0.1),
+                          color: AppColors.primaryTextcolor.withValues(
+                            alpha: 0.1,
+                          ),
                         ),
                       ),
                       child: Column(
@@ -313,7 +319,7 @@ class _LocationSettingState extends State<LocationSetting> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: AppColors.secondrybagroundcolor,
+                    color: AppColors.secondarycolor,
                   ),
 
                   child: Row(
@@ -322,7 +328,7 @@ class _LocationSettingState extends State<LocationSetting> {
                       Text(
                         "Connect a Display",
                         style: context.myTextTheme.titleMedium?.copyWith(
-                          color: AppColors.secondarytextcolor,
+                          color: AppColors.accentTextcolor,
                         ),
                       ),
 

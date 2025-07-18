@@ -22,7 +22,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, top: 05),
       decoration: BoxDecoration(
-        color: AppColors.secondrybagroundcolor,
+        color: AppColors.secondarycolor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
@@ -41,7 +41,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
 
-              color: AppColors.backgroundcolor,
+              color: AppColors.primarycolor,
             ),
 
             child: Column(
@@ -50,8 +50,8 @@ class _MangeBusinessState extends State<MangeBusiness> {
                 ExpansionTile(
                   childrenPadding: EdgeInsets.only(right: 08, left: 08),
                   tilePadding: EdgeInsets.only(left: 08, right: 08),
-                  backgroundColor: AppColors.backgroundcolor,
-                  collapsedBackgroundColor: AppColors.backgroundcolor,
+                  backgroundColor: AppColors.primarycolor,
+                  iconColor: AppColors.primarycolor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -78,7 +78,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
                               style: context.myTextTheme.titleMedium?.copyWith(
                                 fontSize: 12,
 
-                                color: AppColors.textcolor.withAlpha(80),
+                                color: AppColors.primaryTextcolor.withAlpha(80),
                               ),
                             ),
                           ),
@@ -90,7 +90,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      LocationSetting(data:  data,),
+                                      LocationSetting(data: data),
                                 ),
                               ),
                               //LocationSetting(indexx: index),
@@ -99,7 +99,10 @@ class _MangeBusinessState extends State<MangeBusiness> {
                           ),
                         ],
                       ),
-                      Text(data.type.title, style: context.myTextTheme.titleSmall),
+                      Text(
+                        data.type.title,
+                        style: context.myTextTheme.titleSmall,
+                      ),
 
                       SizedBox(height: 05),
                       Row(
@@ -108,7 +111,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
                           Text(
                             "• ${data.displaydumydata.length} Display",
                             style: context.myTextTheme.titleSmall?.copyWith(
-                              color: AppColors.purpletextcolor,
+                              color: AppColors.linkTextcolor,
                             ),
                           ),
 
@@ -116,14 +119,14 @@ class _MangeBusinessState extends State<MangeBusiness> {
                             "• ert online",
 
                             style: context.myTextTheme.titleSmall?.copyWith(
-                              color: AppColors.greentextcolor,
+                              color: AppColors.successTextcolor,
                             ),
                           ),
 
                           Text(
                             "• ert offline",
                             style: context.myTextTheme.titleSmall?.copyWith(
-                              color: AppColors.redtextcolor,
+                              color: AppColors.errorTextcolor,
                             ),
                           ),
 
@@ -162,7 +165,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
                     child: Text(
                       StringData.connectdisplay,
                       style: context.myTextTheme.titleMedium?.copyWith(
-                        color: AppColors.secondarytextcolor,
+                        color: AppColors.accentTextcolor,
                       ),
                     ),
                   ),

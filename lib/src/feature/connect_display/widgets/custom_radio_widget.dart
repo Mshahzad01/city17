@@ -30,8 +30,8 @@ class CustomRadioTile<T> extends StatelessWidget {
               (value as dynamic).title,
               style: context.myTextTheme.titleMedium?.copyWith(
                 color: isSelected
-                    ? AppColors.textcolor
-                    : AppColors.textcolor.withValues(alpha: 0.3),
+                    ? AppColors.primaryTextcolor
+                    : AppColors.primaryTextcolor.withValues(alpha: 0.3),
                 fontSize: 12,
               ),
             ),
@@ -39,8 +39,8 @@ class CustomRadioTile<T> extends StatelessWidget {
             Icon(
               isSelected ? Icons.check_circle : Icons.circle_outlined,
               color: isSelected
-                  ? AppColors.textcolor
-                  : AppColors.textcolor.withValues(alpha: 0.3),
+                  ? AppColors.primaryTextcolor
+                  : AppColors.primaryTextcolor.withValues(alpha: 0.3),
               size: 20,
             ),
           ],

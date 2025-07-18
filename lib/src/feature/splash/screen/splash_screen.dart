@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundcolor,
+      backgroundColor: AppColors.primarycolor,
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             child: Text(
                               char,
                               style: context.myTextTheme.titleSmall?.copyWith(
-                                color: AppColors.textcolor.withValues(
+                                color: AppColors.primaryTextcolor.withValues(
                                   alpha: 0.1,
                                 ),
 
@@ -87,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   "Display Manager",
                   style: context.myTextTheme.titleLarge?.copyWith(
                     fontSize: 12,
-                    color: AppColors.textcolor.withValues(alpha: 0.4),
+                    color: AppColors.primaryTextcolor.withValues(alpha: 0.4),
                   ),
                 ),
                 Spacer(),
@@ -100,7 +100,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: ElevatedButton(
                     onPressed: null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.secondrybagroundcolor,
+                      backgroundColor: AppColors.secondarycolor,
 
                       padding: EdgeInsets.symmetric(
                         horizontal: myPadding / 2,
@@ -125,7 +125,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   "By proceeding you accept all terms and conditions",
                   style: context.myTextTheme.titleLarge?.copyWith(
                     fontSize: 12,
-                    color: AppColors.textcolor,
+                    color: AppColors.primaryTextcolor,
                   ),
                 ),
                 SizedBox(height: 4),

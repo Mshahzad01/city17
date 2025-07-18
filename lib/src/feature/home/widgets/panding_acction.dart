@@ -53,7 +53,7 @@ class PandingAcction extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
 
-        color: AppColors.secondrybagroundcolor,
+        color: AppColors.secondarycolor,
       ),
       child: Row(
         children: [

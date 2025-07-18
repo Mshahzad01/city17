@@ -81,7 +81,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondrybagroundcolor,
+                  color: AppColors.secondarycolor,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +99,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: AppColors.backgroundcolor,
+                        color: AppColors.primarycolor,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -139,7 +139,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: AppColors.backgroundcolor,
+                        color: AppColors.primarycolor,
                       ),
                       child: Wrap(
                         children: [
@@ -169,7 +169,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: AppColors.backgroundcolor,
+                        color: AppColors.primarycolor,
                       ),
                       child: Wrap(
                         children: ScreeenPlacementEnum.values.map((x) {
@@ -197,7 +197,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondrybagroundcolor,
+                  color: AppColors.secondarycolor,
                 ),
 
                 child: Column(
@@ -215,7 +215,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       height: 105,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: AppColors.backgroundcolor,
+                        color: AppColors.primarycolor,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,7 +288,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 padding: EdgeInsets.only(top: 12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondrybagroundcolor,
+                  color: AppColors.secondarycolor,
                 ),
                 height: 60,
 
@@ -296,7 +296,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                   controller: _namecontroller,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10, top: 05),
-                    fillColor: AppColors.secondrybagroundcolor,
+                    fillColor: AppColors.secondarycolor,
                     filled: true,
                     label: Text(StringData.name),
                     border: OutlineInputBorder(
@@ -312,7 +312,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 padding: EdgeInsets.only(top: 12, right: 05),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondrybagroundcolor,
+                  color: AppColors.secondarycolor,
                 ),
                 height: 60,
 
@@ -324,7 +324,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                       top: 05,
                       right: 10,
                     ),
-                    fillColor: AppColors.secondrybagroundcolor,
+                    fillColor: AppColors.secondarycolor,
 
                     filled: true,
                     label: Text(StringData.size),
@@ -347,7 +347,7 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                 padding: EdgeInsets.only(top: 12, right: 05),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondrybagroundcolor,
+                  color: AppColors.secondarycolor,
                 ),
                 height: 90,
 
@@ -356,10 +356,10 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
                   maxLines: 2,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 10, top: 05),
-                    fillColor: AppColors.secondrybagroundcolor,
+                    fillColor: AppColors.secondarycolor,
                     filled: true,
                     label: Text(StringData.adddiscription),
-                    focusColor: AppColors.secondrybagroundcolor,
+                    focusColor: AppColors.secondarycolor,
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(10),
@@ -426,7 +426,7 @@ class CustomButtonRow extends StatelessWidget {
           GestureDetector(
             onTap: onSaveAsDraft,
             // style: ElevatedButton.styleFrom(
-            //   backgroundColor: AppColors.secondrybagroundcolor,
+            //   primarycolor: AppColors.secondarycolor,
             // ),
             child: const Text("Save as Draft"),
           ),
@@ -437,14 +437,14 @@ class CustomButtonRow extends StatelessWidget {
               height: 40,
               width: 140,
               decoration: BoxDecoration(
-                color: AppColors.secondrybagroundcolor,
+                color: AppColors.secondarycolor,
                 borderRadius: BorderRadius.circular(08),
               ),
               alignment: Alignment.center,
               child: Text(
                 btn2title,
                 style: context.myTextTheme.titleSmall?.copyWith(
-                  color: AppColors.secondarytextcolor,
+                  color: AppColors.accentTextcolor,
                 ),
               ),
             ),

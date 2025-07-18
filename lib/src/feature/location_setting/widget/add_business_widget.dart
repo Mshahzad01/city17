@@ -56,7 +56,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
 
-        color: AppColors.secondrybagroundcolor,
+        color: AppColors.secondarycolor,
       ),
 
       child: Form(
@@ -77,7 +77,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
 
                   borderRadius: BorderRadius.circular(myPadding),
                 ),
-                fillColor: AppColors.backgroundcolor,
+                fillColor: AppColors.primarycolor,
                 filled: true,
 
                 hint: Text(StringData.businessname),
@@ -110,9 +110,9 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
 
                   borderRadius: BorderRadius.circular(10),
                 ),
-                fillColor: AppColors.backgroundcolor,
+                fillColor: AppColors.primarycolor,
                 filled: true,
-                focusColor: AppColors.backgroundcolor,
+                focusColor: AppColors.primarycolor,
 
                 hint: Text(StringData.businessaddress),
 
@@ -137,8 +137,8 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
             SizedBox(height: 10),
             DropdownButtonFormField(
               value: selectedcategory,
-              focusColor: AppColors.backgroundcolor,
-              dropdownColor: AppColors.backgroundcolor,
+              focusColor: AppColors.primarycolor,
+              dropdownColor: AppColors.primarycolor,
               borderRadius: BorderRadius.circular(10),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -151,7 +151,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
                   vertical: 10,
                 ),
 
-                fillColor: AppColors.backgroundcolor,
+                fillColor: AppColors.primarycolor,
                 filled: true,
               ),
               items: BusinessCategoryEnum.values.map((category) {

@@ -41,7 +41,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10, top: 5, bottom: 2),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: AppColors.secondrybagroundcolor,
+                  color: AppColors.secondarycolor,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +81,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
                           width: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
-                            color: AppColors.greentextcolor.withValues(
+                            color: AppColors.successTextcolor.withValues(
                               alpha: 0.1,
                             ),
                           ),
@@ -91,7 +91,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
                               Text(
                                 "${x.growth}",
                                 style: context.myTextTheme.titleSmall?.copyWith(
-                                  color: Colors.green,
+                                  color: AppColors.successTextcolor,
                                   fontSize: 8,
                                 ),
                               ),

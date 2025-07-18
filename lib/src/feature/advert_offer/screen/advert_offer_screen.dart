@@ -21,14 +21,16 @@ class _AdvertofferState extends State<AdvertOfferScreen> {
         child: Column(
           children: [
             TabBar(
-              labelColor: AppColors.textcolor,
-              unselectedLabelColor: AppColors.textcolor.withValues(alpha: 0.3),
-              indicatorColor: AppColors.backgroundcolor,
+              labelColor: AppColors.primaryTextcolor,
+              unselectedLabelColor: AppColors.primaryTextcolor.withValues(
+                alpha: 0.3,
+              ),
+              indicatorColor: AppColors.primarycolor,
               indicatorSize: TabBarIndicatorSize.tab,
               dividerColor: Colors.transparent,
 
               indicator: BoxDecoration(
-                color: AppColors.blckbtncolor,
+                color: AppColors.transparentBlack,
                 borderRadius: BorderRadius.circular(08),
               ),
 
