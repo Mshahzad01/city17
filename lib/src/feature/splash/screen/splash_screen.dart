@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _dely() async {
     final navigator = Navigator.of(context);
-    await Future.delayed(Duration(seconds: 05));
+    await Future.delayed(Duration(seconds: 02));
     navigator.pushReplacementNamed(BottomNavScreen.rotename);
   }
 

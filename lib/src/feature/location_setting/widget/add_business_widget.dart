@@ -28,20 +28,16 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  List<BusinessCategoryEnum> businesscategory = [
-    BusinessCategoryEnum.returent,
-    BusinessCategoryEnum.shop,
-    BusinessCategoryEnum.vehicle,
-    BusinessCategoryEnum.hotel,
-  ];
-
-  late String selectedcategory;
+  BusinessCategoryEnum? selectedcategory;
 
   @override
   void initState() {
     _businessnamecontroller = TextEditingController(text: widget.bsname);
     _addressController = TextEditingController(text: widget.address);
-    selectedcategory = widget.type;
+    selectedcategory = BusinessCategoryEnum.values.firstWhere(
+      (e) => e.title == widget.type,
+      orElse: () => BusinessCategoryEnum.returent,
+    );
     super.initState();
   }
 
@@ -158,7 +154,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
                 fillColor: AppColors.backgroundcolor,
                 filled: true,
               ),
-              items: businesscategory.map((category) {
+              items: BusinessCategoryEnum.values.map((category) {
                 return DropdownMenuItem(
                   value: category,
                   child: Text(category.title),
@@ -166,7 +162,7 @@ class _AddBusinessWidgetState extends State<AddBusinessWidget> {
               }).toList(),
               onChanged: (value) {
                 setState(() {
-                  selectedcategory = value.toString();
+                  selectedcategory = value;
                 });
               },
             ),

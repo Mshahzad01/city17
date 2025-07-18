@@ -1,3 +1,4 @@
+import 'package:city17/src/feature/location_setting/enum/business_category_enum.dart';
 import 'package:flutter/material.dart';
 
 enum DisplayStatus {
@@ -42,7 +43,7 @@ class Display {
 
 class DisplayLocationModel {
   final String name;
-  final String type;
+ final BusinessCategoryEnum type;
   final String address;
 
   List<Display> displaydumydata;
@@ -58,7 +59,7 @@ class DisplayLocationModel {
 List<DisplayLocationModel> dumyDisplays = [
   DisplayLocationModel(
     name: 'Resturant Family Hall',
-    type: 'Hotel',
+    type: BusinessCategoryEnum.hotel,
     address: 'Hilton 488 Georage St, Sydeny',
     displaydumydata: [
       Display(
@@ -128,7 +129,7 @@ List<DisplayLocationModel> dumyDisplays = [
 
   DisplayLocationModel(
     name: 'Hilton Hotel',
-    type: 'Hotel',
+    type: BusinessCategoryEnum.hotel,
     address: 'Multan Shalimar Calony fdada',
     displaydumydata: [
       Display(

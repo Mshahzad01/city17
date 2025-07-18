@@ -1,9 +1,11 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/cubit/home_cubit.dart';
 import 'package:city17/src/feature/home/cubit/home_state.dart';
 import 'package:city17/src/feature/home/model/income_model.dart';
+import 'package:city17/src/feature/home/widgets/income_tab_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -44,7 +46,7 @@ class _IncomForcastState extends State<IncomForcast> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 30),
+                  padding: const EdgeInsets.only(left: myPadding * 2),
                   child: Text(
                     slectedgraph,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -171,23 +173,29 @@ class _IncomForcastState extends State<IncomForcast> {
                             Container(
                               margin: EdgeInsets.only(top: 10, right: 10),
                               height: 25,
-                              width: 150,
+                              width: 140,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(05),
                                 color: Colors.white.withValues(alpha: 0.1),
                               ),
+
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  buildtab(IncomeType.day, context),
-                                  SizedBox(width: 08),
-
-                                  buildtab(IncomeType.week, context),
-                                  SizedBox(width: 08),
-
-                                  buildtab(IncomeType.month, context),
-                                  SizedBox(width: 08),
-                                ],
+                                children: IncomeType.values.map((e) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 4,
+                                    ),
+                                    child: IncomeTab(
+                                      label: e,
+                                      onTap: () {
+                                        context.read<HomeCubit>().getChartData(
+                                          e,
+                                        );
+                                      },
+                                    ),
+                                  );
+                                }).toList(),
                               ),
                             ),
                           ],
@@ -261,18 +269,22 @@ class _IncomForcastState extends State<IncomForcast> {
                               borderRadius: BorderRadius.circular(05),
                               color: Colors.white.withValues(alpha: 0.1),
                             ),
+
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                _buildTab(IncomeType.day, context),
-                                SizedBox(width: 05),
-
-                                _buildTab(IncomeType.week, context),
-                                SizedBox(width: 05),
-
-                                _buildTab(IncomeType.month, context),
-                                SizedBox(width: 05),
-                              ],
+                              children: IncomeType.values.map((e) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 04),
+                                  child: IncomeTab(
+                                    label: e,
+                                    onTap: () {
+                                      context
+                                          .read<HomeCubit>()
+                                          .seletedincometypechange(e);
+                                      context.read<HomeCubit>().selectdata();
+                                    },
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ),
                         ),
@@ -329,7 +341,7 @@ class _IncomForcastState extends State<IncomForcast> {
                           padding: const EdgeInsets.only(left: 15, top: 05),
                           child: Text(
                             "\$ ${state.values.toString()}",
-                            //  style: AppTextStyles.title,
+
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.textcolor,
                               fontSize: 30,
@@ -361,65 +373,6 @@ class _IncomForcastState extends State<IncomForcast> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget buildtab(IncomeType label, BuildContext context) {
-    bool isSelected = context.read<HomeCubit>().incomeType == label;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          context.read<HomeCubit>().getChartData(label);
-        });
-      },
-      child: Container(
-        height: double.infinity,
-        //width: 60,
-        padding: EdgeInsets.only(top: 04, bottom: 04, left: 04, right: 04),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? Colors.white.withValues(alpha: 0.1)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        child: Text(
-          label.title,
-          style: context.myTextTheme.titleSmall?.copyWith(
-            fontFamily: "myfonts",
-            fontSize: 11,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTab(IncomeType incType, BuildContext context) {
-    final type = context.read<HomeCubit>().incomeType;
-    final isSelected = type == incType;
-
-    return GestureDetector(
-      onTap: () {
-        context.read<HomeCubit>().seletedincometypechange(incType);
-        context.read<HomeCubit>().selectdata();
-      },
-      child: Container(
-        height: double.infinity,
-
-        padding: EdgeInsets.only(top: 04, bottom: 04, left: 04, right: 06),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? Colors.white.withValues(alpha: 0.1)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(04),
-        ),
-        child: Text(
-          incType.title,
-          style: context.myTextTheme.titleSmall?.copyWith(
-            fontFamily: "myfonts",
-            fontSize: 12,
-          ),
-        ),
-      ),
     );
   }
 }

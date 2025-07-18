@@ -9,9 +9,9 @@ import 'package:flutter_svg/svg.dart';
 import '../../home/widgets/display_by_status_widgt.dart';
 
 class LocationSetting extends StatefulWidget {
-  final int indexx;
+  final DisplayLocationModel data;
   static const routename = "/locationsetting";
-  const LocationSetting({super.key, required this.indexx});
+  const LocationSetting({super.key, required this.data});
 
   @override
   State<LocationSetting> createState() => _LocationSettingState();
@@ -19,14 +19,6 @@ class LocationSetting extends StatefulWidget {
 
 class _LocationSettingState extends State<LocationSetting> {
   bool iselected = false;
-
-  late DisplayLocationModel seleteddata;
-
-  @override
-  void initState() {
-    seleteddata = dumyDisplays[widget.indexx];
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +40,9 @@ class _LocationSettingState extends State<LocationSetting> {
             children: [
               //add business name address and type
               AddBusinessWidget(
-                address: seleteddata.address,
-                bsname: seleteddata.name,
-                type: seleteddata.type,
+                address: widget.data.address,
+                bsname: widget.data.name,
+                type: widget.data.type.title,
               ),
 
               // ad Binding Offer
@@ -177,7 +169,7 @@ class _LocationSettingState extends State<LocationSetting> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      seleteddata.name,
+                      widget.data.name,
                       style: context.myTextTheme.titleMedium,
                     ),
                     Row(
@@ -185,7 +177,7 @@ class _LocationSettingState extends State<LocationSetting> {
                       children: [
                         Expanded(
                           child: Text(
-                            seleteddata.address,
+                            widget.data.address,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
 
@@ -199,7 +191,7 @@ class _LocationSettingState extends State<LocationSetting> {
                       ],
                     ),
                     Text(
-                      seleteddata.type,
+                      widget.data.type.title,
                       style: context.myTextTheme.titleSmall,
                     ),
 
@@ -208,7 +200,7 @@ class _LocationSettingState extends State<LocationSetting> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "• ${seleteddata.displaydumydata.length} Display",
+                          "• ${widget.data.displaydumydata.length} Display",
                           style: context.myTextTheme.titleSmall?.copyWith(
                             color: AppColors.purpletextcolor,
                           ),
@@ -255,7 +247,7 @@ class _LocationSettingState extends State<LocationSetting> {
                         children: [
                           DisplaysByStatusWidget(
                             status: DisplayStatus.online,
-                            displays: seleteddata.displaydumydata,
+                            displays: widget.data.displaydumydata,
                           ),
                         ],
                       ),
@@ -278,7 +270,7 @@ class _LocationSettingState extends State<LocationSetting> {
                         children: [
                           DisplaysByStatusWidget(
                             status: DisplayStatus.offline,
-                            displays: seleteddata.displaydumydata,
+                            displays: widget.data.displaydumydata,
                           ),
                         ],
                       ),
@@ -301,7 +293,7 @@ class _LocationSettingState extends State<LocationSetting> {
                         children: [
                           DisplaysByStatusWidget(
                             status: DisplayStatus.draft,
-                            displays: seleteddata.displaydumydata,
+                            displays: widget.data.displaydumydata,
                           ),
                         ],
                       ),

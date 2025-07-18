@@ -90,7 +90,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      LocationSetting(indexx: index),
+                                      LocationSetting(data:  data,),
                                 ),
                               ),
                               //LocationSetting(indexx: index),
@@ -99,7 +99,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
                           ),
                         ],
                       ),
-                      Text(data.type, style: context.myTextTheme.titleSmall),
+                      Text(data.type.title, style: context.myTextTheme.titleSmall),
 
                       SizedBox(height: 05),
                       Row(
