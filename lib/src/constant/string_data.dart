@@ -34,4 +34,15 @@ mixin StringData {
   static const next = 'Next';
   static const safeasdraft = 'Safe as Draft';
   static const serachbusinesscategory = 'Search Business Category';
+  static const advertiser = 'Advertiser';
+  static const hoursperday = 'Hours per day';
+  static const start = 'Start';
+  static const end = 'End';
+  static const display = 'Display';
+
+  static const reject = 'Reject';
+  static const approve = 'Approve';
+
+  static const atomaticapproval =
+      'Automatically approve all adverts from this advertiser?';
 }

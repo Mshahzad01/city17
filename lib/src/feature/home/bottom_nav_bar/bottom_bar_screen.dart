@@ -1,6 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
+import 'package:city17/src/core/enum/bottom_bar_enum.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/finance/screen/finance_screen.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
@@ -21,7 +22,7 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   int selectedIndex = 0;
 
-  final List<String> items = ['Home', 'Offers', 'Finance', 'Settings'];
+  BottomBarEnum sletedvalue = BottomBarEnum.home;
 
   final _pages = [
     const HomeScreen(),
@@ -105,12 +106,13 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(items.length, (index) {
-            final isSelected = selectedIndex == index;
+          children: BottomBarEnum.values.map((e) {
+            final isSelected = e == sletedvalue;
             return InkWell(
               onTap: () {
                 setState(() {
-                  selectedIndex = index;
+                  sletedvalue = e;
+                  selectedIndex = e.indexx;
                 });
               },
               child: AnimatedContainer(
@@ -126,7 +128,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                   borderRadius: BorderRadius.circular(07),
                 ),
                 child: Text(
-                  items[index],
+                  e.title,
                   style: context.myTextTheme.titleSmall?.copyWith(
                     fontSize: 12,
                     color: AppColors.primaryTextcolor,
@@ -134,7 +136,9 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                 ),
               ),
             );
-          }),
+          }).toList(),
+
+          // List.generate(items.length, (index)
         ),
       ),
     );

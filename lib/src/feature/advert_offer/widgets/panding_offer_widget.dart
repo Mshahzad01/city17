@@ -2,8 +2,11 @@ import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
+import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/advert_offer/screen/model/advertisment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class Pandingofferwidget extends StatefulWidget {
   const Pandingofferwidget({super.key});
@@ -13,12 +16,23 @@ class Pandingofferwidget extends StatefulWidget {
 }
 
 class _PandingofferwidgetState extends State<Pandingofferwidget> {
+  // List< AdvertOffer> newoffer =  [];
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  final adverismentdata = dummyAdvertismentData.map((e) {
+    return e.addata;
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: myPadding / 2,
-        vertical: myPadding / 2,
+      padding: const EdgeInsets.only(
+        top: myPadding / 2,
+        // horizontal: myPadding / 2,
+        // vertical: myPadding / 2,
       ),
       child: DefaultTabController(
         length: 2,
@@ -108,7 +122,7 @@ class _PandingofferwidgetState extends State<Pandingofferwidget> {
 
             Expanded(
               child: TabBarView(
-                children: [biddingoffer(), const Text('Fixed')],
+                children: [biddingoffer(context), const Text('Fixed')],
               ),
             ),
           ],
@@ -117,53 +131,277 @@ class _PandingofferwidgetState extends State<Pandingofferwidget> {
     );
   }
 
-  Widget biddingoffer() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(
-            top: myPadding,
-            bottom: myPadding / 1.5,
-          ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: myPadding,
-            vertical: myPadding,
-          ),
-          alignment: Alignment.center,
-          color: AppColors.secondarycolor,
-          height: 60,
-          width: double.infinity,
-          child: const Text('Date Clineder'),
-        ),
-
-        Row(
+  Widget biddingoffer(BuildContext context) {
+    bool islected = false;
+    return ListView.builder(
+      itemCount: dummyAdvertismentData.length,
+      itemBuilder: (BuildContext context, int index) {
+        final data = dummyAdvertismentData[index];
+        print("runtime errro ${data.dateTime.runtimeType}");
+        return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(AssetString.alerticon),
-            const SizedBox(width: 05),
-            const Text('Aelr Text'),
-          ],
-        ),
+            Container(
+              margin: const EdgeInsets.only(
+                top: myPadding,
+                bottom: myPadding / 1.5,
+              ),
 
-        // Expanded(
-        //   child: ListView.builder(
-        //     padding: const EdgeInsets.all(12),
-        //     itemCount: offerList.length,
-        //     itemBuilder: (context, index) {
-        //       final offer = offerList[index];
-        //       return Card(
-        //         margin: const EdgeInsets.only(bottom: 20),
-        //         shape: RoundedRectangleBorder(
-        //           borderRadius: BorderRadius.circular(15),
-        //         ),
-        //         color: Colors.grey[900],
-        //         child: const Padding(padding: EdgeInsets.all(12.0)),
-        //       );
-        //     },
-        //   ),
-        // ),
-      ],
+              alignment: Alignment.center,
+              color: AppColors.secondarycolor,
+              height: 60,
+              width: double.infinity,
+              child: const Text('Date Calendar'),
+            ),
+            const SizedBox(height: myPadding / 2),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SvgPicture.asset(AssetString.alerticon),
+                const SizedBox(width: myPadding / 3),
+                Expanded(
+                  child: Text(
+                    data.alert,
+                    style: context.myTextTheme.titleSmall?.copyWith(
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: myPadding),
+            // e.g., 21
+            // Text("${data.dateTime.FormState(DateFormat.yMMMMEEEEd().format(aDateTime))}"),
+            Text(
+              '${DateFormat('dd').format(data.dateTime).toString()} - ${DateFormat('EEEE').format(data.dateTime).toString()}',
+            ),
+
+            const SizedBox(height: myPadding),
+
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: myPadding / 2,
+                vertical: myPadding / 2,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.secondarycolor,
+
+                borderRadius: BorderRadius.circular(10),
+              ),
+
+              child: Column(
+                children: [
+                  ...data.addata.map((ad) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: myPadding / 2),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(
+                              top: myPadding / 2,
+                              bottom: myPadding / 2,
+                            ),
+                            margin: const EdgeInsets.only(right: myPadding / 3),
+                            width: 60,
+                            height: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.primarycolor,
+                            ),
+
+                            child: Column(children: [
+                              
+                              ],
+                            ),
+                          ),
+
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                top: myPadding / 2,
+                                left: myPadding / 3,
+                                right: myPadding / 3,
+                              ),
+                              // width: 100,
+                              height: 350,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColors.primarycolor,
+                              ),
+
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Advertiser',
+                                        style: context.myTextTheme.titleSmall
+                                            ?.copyWith(
+                                              fontSize: 10,
+                                              color: AppColors.primaryTextcolor
+                                                  .withValues(alpha: 0.4),
+                                            ),
+                                      ),
+                                      Text(
+                                        ad.advertiserName,
+                                        style: context.myTextTheme.titleMedium
+                                            ?.copyWith(fontSize: 12),
+                                      ),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      customcontaier(
+                                        StringData.hoursperday,
+                                        ad.hoursPerDay,
+                                      ),
+                                      customcontaier(
+                                        StringData.start,
+                                        ad.startDate,
+                                      ),
+                                      customcontaier(
+                                        StringData.end,
+                                        ad.endDate,
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: myPadding / 2),
+                                  Image.asset(
+                                    ad.adImage,
+                                    height: 150,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const SizedBox(height: myPadding / 2),
+
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        StringData.display,
+                                        style: context.myTextTheme.titleSmall
+                                            ?.copyWith(
+                                              fontSize: 11,
+                                              color: AppColors.primaryTextcolor
+                                                  .withValues(alpha: 0.4),
+                                            ),
+                                      ),
+
+                                      Text(
+                                        '${ad.displayLocation}',
+                                        style: context.myTextTheme.titleSmall
+                                            ?.copyWith(fontSize: 12),
+                                      ),
+                                    ],
+                                  ),
+
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Text(
+                                      ad.locationAddress,
+                                      style: context.myTextTheme.titleSmall
+                                          ?.copyWith(fontSize: 10),
+                                    ),
+                                  ),
+
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                      left: myPadding / 4,
+                                      right: myPadding / 4,
+                                    ),
+                                    margin: const EdgeInsets.only(
+                                      top: myPadding / 2,
+                                    ),
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.secondarycolor,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            StringData.atomaticapproval,
+                                            style: context
+                                                .myTextTheme
+                                                .titleSmall
+                                                ?.copyWith(fontSize: 11),
+                                          ),
+                                        ),
+
+                                        Transform.scale(
+                                          scale: 0.5,
+                                          child: Switch(
+                                            activeColor:
+                                                AppColors.successTextcolor,
+
+                                            value: islected,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                islected = value;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget customcontaier(String title, var data) {
+    return Container(
+      padding: const EdgeInsets.all(myPadding / 5),
+      margin: const EdgeInsets.only(top: myPadding / 2),
+
+      height: 40,
+      width: 75,
+      decoration: BoxDecoration(
+        color: AppColors.secondarycolor,
+        borderRadius: BorderRadius.circular(08),
+      ),
+
+      child: Column(
+        children: [
+          Text(
+            title,
+            style: context.myTextTheme.titleSmall?.copyWith(
+              fontSize: 09,
+              color: AppColors.primaryTextcolor.withValues(alpha: 0.4),
+            ),
+          ),
+          const SizedBox(height: myPadding / 4),
+          Text(
+            data.toString(),
+            style: context.myTextTheme.titleMedium?.copyWith(fontSize: 10),
+          ),
+        ],
+      ),
     );
   }
 }

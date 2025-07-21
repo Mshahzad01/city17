@@ -96,7 +96,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(width: 4),
-                              SvgPicture.asset(AssetString.arrowicon),
+                              SvgPicture.asset(AssetString.arrowicon,colorFilter: const ColorFilter.mode(AppColors.successTextcolor, BlendMode.srcIn),),
                             ],
                           ),
                         ),

@@ -64,13 +64,14 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
         ),
       ),
 
-      body: SingleChildScrollView(
+     body: 
+      SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SetepIndicatorWidget(currentsetyp: 0),
+             const SetepIndicatorWidget(currentsetyp: 0),
 
               const SizedBox(height: 24),
               Text(
@@ -338,6 +339,6 @@ class _ConnectdisplaysetponeState extends State<Connectdisplaysetpone> {
         btn1title: StringData.safeasdraft,
         btn2title: StringData.next,
       ),
-    );
+   );
   }
 }

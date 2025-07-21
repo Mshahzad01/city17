@@ -1,6 +1,10 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
+import 'package:city17/src/constant/string_data.dart';
+import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/connect_display/screen/connet_display_setep1.dart';
+import 'package:city17/src/feature/connect_display/widgets/setep_indicator_widget.dart';
 import 'package:city17/src/feature/home/model/display_model.dart';
 import 'package:city17/src/feature/location_setting/widget/add_business_widget.dart';
 import 'package:flutter/material.dart';
@@ -308,38 +312,20 @@ class _LocationSettingState extends State<LocationSetting> {
                 ),
               ),
 
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, Connectdisplaysetpone.routename);
-                },
-                child: Container(
-                  margin: const EdgeInsets.only(top: 15, bottom: 15),
+             
 
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.secondarycolor,
-                  ),
-
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Connect a Display',
-                        style: context.myTextTheme.titleMedium?.copyWith(
-                          color: AppColors.accentTextcolor,
-                        ),
-                      ),
-
-                      const SizedBox(width: 10),
-
-                      SvgPicture.asset('assets/icon/addicon.svg'),
-                    ],
-                  ),
-                ),
+              CustomButton(title: StringData.connectdisplay, onPressed: (){
+                
+               Navigator.pushNamed(context, Connectdisplaysetpone.routename);
+              },
+              textcolor: AppColors.accentTextcolor,
+              svgicon: 'assets/icon/addicon.svg',
+              iconcolor: AppColors.accentTextcolor,
+              
               ),
-
+              const SizedBox(
+                height: myPadding/2,
+              ),
               GestureDetector(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,

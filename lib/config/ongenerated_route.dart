@@ -1,4 +1,5 @@
 import 'package:city17/src/feature/connect_display/screen/displaysetup_three.dart';
+import 'package:city17/src/feature/connect_display/widgets/setep_indicator_widget.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
 import 'package:city17/src/feature/splash/screen/splash_screen.dart';
@@ -43,6 +44,15 @@ mixin AppRoute {
           settings: settings,
           builder: (context) => const DisplaySetupThree(),
         );
+
+
+ 
+     
+        //  case DisplaySetupFlowScreen.routename:
+        // return MaterialPageRoute(
+        //   settings: settings,
+        //   builder: (context) => const DisplaySetupFlowScreen(),
+        // );
 
       default:
         return MaterialPageRoute(

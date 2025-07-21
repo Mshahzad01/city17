@@ -1,16 +1,18 @@
-// ignore_for_file: deprecated_member_use
-
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/string_data.dart';
+import 'package:city17/src/core/component/custom_button.dart';
+
 import 'package:city17/src/core/extension/context_ext.dart';
-import 'package:city17/src/feature/connect_display/screen/displaysetup_three.dart';
 import 'package:city17/src/feature/connect_display/widgets/setep_indicator_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
+
+import 'displaysetup_three.dart';
 
 class DisplySetupTwo extends StatefulWidget {
   const DisplySetupTwo({super.key});
@@ -97,7 +99,7 @@ class _DisplySetupTwoState extends State<DisplySetupTwo> {
                     ),
                   ] else
                     const Text('No data scanned yet'),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: myPadding),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -117,11 +119,21 @@ class _DisplySetupTwoState extends State<DisplySetupTwo> {
                         horizontal: myPadding / 2,
                         vertical: myPadding / 2,
                       ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       maximumSize: const Size(double.infinity, 50),
                       minimumSize: const Size(double.infinity, 50),
                     ),
                     child: Text(showScanner ? 'Hide Scanner' : 'Scan QR Code'),
                   ),
+
+      
+                    
+
+                  
+                  
+                  
                   const SizedBox(height: 20),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 500),

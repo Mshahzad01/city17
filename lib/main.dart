@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         theme: DarkTheme.theme,
 
         initialRoute: SplashScreen.routename,
+        //  home: AdvertOfferScreen(),
       ),
     );
   }
