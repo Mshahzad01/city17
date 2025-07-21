@@ -6,6 +6,7 @@ class CustomTextfield extends StatelessWidget {
   final String? hinttext;
   final String? labeltext;
 
+  final String? Function(String?)? validator;
 
   final TextEditingController controller;
 
@@ -14,26 +15,30 @@ class CustomTextfield extends StatelessWidget {
     this.hinttext,
     this.labeltext,
     required this.controller,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return 
-       TextFormField(
-        controller: controller,
-      
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(left: myPadding, right: myPadding, top: 05),
-          hintText: hinttext,
-          labelText: labeltext,
-          fillColor: AppColors.secondarycolor,
-          filled: true,
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(myPadding)),
-            borderSide: BorderSide.none,
-          ),
+    return TextFormField(
+      controller: controller,
+
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.only(
+          left: myPadding,
+          right: myPadding,
+          top: 05,
         ),
-      
+        hintText: hinttext,
+        labelText: labeltext,
+        fillColor: AppColors.secondarycolor,
+        filled: true,
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(myPadding)),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      validator: validator,
     );
   }
 }

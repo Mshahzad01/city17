@@ -32,7 +32,7 @@ mixin StringData {
   static const inches = 'Inches';
   static const sharewithpotentialbuyes = 'Shared with potential buyers';
   static const next = 'Next';
-  static const safeasdraft = 'Safe as Draft';
+  static const saveasdraft = 'Save as Draft';
   static const serachbusinesscategory = 'Search Business Category';
   static const advertiser = 'Advertiser';
   static const hoursperday = 'Hours per day';

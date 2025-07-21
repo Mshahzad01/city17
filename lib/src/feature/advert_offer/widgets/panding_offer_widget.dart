@@ -7,6 +7,7 @@ import 'package:city17/src/feature/advert_offer/screen/model/advertisment_model.
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:timelines_plus/timelines_plus.dart';
 
 class Pandingofferwidget extends StatefulWidget {
   const Pandingofferwidget({super.key});
@@ -29,11 +30,7 @@ class _PandingofferwidgetState extends State<Pandingofferwidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: myPadding / 2,
-        // horizontal: myPadding / 2,
-        // vertical: myPadding / 2,
-      ),
+      padding: const EdgeInsets.only(top: myPadding / 2),
       child: DefaultTabController(
         length: 2,
         child: Column(
@@ -171,8 +168,7 @@ class _PandingofferwidgetState extends State<Pandingofferwidget> {
               ],
             ),
             const SizedBox(height: myPadding),
-            // e.g., 21
-            // Text("${data.dateTime.FormState(DateFormat.yMMMMEEEEd().format(aDateTime))}"),
+
             Text(
               '${DateFormat('dd').format(data.dateTime).toString()} - ${DateFormat('EEEE').format(data.dateTime).toString()}',
             ),
@@ -199,7 +195,7 @@ class _PandingofferwidgetState extends State<Pandingofferwidget> {
                         children: [
                           Container(
                             padding: const EdgeInsets.only(
-                              top: myPadding / 2,
+                              //top: myPadding / 2,
                               bottom: myPadding / 2,
                             ),
                             margin: const EdgeInsets.only(right: myPadding / 3),
@@ -210,8 +206,97 @@ class _PandingofferwidgetState extends State<Pandingofferwidget> {
                               color: AppColors.primarycolor,
                             ),
 
-                            child: Column(children: [
-                              
+                            child: Column(
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.successTextcolor
+                                        .withValues(alpha: 0.3),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(05),
+                                      topRight: Radius.circular(05),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    '\$${ad.minimumprice.toString()}-\$${ad.maximumprice.toString()}/hr',
+                                    style: context.myTextTheme.titleSmall
+                                        ?.copyWith(
+                                          fontSize: 10,
+                                          color: AppColors.successTextcolor,
+                                        ),
+                                  ),
+                                ),
+
+                                // ...ad.scheduledTimes.map((slot) {
+                                //   return Column(
+                                //     children: [
+                                //       Container(
+                                //         width: 04,
+                                //         height: 30,
+                                //         decoration: BoxDecoration(
+                                //           borderRadius: BorderRadius.circular(
+                                //             05,
+                                //           ),
+                                //           color: slot.isasepted
+                                //               ? Colors.green
+                                //               : Colors.grey,
+                                //         ),
+                                //       ),
+
+                                //       Text(
+                                //         '${DateFormat('hh:mm ').format(slot.time)}',
+                                //       ),
+                                //     ],
+                                //   );
+                                // }),
+                                FixedTimeline.tileBuilder(
+                                  theme: TimelineThemeData(
+                                    nodePosition: 0,
+                                    color: Colors.grey,
+                                    indicatorTheme: IndicatorThemeData(
+                                      position: 0,
+                                      size: 20.0,
+                                    ),
+                                    connectorTheme: ConnectorThemeData(
+                                      thickness: 2.5,
+                                    ),
+                                  ),
+                                  builder: TimelineTileBuilder.connected(
+                                    connectionDirection:
+                                        ConnectionDirection.before,
+                                    itemCount: ad.scheduledTimes.length,
+                                    contentsBuilder: (context, index) {
+                                      final slot = ad.scheduledTimes[index];
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          DateFormat(
+                                            'hh:mm a',
+                                          ).format(slot.time),
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                      );
+                                    },
+                                    indicatorBuilder: (context, index) {
+                                      final slot = ad.scheduledTimes[index];
+                                      return DotIndicator(
+                                        color: slot.isasepted
+                                            ? Colors.green
+                                            : Colors.grey,
+                                      );
+                                    },
+                                    connectorBuilder: (context, index, type) {
+                                      final slot = ad.scheduledTimes[index];
+                                      return SolidLineConnector(
+                                        color: slot.isasepted
+                                            ? Colors.green
+                                            : Colors.grey,
+                                      );
+                                    },
+                                  ),
+                                ),
                               ],
                             ),
                           ),

@@ -5,14 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomButton extends StatelessWidget {
-  final String title;
-  final VoidCallback onPressed;
-  final Color? backgroundColor;
-  final Color? textcolor;
-
-  final String? svgicon;
-  final Color? iconcolor;
-
   const CustomButton({
     super.key,
     required this.title,
@@ -21,8 +13,14 @@ class CustomButton extends StatelessWidget {
     this.textcolor,
     this.svgicon,
     this.iconcolor,
-
   });
+
+  final String title;
+  final VoidCallback onPressed;
+  final Color? backgroundColor;
+  final Color? textcolor;
+  final String? svgicon;
+  final Color? iconcolor;
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +30,16 @@ class CustomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor ?? AppColors.secondarycolor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-         
+        shadowColor: backgroundColor == Colors.transparent
+            ? Colors.transparent
+            : null,
         padding: const EdgeInsets.symmetric(
           horizontal: myPadding / 2,
-          vertical: myPadding/2
-        
+          vertical: myPadding / 2,
         ),
-        minimumSize: const Size.fromHeight(50),
-        maximumSize: const Size.fromHeight(50),
       ),
       child: Row(
+        // mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
 
         children: [
@@ -53,8 +51,16 @@ class CustomButton extends StatelessWidget {
           ),
 
           const SizedBox(width: myPadding / 2),
-
-          SvgPicture.asset(svgicon!,width: 18,height: 18,colorFilter:  ColorFilter.mode(iconcolor??AppColors.accentTextcolor,BlendMode.dstIn )),
+          if (svgicon != null)
+            SvgPicture.asset(
+              svgicon!,
+              width: 18,
+              height: 18,
+              colorFilter: ColorFilter.mode(
+                iconcolor ?? AppColors.accentTextcolor,
+                BlendMode.dstIn,
+              ),
+            ),
         ],
       ),
     );

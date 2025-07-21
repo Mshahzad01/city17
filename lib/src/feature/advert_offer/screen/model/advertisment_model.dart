@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 final DateTime _dateTime = DateTime.now();
 
 class AdvertismentModel {
@@ -11,6 +13,8 @@ class AdvertismentModel {
   final String endDate;
   final int hoursPerDay;
   final List<timesolot> scheduledTimes;
+  final int minimumprice;
+  final int maximumprice;
 
   AdvertismentModel({
     required this.advertiserName,
@@ -23,6 +27,8 @@ class AdvertismentModel {
     required this.endDate,
     required this.hoursPerDay,
     required this.scheduledTimes,
+    required this.minimumprice,
+    required this.maximumprice,
   });
 }
 
@@ -64,6 +70,8 @@ final List<Alladervertisment> dummyAdvertismentData = [
         startDate: '01-04-2025',
         endDate: '01-06-2025',
         hoursPerDay: 04,
+        minimumprice: 12,
+        maximumprice: 14,
         scheduledTimes: [
           timesolot(
             time: DateTime.now().add(Duration(hours: 1)),
@@ -90,6 +98,8 @@ final List<Alladervertisment> dummyAdvertismentData = [
         startDate: '15-04-2025',
         endDate: '15-06-2025',
         hoursPerDay: 05,
+        minimumprice: 10,
+        maximumprice: 16,
         scheduledTimes: [
           timesolot(
             time: DateTime.now().add(Duration(hours: 4)),

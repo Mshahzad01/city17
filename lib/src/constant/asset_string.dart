@@ -22,4 +22,5 @@ mixin AssetString {
   static const alerticon = 'assets/icon/alert.svg';
 
   static const cameraicon = 'assets/icon/camericon.svg';
+  static const qricon = 'assets/icon/qricon.svg';
 }

@@ -3,12 +3,10 @@ import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
-import 'package:city17/src/feature/connect_display/screen/connet_display_setep1.dart';
-import 'package:city17/src/feature/connect_display/widgets/setep_indicator_widget.dart';
+import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
 import 'package:city17/src/feature/home/model/display_model.dart';
 import 'package:city17/src/feature/location_setting/widget/add_business_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../home/widgets/display_by_status_widgt.dart';
 
@@ -312,20 +310,16 @@ class _LocationSettingState extends State<LocationSetting> {
                 ),
               ),
 
-             
-
-              CustomButton(title: StringData.connectdisplay, onPressed: (){
-                
-               Navigator.pushNamed(context, Connectdisplaysetpone.routename);
-              },
-              textcolor: AppColors.accentTextcolor,
-              svgicon: 'assets/icon/addicon.svg',
-              iconcolor: AppColors.accentTextcolor,
-              
+              CustomButton(
+                title: StringData.connectdisplay,
+                onPressed: () {
+                  Navigator.pushNamed(context, ConnectDisplyScreen.routeName);
+                },
+                textcolor: AppColors.accentTextcolor,
+                svgicon: 'assets/icon/addicon.svg',
+                iconcolor: AppColors.accentTextcolor,
               ),
-              const SizedBox(
-                height: myPadding/2,
-              ),
+              const SizedBox(height: myPadding / 2),
               GestureDetector(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
