@@ -229,72 +229,118 @@ class _PandingofferwidgetState extends State<Pandingofferwidget> {
                                   ),
                                 ),
 
-                                // ...ad.scheduledTimes.map((slot) {
-                                //   return Column(
+                                // Expanded(
+                                //   child: Stack(
                                 //     children: [
-                                //       Container(
-                                //         width: 04,
-                                //         height: 30,
-                                //         decoration: BoxDecoration(
-                                //           borderRadius: BorderRadius.circular(
-                                //             05,
+                                //       Positioned.fill(
+                                //         left: 26,
+                                //         right: 26,
+                                //         child: Container(
+                                //           decoration: BoxDecoration(
+                                //             borderRadius: BorderRadius.circular(
+                                //               05,
+                                //             ),
+                                //             color: AppColors.secondarycolor,
                                 //           ),
-                                //           color: slot.isasepted
-                                //               ? Colors.green
-                                //               : Colors.grey,
                                 //         ),
                                 //       ),
 
-                                //       Text(
-                                //         '${DateFormat('hh:mm ').format(slot.time)}',
-                                //       ),
+                                //       ...ad.scheduledTimes.map((slot) {
+                                //         return Column(
+                                //           children: [
+                                //             const SizedBox(
+                                //               height: 20.0,
+                                //               child: DecoratedLineConnector(
+                                //                 decoration: BoxDecoration(
+                                //                   color: AppColors
+                                //                       .successTextcolor,
+                                //                 ),
+                                //               ),
+                                //             ),
+                                //             Positioned(
+                                //               left: 10,
+                                //               right: 10,
+                                //               child: Text(
+                                //                 '${DateFormat('hh:mm ').format(slot.time)}',
+                                //               ),
+                                //             ),
+
+                                //             // Container(
+                                //             //   width: 04,
+                                //             //   height: 30,
+                                //             //   decoration: BoxDecoration(
+                                //             //     borderRadius: BorderRadius.circular(
+                                //             //       05,
+                                //             //     ),
+                                //             //     color: slot.isasepted
+                                //             //         ? Colors.green
+                                //             //         : Colors.grey,
+                                //             //   ),
+                                //             // ),
+                                //           ],
+                                //         );
+                                //       }),
                                 //     ],
-                                //   );
-                                // }),
-                                FixedTimeline.tileBuilder(
-                                  theme: TimelineThemeData(
-                                    nodePosition: 0,
-                                    color: Colors.grey,
-                                    indicatorTheme: IndicatorThemeData(
-                                      position: 0,
-                                      size: 20.0,
-                                    ),
-                                    connectorTheme: ConnectorThemeData(
-                                      thickness: 2.5,
-                                    ),
-                                  ),
-                                  builder: TimelineTileBuilder.connected(
-                                    connectionDirection:
-                                        ConnectionDirection.before,
-                                    itemCount: ad.scheduledTimes.length,
-                                    contentsBuilder: (context, index) {
-                                      final slot = ad.scheduledTimes[index];
-                                      return Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          DateFormat(
-                                            'hh:mm a',
-                                          ).format(slot.time),
-                                          style: TextStyle(fontSize: 12),
+                                //   ),
+                                // ),
+                                Expanded(
+                                  child: Stack(
+                                    children: [
+                                      // Background container
+                                      Positioned.fill(
+                                        left: 26,
+                                        right: 26,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              5,
+                                            ),
+                                            color: AppColors.secondarycolor,
+                                          ),
                                         ),
-                                      );
-                                    },
-                                    indicatorBuilder: (context, index) {
-                                      final slot = ad.scheduledTimes[index];
-                                      return DotIndicator(
-                                        color: slot.isasepted
-                                            ? Colors.green
-                                            : Colors.grey,
-                                      );
-                                    },
-                                    connectorBuilder: (context, index, type) {
-                                      final slot = ad.scheduledTimes[index];
-                                      return SolidLineConnector(
-                                        color: slot.isasepted
-                                            ? Colors.green
-                                            : Colors.grey,
-                                      );
-                                    },
+                                      ),
+
+                                      // Time slots in a column on top of the background
+                                      ListView.builder(
+                                        itemCount: ad.scheduledTimes.length,
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8,
+                                        ),
+                                        itemBuilder: (context, index) {
+                                          final slot = ad.scheduledTimes[index];
+                                          return Column(
+                                            children: [
+                                              const SizedBox(
+                                                height: 20.0,
+                                                width: 10,
+                                                child: DecoratedLineConnector(
+                                                  space: 05,
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors
+                                                        .successTextcolor,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                '${DateFormat('hh:mm').format(slot.time)}',
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              // Uncomment below if you want the rectangle indicator
+                                              // Container(
+                                              //   width: 4,
+                                              //   height: 30,
+                                              //   decoration: BoxDecoration(
+                                              //     borderRadius: BorderRadius.circular(5),
+                                              //     color: slot.isasepted ? Colors.green : Colors.grey,
+                                              //   ),
+                                              // ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
