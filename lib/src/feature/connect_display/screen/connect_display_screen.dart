@@ -102,8 +102,6 @@ class _ConnectDisplyScreenState extends State<ConnectDisplyScreen>
                     return;
                   }
                   if (currentIndex == 1) {
-                    // if (stepOneFormKey.currentState?.validate() ?? false) {
-                    // }
                     _tabController.animateTo(currentIndex + 1);
                     return;
                   }

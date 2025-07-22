@@ -9,10 +9,12 @@ class AdvertismentModel {
   final String locationAddress;
   final String clientName;
   final bool autoApprove;
-  final String startDate;
-  final String endDate;
+  final DateTime startDate;
+  final DateTime endDate;
+  final DateTime startTime;
+  final DateTime endTime;
   final int hoursPerDay;
-  final List<timesolot> scheduledTimes;
+  final List<timeSlot> scheduledTimes;
   final int minimumprice;
   final int maximumprice;
 
@@ -25,6 +27,8 @@ class AdvertismentModel {
     required this.autoApprove,
     required this.startDate,
     required this.endDate,
+    required this.startTime,
+    required this.endTime,
     required this.hoursPerDay,
     required this.scheduledTimes,
     required this.minimumprice,
@@ -32,11 +36,11 @@ class AdvertismentModel {
   });
 }
 
-class timesolot {
+class timeSlot {
   final DateTime time;
   bool isasepted;
 
-  timesolot({required this.time, required this.isasepted});
+  timeSlot({required this.time, required this.isasepted});
 }
 
 class Alladervertisment {
@@ -55,7 +59,7 @@ class Alladervertisment {
 // Dumy Data Adverisments
 final List<Alladervertisment> dummyAdvertismentData = [
   Alladervertisment(
-    dateTime: DateTime.now(),
+    dateTime: DateTime(2025, 4, 2),
     alert:
         'Bidding allows multiple offers per hour — the highest bid wins. Earnings vary per hour based on accepted bids.',
 
@@ -67,22 +71,38 @@ final List<Alladervertisment> dummyAdvertismentData = [
         locationAddress: 'Hilton 483 George St, Sydney',
         clientName: 'James Wilson',
         autoApprove: true,
-        startDate: '01-04-2025',
-        endDate: '01-06-2025',
+        startDate: DateTime(2025, 4, 2),
+        endDate: DateTime(2025, 4, 4),
         hoursPerDay: 04,
         minimumprice: 12,
         maximumprice: 14,
+        startTime: DateTime(2025, 04, 1, 14),
+        endTime: DateTime(2025, 04, 1, 15),
+
         scheduledTimes: [
-          timesolot(
-            time: DateTime.now().add(Duration(hours: 1)),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 1)),
             isasepted: true,
           ),
-          timesolot(
-            time: DateTime.now().add(Duration(hours: 2)),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 2)),
             isasepted: false,
           ),
-          timesolot(
-            time: DateTime.now().add(Duration(hours: 3)),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 3)),
+            isasepted: true,
+          ),
+
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 1)),
+            isasepted: true,
+          ),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 2)),
+            isasepted: false,
+          ),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 3)),
             isasepted: true,
           ),
         ],
@@ -95,18 +115,85 @@ final List<Alladervertisment> dummyAdvertismentData = [
         locationAddress: 'Sheikh Zayed Rd - Dubai',
         clientName: 'Sarah Taylor',
         autoApprove: false,
-        startDate: '15-04-2025',
-        endDate: '15-06-2025',
+        startDate: DateTime(2025, 4, 6),
+        endDate: DateTime(2025, 4, 8),
         hoursPerDay: 05,
         minimumprice: 10,
         maximumprice: 16,
+        startTime: DateTime(2025, 04, 1, 15),
+        endTime: DateTime(2025, 04, 1, 16),
         scheduledTimes: [
-          timesolot(
-            time: DateTime.now().add(Duration(hours: 4)),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 4)),
             isasepted: true,
           ),
-          timesolot(
-            time: DateTime.now().add(Duration(hours: 5)),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 5)),
+            isasepted: false,
+          ),
+        ],
+      ),
+    ],
+  ),
+
+  Alladervertisment(
+    dateTime: DateTime(2025, 4, 4),
+    alert:
+        'Bidding allows multiple offers per hour — the highest bid wins. Earnings vary per hour based on accepted bids.',
+
+    addata: [
+      AdvertismentModel(
+        advertiserName: 'James Wilson',
+        adImage: 'assets/image/adpitcher.png',
+        displayLocation: 'Hilton Hotel',
+        locationAddress: 'Hilton 483 George St, Sydney',
+        clientName: 'James Wilson',
+        autoApprove: true,
+        startDate: DateTime(2025, 4, 2),
+        endDate: DateTime(2025, 4, 4),
+        hoursPerDay: 04,
+        minimumprice: 12,
+        maximumprice: 14,
+        startTime: DateTime(2025, 04, 1, 16),
+        endTime: DateTime(2025, 04, 1, 18),
+
+        scheduledTimes: [
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 1)),
+            isasepted: true,
+          ),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 2)),
+            isasepted: false,
+          ),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 3)),
+            isasepted: true,
+          ),
+        ],
+      ),
+
+      AdvertismentModel(
+        advertiserName: 'Sarah Taylor',
+        adImage: 'assets/image/adpitcher.png',
+        displayLocation: 'Mall of Emirates',
+        locationAddress: 'Sheikh Zayed Rd - Dubai',
+        clientName: 'Sarah Taylor',
+        autoApprove: false,
+        startDate: DateTime(2025, 4, 6),
+        endDate: DateTime(2025, 4, 8),
+        hoursPerDay: 05,
+        minimumprice: 10,
+        maximumprice: 16,
+        startTime: DateTime(2025, 04, 1, 19),
+        endTime: DateTime(2025, 04, 1, 10),
+        scheduledTimes: [
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 4)),
+            isasepted: true,
+          ),
+          timeSlot(
+            time: DateTime.now().add(const Duration(hours: 5)),
             isasepted: false,
           ),
         ],
