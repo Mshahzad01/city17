@@ -21,63 +21,67 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
 
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const IncomForcast(),
-                const SizedBox(height: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const IncomForcast(),
+                  const SizedBox(height: 10),
 
-                Text('Panding Action', style: context.myTextTheme.titleLarge),
+                  Text('Panding Action', style: context.myTextTheme.titleLarge),
 
-                const PandingAcction(),
+                  const PandingAcction(),
 
-                const SizedBox(height: 10),
-                Text('Manage Business', style: context.myTextTheme.titleLarge),
-                const SizedBox(height: 10),
-                const MangeBusiness(),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Manage Business',
+                    style: context.myTextTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 10),
+                  const MangeBusiness(),
 
-                InkWell(
-                  onTap: () {
-                    showmodelbottomshett(context);
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    height: 55,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                  InkWell(
+                    onTap: () {
+                      showmodelbottomshett(context);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      height: 55,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
 
-                      color: AppColors.secondarycolor,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                        color: AppColors.secondarycolor,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
 
-                      children: [
-                        Text(
-                          'Add a display location',
-                          style: context.myTextTheme.titleMedium,
-                        ),
+                        children: [
+                          Text(
+                            'Add a display location',
+                            style: context.myTextTheme.titleMedium,
+                          ),
 
-                        const SizedBox(width: 10),
+                          const SizedBox(width: 10),
 
-                        SvgPicture.asset(
-                          AssetString.addoutline,
-                          height: 20,
-                          width: 20,
-                        ),
-                      ],
+                          SvgPicture.asset(
+                            AssetString.addoutline,
+                            height: 20,
+                            width: 20,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

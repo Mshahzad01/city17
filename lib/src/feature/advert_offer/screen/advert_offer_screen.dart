@@ -1,8 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
+import 'package:city17/src/feature/advert_offer/screen/pending_offer_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/panding_offer_widget.dart';
 
 class AdvertOfferScreen extends StatefulWidget {
   const AdvertOfferScreen({super.key});
@@ -57,7 +56,7 @@ class _AdvertofferState extends State<AdvertOfferScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                const Pandingofferwidget(),
+                const PendingOfferScreen(),
                 const Center(child: Text('Active')),
                 const Center(child: Text('Completed')),
               ],
@@ -65,7 +64,6 @@ class _AdvertofferState extends State<AdvertOfferScreen>
           ),
         ],
       ),
-      //),
     );
   }
 }
