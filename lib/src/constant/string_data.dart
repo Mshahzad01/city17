@@ -5,7 +5,7 @@ mixin StringData {
 
   static const mangebusiness = 'Manage Business';
 
-  static const adddisplaylocation = 'Add a display location';
+  static const addaDisplayLocation = 'Add a display location';
   static const name = 'Name';
   static const fixedpriceoffer = 'Fixed Price offer';
 

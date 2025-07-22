@@ -6,7 +6,7 @@ import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
-import 'package:city17/src/core/component/customtextfield.dart';
+import 'package:city17/src/core/component/custom_textfield.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/utilss/image_picker.dart';
 import 'package:city17/src/feature/connect_display/enum/display_orientation_enum.dart';
@@ -42,30 +42,56 @@ class _ConnectDisplyScreenState extends State<ConnectDisplyScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(StringData.connectdisplay),
-        centerTitle: true,
-
-        bottom: TabBar(
-          controller: _tabController,
-          indicator: const BoxDecoration(color: Colors.transparent),
-          indicatorWeight: 0,
-          indicatorColor: Colors.transparent,
-          dividerHeight: 0,
-          dividerColor: Colors.transparent,
-          tabs: const [
-            Tab(text: 'Setp1'),
-            Tab(text: 'Setp2'),
-            Tab(text: 'Setp3'),
-          ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.cancel_outlined),
+                  ),
+                  const SizedBox(width: myPadding * 4),
+                  Text(
+                    StringData.connectdisplay,
+                    style: context.myTextTheme.titleMedium,
+                  ),
+                ],
+              ),
+              IgnorePointer(
+                child: TabBar(
+                  enableFeedback: false,
+                  onTap: (v) {},
+                  isScrollable: false,
+                  controller: _tabController,
+                  indicator: const BoxDecoration(color: Colors.transparent),
+                  indicatorWeight: 0,
+                  indicatorColor: Colors.transparent,
+                  dividerHeight: 0,
+                  dividerColor: Colors.transparent,
+                  tabs: const [
+                    IgnorePointer(child: Tab(text: 'Setp1')),
+                    IgnorePointer(child: Tab(text: 'Setp2')),
+                    IgnorePointer(child: Tab(text: 'Setp3')),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
 
       body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _tabController,
         children: [
           _StepOne(formKey: stepOneFormKey),
-          _SetpTwo(),
+          const _SetpTwo(),
           const _SetpThree(),
         ],
       ),
@@ -88,7 +114,7 @@ class _ConnectDisplyScreenState extends State<ConnectDisplyScreen>
                 title: 'Save as Draft',
               ),
             ),
-            SizedBox(width: myPadding),
+            const SizedBox(width: myPadding),
             Expanded(
               child: CustomButton(
                 title: 'Next',
@@ -437,7 +463,7 @@ class _StepOneState extends State<_StepOne> {
 
 //_SetpTwo screen
 class _SetpTwo extends StatefulWidget {
-  _SetpTwo({super.key});
+  const _SetpTwo();
 
   @override
   State<_SetpTwo> createState() => __SetpTwoState();
@@ -458,12 +484,6 @@ class __SetpTwoState extends State<_SetpTwo> {
     controller?.resumeCamera();
   }
 
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
-
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
@@ -475,9 +495,11 @@ class __SetpTwoState extends State<_SetpTwo> {
         });
         controller.pauseCamera();
       } catch (e) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('Invalid QR Code')));
+        if (context.mounted) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Invalid QR Code')));
+        }
       }
     });
   }
@@ -572,7 +594,7 @@ class __SetpTwoState extends State<_SetpTwo> {
 //get pitcher
 
 class _SetpThree extends StatefulWidget {
-  const _SetpThree({super.key});
+  const _SetpThree();
 
   @override
   State<_SetpThree> createState() => __SetpThreeState();

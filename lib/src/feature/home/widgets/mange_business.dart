@@ -1,6 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
 import 'package:city17/src/feature/home/model/display_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -161,7 +162,10 @@ class _MangeBusinessState extends State<MangeBusiness> {
                 Padding(
                   padding: const EdgeInsets.only(right: 10, bottom: 05),
                   child: GestureDetector(
-                    onTap: null,
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      ConnectDisplyScreen.routeName,
+                    ),
                     child: Text(
                       StringData.connectdisplay,
                       style: context.myTextTheme.titleMedium?.copyWith(

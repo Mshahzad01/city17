@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
-final DateTime _dateTime = DateTime.now();
+import 'package:intl/intl.dart';
 
 class AdvertismentModel {
   final String advertiserName;
@@ -14,9 +12,11 @@ class AdvertismentModel {
   final DateTime startTime;
   final DateTime endTime;
   final int hoursPerDay;
-  final List<timeSlot> scheduledTimes;
+  final List<TimeSlot> scheduledTimes;
   final int minimumprice;
   final int maximumprice;
+  final IAmount amount;
+  final bool isAproval;
 
   AdvertismentModel({
     required this.advertiserName,
@@ -33,171 +33,72 @@ class AdvertismentModel {
     required this.scheduledTimes,
     required this.minimumprice,
     required this.maximumprice,
+    required this.amount,
+    required this.isAproval,
   });
+
+  static List<AdvertismentModel> dummyAds = List.generate(10, (index) {
+    return AdvertismentModel(
+      advertiserName: 'Elon Mask',
+      adImage: 'https://picsum.photos/200/300?index=$index',
+      displayLocation: 'Main Street Billboard $index',
+      locationAddress: '1234 Street $index, City',
+      clientName: 'Client $index',
+      autoApprove: index % 2 == 0,
+      startDate: DateTime.now().add(Duration(days: index)),
+      endDate: DateTime.now().add(Duration(days: index + 7)),
+      startTime: DateTime(2025, 7, 22, 9),
+      endTime: DateTime(2025, 7, 22, 17),
+      hoursPerDay: 8,
+      scheduledTimes: List.generate(3, (i) {
+        return TimeSlot(
+          time: DateTime(2025, 7, 22, 9 + i * 2),
+          isasepted: i % 2 == 0,
+        );
+      }),
+      minimumprice: 50 + index + 1,
+      maximumprice: 10 + index + 1,
+      amount: IAmount(currency: 'US', amount: 10 + index * 1),
+      isAproval: false,
+    );
+  });
+
+  static Map<DateTime, List<AdvertismentModel>> getDateMappedData() {
+    final Map<DateTime, List<AdvertismentModel>> map = {};
+
+    for (final element in dummyAds) {
+      final dateWithouTime = DateTime(
+        element.startDate.year,
+        element.startDate.month,
+        element.startDate.day,
+      );
+
+      map.putIfAbsent(dateWithouTime, () => []).add(element);
+    }
+
+    return map;
+  }
 }
 
-class timeSlot {
+class TimeSlot {
   final DateTime time;
   bool isasepted;
 
-  timeSlot({required this.time, required this.isasepted});
+  TimeSlot({required this.time, required this.isasepted});
 }
 
-class Alladervertisment {
-  final DateTime dateTime;
+class IAmount {
+  final num amount;
+  final String currency;
+  IAmount({required this.amount, required this.currency});
 
-  final String alert;
-  List<AdvertismentModel> addata;
+  String show() {
+    final formattedAmount = NumberFormat.currency(
+      name: currency,
+      symbol: '\$',
+      decimalDigits: 1,
+    ).format(amount);
 
-  Alladervertisment({
-    required this.dateTime,
-    required this.addata,
-    required this.alert,
-  });
+    return formattedAmount;
+  }
 }
-
-// Dumy Data Adverisments
-final List<Alladervertisment> dummyAdvertismentData = [
-  Alladervertisment(
-    dateTime: DateTime(2025, 4, 2),
-    alert:
-        'Bidding allows multiple offers per hour — the highest bid wins. Earnings vary per hour based on accepted bids.',
-
-    addata: [
-      AdvertismentModel(
-        advertiserName: 'James Wilson',
-        adImage: 'assets/image/adpitcher.png',
-        displayLocation: 'Hilton Hotel',
-        locationAddress: 'Hilton 483 George St, Sydney',
-        clientName: 'James Wilson',
-        autoApprove: true,
-        startDate: DateTime(2025, 4, 2),
-        endDate: DateTime(2025, 4, 4),
-        hoursPerDay: 04,
-        minimumprice: 12,
-        maximumprice: 14,
-        startTime: DateTime(2025, 04, 1, 14),
-        endTime: DateTime(2025, 04, 1, 15),
-
-        scheduledTimes: [
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 1)),
-            isasepted: true,
-          ),
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 2)),
-            isasepted: false,
-          ),
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 3)),
-            isasepted: true,
-          ),
-
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 1)),
-            isasepted: true,
-          ),
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 2)),
-            isasepted: false,
-          ),
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 3)),
-            isasepted: true,
-          ),
-        ],
-      ),
-
-      AdvertismentModel(
-        advertiserName: 'Sarah Taylor',
-        adImage: 'assets/image/adpitcher.png',
-        displayLocation: 'Mall of Emirates',
-        locationAddress: 'Sheikh Zayed Rd - Dubai',
-        clientName: 'Sarah Taylor',
-        autoApprove: false,
-        startDate: DateTime(2025, 4, 6),
-        endDate: DateTime(2025, 4, 8),
-        hoursPerDay: 05,
-        minimumprice: 10,
-        maximumprice: 16,
-        startTime: DateTime(2025, 04, 1, 15),
-        endTime: DateTime(2025, 04, 1, 16),
-        scheduledTimes: [
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 4)),
-            isasepted: true,
-          ),
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 5)),
-            isasepted: false,
-          ),
-        ],
-      ),
-    ],
-  ),
-
-  Alladervertisment(
-    dateTime: DateTime(2025, 4, 4),
-    alert:
-        'Bidding allows multiple offers per hour — the highest bid wins. Earnings vary per hour based on accepted bids.',
-
-    addata: [
-      AdvertismentModel(
-        advertiserName: 'James Wilson',
-        adImage: 'assets/image/adpitcher.png',
-        displayLocation: 'Hilton Hotel',
-        locationAddress: 'Hilton 483 George St, Sydney',
-        clientName: 'James Wilson',
-        autoApprove: true,
-        startDate: DateTime(2025, 4, 2),
-        endDate: DateTime(2025, 4, 4),
-        hoursPerDay: 04,
-        minimumprice: 12,
-        maximumprice: 14,
-        startTime: DateTime(2025, 04, 1, 16),
-        endTime: DateTime(2025, 04, 1, 18),
-
-        scheduledTimes: [
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 1)),
-            isasepted: true,
-          ),
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 2)),
-            isasepted: false,
-          ),
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 3)),
-            isasepted: true,
-          ),
-        ],
-      ),
-
-      AdvertismentModel(
-        advertiserName: 'Sarah Taylor',
-        adImage: 'assets/image/adpitcher.png',
-        displayLocation: 'Mall of Emirates',
-        locationAddress: 'Sheikh Zayed Rd - Dubai',
-        clientName: 'Sarah Taylor',
-        autoApprove: false,
-        startDate: DateTime(2025, 4, 6),
-        endDate: DateTime(2025, 4, 8),
-        hoursPerDay: 05,
-        minimumprice: 10,
-        maximumprice: 16,
-        startTime: DateTime(2025, 04, 1, 19),
-        endTime: DateTime(2025, 04, 1, 10),
-        scheduledTimes: [
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 4)),
-            isasepted: true,
-          ),
-          timeSlot(
-            time: DateTime.now().add(const Duration(hours: 5)),
-            isasepted: false,
-          ),
-        ],
-      ),
-    ],
-  ),
-];

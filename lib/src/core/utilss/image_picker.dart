@@ -13,7 +13,7 @@ class ImageUtils {
   ) async {
     bool isGranted = await _checkPermission(source);
 
-    if (!isGranted) {
+    if (!isGranted && context.mounted) {
       _showPermissionDialog(context);
       return null;
     }

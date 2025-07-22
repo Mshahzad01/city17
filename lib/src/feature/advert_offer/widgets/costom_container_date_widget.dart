@@ -4,9 +4,13 @@ import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:flutter/material.dart';
 
 class CustomaContainerDate extends StatelessWidget {
-  CustomaContainerDate({super.key, required this.title, required this.data});
+  const CustomaContainerDate({
+    super.key,
+    required this.title,
+    required this.data,
+  });
   final String title;
-  var data;
+  final String data;
 
   @override
   Widget build(BuildContext context) {
