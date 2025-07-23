@@ -8,9 +8,15 @@ class CustomaContainerDate extends StatelessWidget {
     super.key,
     required this.title,
     required this.data,
+    this.bagroundColor,
+    this.height,
+    this.width,
   });
   final String title;
   final String data;
+  final Color? bagroundColor;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +24,16 @@ class CustomaContainerDate extends StatelessWidget {
       padding: const EdgeInsets.all(myPadding / 5),
       margin: const EdgeInsets.only(top: myPadding / 2),
 
-      height: 40,
-      width: 75,
+      height: height ?? 40,
+      width: width ?? 75,
       decoration: BoxDecoration(
-        color: AppColors.secondarycolor,
+        color: bagroundColor ?? AppColors.secondarycolor,
         borderRadius: BorderRadius.circular(08),
       ),
 
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             title,

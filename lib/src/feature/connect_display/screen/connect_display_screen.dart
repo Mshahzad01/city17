@@ -50,11 +50,11 @@ class _ConnectDisplyScreenState extends State<ConnectDisplyScreen>
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  IconButton(
+                  CloseButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: const Icon(Icons.cancel_outlined),
+                    color: AppColors.primaryTextcolor,
                   ),
                   const SizedBox(width: myPadding * 4),
                   Text(

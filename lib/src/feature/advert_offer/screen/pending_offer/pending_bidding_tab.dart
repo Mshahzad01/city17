@@ -10,15 +10,15 @@ import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_wi
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class BiddingTab extends StatefulWidget {
-  const BiddingTab({super.key});
+class PendingBiddingTab extends StatefulWidget {
+  const PendingBiddingTab({super.key});
 
   @override
-  State<BiddingTab> createState() => _BiddingTabState();
+  State<PendingBiddingTab> createState() => _PendingBiddingTabState();
 }
 
-class _BiddingTabState extends State<BiddingTab> {
-  bool isSelected = false;
+class _PendingBiddingTabState extends State<PendingBiddingTab> {
+  //bool isSelected = false;
 
   Map<DateTime, List<AdvertismentModel>> filterData = {};
 
@@ -52,7 +52,9 @@ class _BiddingTabState extends State<BiddingTab> {
 
                 child: Column(
                   children: [
-                    ...ads.map((ad) {
+                    ...ads.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final ad = entry.value;
                       return Padding(
                         padding: const EdgeInsets.only(bottom: myPadding / 2),
                         child: Row(
@@ -296,8 +298,14 @@ class _BiddingTabState extends State<BiddingTab> {
                                           alignment: Alignment.centerRight,
                                           scale: 0.5,
                                           child: Switch(
-                                            value: false,
-                                            onChanged: (value) {},
+                                            value: ad.isAproval,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                mappedData[date]![index]
+                                                        .isAproval =
+                                                    value;
+                                              });
+                                            },
                                           ),
                                         ),
                                       ),

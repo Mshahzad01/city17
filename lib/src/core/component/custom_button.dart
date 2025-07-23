@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
     this.textcolor,
     this.svgicon,
     this.iconcolor,
+    this.fontSize,
   });
 
   final String title;
@@ -21,6 +22,7 @@ class CustomButton extends StatelessWidget {
   final Color? textcolor;
   final String? svgicon;
   final Color? iconcolor;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class CustomButton extends StatelessWidget {
             title,
             style: context.myTextTheme.titleMedium?.copyWith(
               color: textcolor ?? AppColors.primaryTextcolor,
+              fontSize: fontSize ?? null,
             ),
           ),
 

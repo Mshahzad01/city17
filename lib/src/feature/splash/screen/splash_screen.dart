@@ -108,6 +108,9 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                       maximumSize: const Size(double.infinity, 50),
                       minimumSize: const Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
 
                     child: Row(

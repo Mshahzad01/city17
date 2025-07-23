@@ -45,4 +45,9 @@ mixin StringData {
 
   static const atomaticapproval =
       'Automatically approve all adverts from this advertiser?';
+
+  static const paymetPerDay = 'Payment per day';
+  static const selected = 'Selected';
+  static const unSelected = 'Unselected';
+  static const viewCampaign = 'View Campaign';
 }

@@ -16,7 +16,7 @@ class AdvertismentModel {
   final int minimumprice;
   final int maximumprice;
   final IAmount amount;
-  final bool isAproval;
+  bool isAproval;
 
   AdvertismentModel({
     required this.advertiserName,
@@ -50,10 +50,10 @@ class AdvertismentModel {
       startTime: DateTime(2025, 7, 22, 9),
       endTime: DateTime(2025, 7, 22, 17),
       hoursPerDay: 8,
-      scheduledTimes: List.generate(3, (i) {
+      scheduledTimes: List.generate(23, (i) {
         return TimeSlot(
-          time: DateTime(2025, 7, 22, 9 + i * 2),
-          isasepted: i % 2 == 0,
+          time: DateTime(2025, 7, 22, 9 + i * 3),
+          isasepted: i % 5 == 0,
         );
       }),
       minimumprice: 50 + index + 1,

@@ -1,6 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
-import 'package:city17/src/feature/advert_offer/screen/pending_offer_Tab.dart';
+import 'package:city17/src/feature/advert_offer/screen/active_offer/active_offer_tab.dart';
+import 'package:city17/src/feature/advert_offer/screen/pending_offer/pending_offer_tab.dart';
 import 'package:flutter/material.dart';
 
 class AdvertOfferScreen extends StatefulWidget {
@@ -57,7 +58,7 @@ class _AdvertofferState extends State<AdvertOfferScreen>
               controller: _tabController,
               children: [
                 const PendingOfferScreen(),
-                const Center(child: Text('Active')),
+                const ActiveOfferTab(),
                 const Center(child: Text('Completed')),
               ],
             ),

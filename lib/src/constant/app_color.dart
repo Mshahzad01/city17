@@ -37,8 +37,10 @@ mixin AppColors {
   static const Color successTextcolor = Color(0xFF32CD32);
   // green text (success)
   static const Color errorTextcolor = Color(0xFFEE6C77); // red text (error)
-  static const Color warningTextcolor = Color(
-    0xFFFF5E5E,
+  static const Color warningTextcolor = Color(0xFFFF5E5E);
+
+  static const Color textButtoncolor = Color(
+    0xff23272F,
   ); // used in warning buttons etc.
 
   // Button Colors
