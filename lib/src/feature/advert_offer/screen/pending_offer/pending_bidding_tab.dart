@@ -5,8 +5,9 @@ import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
-import 'package:city17/src/feature/advert_offer/screen/model/advertisment_model.dart';
+import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
 import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
+import 'package:city17/src/feature/advert_offer/widgets/switch_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -270,45 +271,16 @@ class _PendingBiddingTabState extends State<PendingBiddingTab> {
                                         ),
                                       ],
                                     ),
-
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                        top: myPadding / 2,
-                                        bottom: myPadding / 2,
-                                      ),
-                                      height: 50,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.secondarycolor,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-
-                                      child: ListTile(
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                              horizontal: myPadding / 3,
-                                            ),
-                                        title: Text(
-                                          StringData.atomaticapproval,
-                                          style: context.myTextTheme.titleSmall
-                                              ?.copyWith(fontSize: 10),
-                                        ),
-
-                                        trailing: Transform.scale(
-                                          alignment: Alignment.centerRight,
-                                          scale: 0.5,
-                                          child: Switch(
-                                            value: ad.isAproval,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                mappedData[date]![index]
-                                                        .isAproval =
-                                                    value;
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                      ),
+                                    SwitchTileWidget(
+                                      title: StringData.atomaticapproval,
+                                      value: ad.isAproval,
+                                      backgroundColor: AppColors.primarycolor,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          mappedData[date]![index].isAproval =
+                                              value;
+                                        });
+                                      },
                                     ),
 
                                     Expanded(

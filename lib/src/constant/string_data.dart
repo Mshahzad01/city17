@@ -50,4 +50,23 @@ mixin StringData {
   static const selected = 'Selected';
   static const unSelected = 'Unselected';
   static const viewCampaign = 'View Campaign';
+  static const advertDetail = 'Advert Detail';
+  static const campaignName = 'Campaign Name';
+  static const offer = 'Offer';
+  static const bidRate = 'Bid Rate';
+  static const hoursday = 'Hours/day';
+  static const bidperhoure = 'Bid per Hour';
+  static const paymentCycle = 'Payment Cycle';
+  static const upComingDue = 'Upcoming Due';
+  static const schedule = 'Schedule';
+  static const selectHowOftenYouWantToReceivePaymenTsfromtHebuyer =
+      'Select how often you want to receive payments from the buyer.';
+  static const viewPayment = 'View Payment';
+  static const advertPayment = 'Advert Payment';
+  static const paymentOverdue = 'Payment Overdue';
+
+  static const upComingPayment = 'Upcoming Payment';
+  static const dueDate = 'Due Date';
+  static const payment = 'Payment';
+  static const detail = 'Detail';
 }

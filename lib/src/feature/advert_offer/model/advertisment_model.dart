@@ -1,7 +1,10 @@
+import 'package:city17/src/feature/advert_offer/enum/status_enum.dart';
 import 'package:intl/intl.dart';
 
 class AdvertismentModel {
   final String advertiserName;
+  final int advertiserPhoneNumber;
+  final String advertiserImage;
   final String adImage;
   final String displayLocation;
   final String locationAddress;
@@ -17,6 +20,7 @@ class AdvertismentModel {
   final int maximumprice;
   final IAmount amount;
   bool isAproval;
+  final StatusEnum status;
 
   AdvertismentModel({
     required this.advertiserName,
@@ -35,11 +39,15 @@ class AdvertismentModel {
     required this.maximumprice,
     required this.amount,
     required this.isAproval,
+    required this.advertiserPhoneNumber,
+    required this.status,
+    required this.advertiserImage,
   });
 
   static List<AdvertismentModel> dummyAds = List.generate(10, (index) {
     return AdvertismentModel(
       advertiserName: 'Elon Mask',
+      advertiserPhoneNumber: 03298069581,
       adImage: 'https://picsum.photos/200/300?index=$index',
       displayLocation: 'Main Street Billboard $index',
       locationAddress: '1234 Street $index, City',
@@ -60,6 +68,8 @@ class AdvertismentModel {
       maximumprice: 10 + index + 1,
       amount: IAmount(currency: 'US', amount: 10 + index * 1),
       isAproval: false,
+      status: StatusEnum.running,
+      advertiserImage: 'https://randomuser.me/api/portraits/men/$index.jpg',
     );
   });
 

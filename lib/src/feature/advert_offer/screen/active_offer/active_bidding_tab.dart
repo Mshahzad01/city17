@@ -1,7 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
-import 'package:city17/src/feature/advert_offer/screen/model/advertisment_model.dart';
+import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
 import 'package:flutter/material.dart';
 
 class ActiveBiddingTab extends StatefulWidget {

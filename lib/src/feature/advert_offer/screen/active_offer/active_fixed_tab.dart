@@ -4,7 +4,8 @@ import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
-import 'package:city17/src/feature/advert_offer/screen/model/advertisment_model.dart';
+import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
+import 'package:city17/src/feature/advert_offer/screen/advert_detail_screen.dart';
 import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -253,22 +254,31 @@ class _FixedTabState extends State<ActiveFixedTab> {
                           ),
                         ],
                       ),
+
+                      const SizedBox(height: myPadding / 3),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          CustomButton(
+                            fontSize: 10,
+                            backgroundColor: AppColors.textButtoncolor,
+                            title: StringData.viewCampaign,
+
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      AdvertDetailScreen(ads: ad),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ],
                   );
                 }),
-                const SizedBox(height: myPadding / 2),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CustomButton(
-                      fontSize: 10,
-                      backgroundColor: AppColors.textButtoncolor,
-                      title: StringData.viewCampaign,
-
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
               ],
             ),
           );

@@ -31,6 +31,11 @@ mixin AppRoute {
           settings: settings,
           builder: (context) => const ConnectDisplyScreen(),
         );
+      // case AdvertDetailScreen.routeName:
+      //   return MaterialPageRoute(
+      //     settings: settings,
+      //     builder: (context) => const AdvertDetailScreen(),
+      //   );
 
       default:
         return MaterialPageRoute(
