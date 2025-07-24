@@ -6,7 +6,7 @@ import 'package:city17/src/core/extension/date_formatting_extension.dart';
 import 'package:city17/src/feature/advert_offer/enum/payment_frequency_enum.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
 import 'package:city17/src/feature/advert_offer/widgets/advertiser_info_widget.dart';
-import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
+import 'package:city17/src/feature/advert_offer/widgets/costom_container_widget.dart';
 import 'package:city17/src/feature/advert_offer/widgets/display_location.dart';
 import 'package:city17/src/feature/advert_offer/widgets/payment_info_widget.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +43,7 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
           children: [
             //Advert Info widget
             AdvertiserInfoWidget(
+              displyHeding: true,
               advertiserName: widget.ads.advertiserName,
               advertiserPhoneNumber: widget.ads.advertiserPhoneNumber,
               advertiserImage: widget.ads.advertiserImage,
@@ -82,7 +83,7 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
               spacing: myPadding / 1.2,
 
               children: [
-                const CustomaContainerDate(
+                const CustomContainerWidget(
                   title: StringData.offer,
                   data: StringData.bidRate,
                   height: 40,
@@ -90,7 +91,7 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
                   bagroundColor: Color(0x1AF4F4F4),
                 ),
 
-                CustomaContainerDate(
+                CustomContainerWidget(
                   height: 40,
                   width: 100,
                   title: StringData.hoursday,
@@ -98,7 +99,7 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
                   bagroundColor: AppColors.secondarycolor,
                 ),
 
-                CustomaContainerDate(
+                CustomContainerWidget(
                   height: 40,
                   width: 100,
                   title: StringData.bidperhoure,
@@ -106,21 +107,21 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
                       '\$${widget.ads.maximumprice}-${widget.ads.maximumprice}',
                   bagroundColor: AppColors.secondarycolor,
                 ),
-                CustomaContainerDate(
+                CustomContainerWidget(
                   height: 40,
                   width: 100,
                   title: StringData.paymentCycle,
                   data: PaymentFrequencyEnum.weekly.title,
                   bagroundColor: AppColors.secondarycolor,
                 ),
-                CustomaContainerDate(
+                CustomContainerWidget(
                   height: 40,
                   width: 100,
                   title: StringData.upComingDue,
                   data: widget.ads.endTime.monthYearFormat(),
                   bagroundColor: AppColors.secondarycolor,
                 ),
-                CustomaContainerDate(
+                CustomContainerWidget(
                   height: 40,
                   width: 100,
                   title: StringData.schedule,

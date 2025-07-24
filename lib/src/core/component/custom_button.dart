@@ -41,9 +41,6 @@ class CustomButton extends StatelessWidget {
           horizontal: myPadding / 2,
           vertical: myPadding / 2,
         ),
-         
-      
-       
       ),
       child: Row(
         // mainAxisSize: MainAxisSize.min,
@@ -54,7 +51,7 @@ class CustomButton extends StatelessWidget {
             title,
             style: context.myTextTheme.titleMedium?.copyWith(
               color: textcolor ?? AppColors.primaryTextcolor,
-              fontSize: fontSize ?? null,
+              fontSize: fontSize ?? 15,
             ),
           ),
 

@@ -1,6 +1,5 @@
 import 'package:city17/src/feature/advert_offer/enum/payment_frequency_enum.dart';
 import 'package:city17/src/feature/advert_offer/enum/status_enum.dart';
-import 'package:city17/src/feature/home/model/income_model.dart';
 import 'package:intl/intl.dart';
 
 class AdvertismentModel {
@@ -24,6 +23,8 @@ class AdvertismentModel {
   bool isAproval;
   final StatusEnum status;
   final PaymentFrequencyEnum paymentFrequency;
+  final int pendingApproval;
+  final String campaignName;
 
   AdvertismentModel({
     required this.advertiserName,
@@ -46,11 +47,13 @@ class AdvertismentModel {
     required this.status,
     required this.advertiserImage,
     required this.paymentFrequency,
+    required this.pendingApproval,
+    required this.campaignName,
   });
 
   static List<AdvertismentModel> dummyAds = List.generate(10, (index) {
     return AdvertismentModel(
-      advertiserName: 'Elon Mask',
+      advertiserName: 'Elon Musk',
       advertiserPhoneNumber: 03298069581,
       adImage: 'https://picsum.photos/200/300?index=$index',
       displayLocation: 'Main Street Billboard $index',
@@ -61,7 +64,7 @@ class AdvertismentModel {
       endDate: DateTime.now().add(Duration(days: index + 7)),
       startTime: DateTime(2025, 7, 22, 9),
       endTime: DateTime(2025, 7, 22, 17),
-      hoursPerDay: 8,
+      hoursPerDay: 9 + index + 1,
       scheduledTimes: List.generate(23, (i) {
         return TimeSlot(
           time: DateTime(2025, 7, 22, 9 + i * 3),
@@ -74,6 +77,8 @@ class AdvertismentModel {
       isAproval: false,
       status: StatusEnum.running,
       paymentFrequency: PaymentFrequencyEnum.weekly,
+      pendingApproval: 03 + index + 1,
+      campaignName: 'Campaign Name',
       advertiserImage: 'https://randomuser.me/api/portraits/men/$index.jpg',
     );
   });

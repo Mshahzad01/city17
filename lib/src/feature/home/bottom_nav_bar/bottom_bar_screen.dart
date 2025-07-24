@@ -27,7 +27,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   final _pages = [
     const HomeScreen(),
     const AdvertOfferScreen(),
-    const FinanceScren(),
+    const FinanceScreen(),
     const SettingScreen(),
   ];
 

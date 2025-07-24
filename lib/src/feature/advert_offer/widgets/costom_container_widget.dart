@@ -3,20 +3,26 @@ import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:flutter/material.dart';
 
-class CustomaContainerDate extends StatelessWidget {
-  const CustomaContainerDate({
+class CustomContainerWidget extends StatelessWidget {
+  const CustomContainerWidget({
     super.key,
     required this.title,
     required this.data,
     this.bagroundColor,
     this.height,
     this.width,
+    this.titleColor,
+    this.dataTextColor,
+    this.fontSize,
   });
   final String title;
   final String data;
   final Color? bagroundColor;
   final double? height;
   final double? width;
+  final Color? titleColor;
+  final Color? dataTextColor;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +45,18 @@ class CustomaContainerDate extends StatelessWidget {
             title,
             style: context.myTextTheme.titleSmall?.copyWith(
               fontSize: 09,
-              color: AppColors.primaryTextcolor.withValues(alpha: 0.4),
+              color:
+                  titleColor ??
+                  AppColors.primaryTextcolor.withValues(alpha: 0.4),
             ),
           ),
           const SizedBox(height: myPadding / 4),
           Text(
             data,
-            style: context.myTextTheme.titleMedium?.copyWith(fontSize: 10),
+            style: context.myTextTheme.titleMedium?.copyWith(
+              fontSize: fontSize ?? 10,
+              color: dataTextColor ?? AppColors.primaryTextcolor,
+            ),
           ),
         ],
       ),

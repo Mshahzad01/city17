@@ -6,7 +6,7 @@ import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
 import 'package:city17/src/feature/advert_offer/screen/advert_detail_screen.dart';
-import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
+import 'package:city17/src/feature/advert_offer/widgets/costom_container_widget.dart';
 import 'package:city17/src/feature/advert_offer/widgets/time_slot_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +24,6 @@ class _FixedTabState extends State<ActiveFixedTab> {
     return ListView(
       children: [
         ...mappedData.entries.map((entry) {
-          final date = entry.key;
-
           final ads = entry.value;
 
           return Container(
@@ -82,24 +80,27 @@ class _FixedTabState extends State<ActiveFixedTab> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         //  mainAxisSize: MainAxisSize.min,
                         children: [
-                          CustomaContainerDate(
+                          CustomContainerWidget(
                             height: 45,
                             width: 100,
+
                             bagroundColor: AppColors.primarycolor,
 
                             title: StringData.hoursperday,
                             data: ad.endDate.dateFormat(),
                           ),
-                          CustomaContainerDate(
+                          CustomContainerWidget(
                             height: 45,
                             width: 100,
+
                             bagroundColor: AppColors.primarycolor,
                             title: StringData.start,
                             data: ad.startDate.dateFormat(),
                           ),
-                          CustomaContainerDate(
+                          CustomContainerWidget(
                             height: 45,
                             width: 100,
+
                             bagroundColor: AppColors.primarycolor,
                             title: StringData.end,
                             data: ad.endDate.dateFormat(),
@@ -141,7 +142,7 @@ class _FixedTabState extends State<ActiveFixedTab> {
                           ],
                         ),
                       ),
-                      SizedBox(height: myPadding / 4),
+                      const SizedBox(height: myPadding / 4),
                       Row(
                         children: [
                           //TimesSlot Widget

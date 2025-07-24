@@ -11,11 +11,21 @@ class AdvertiserInfoWidget extends StatelessWidget {
     required this.advertiserName,
     required this.advertiserPhoneNumber,
     required this.advertiserImage,
+    this.displyHeding,
+    this.radius,
+    this.bagroundColor,
+    this.containerHeight,
+    this.fontSize,
   });
 
   final String advertiserName;
   final int advertiserPhoneNumber;
   final String advertiserImage;
+  final bool? displyHeding;
+  final double? radius;
+  final Color? bagroundColor;
+  final double? containerHeight;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -25,23 +35,24 @@ class AdvertiserInfoWidget extends StatelessWidget {
         vertical: myPadding / 4,
       ),
       alignment: Alignment.center,
-      height: 65,
+      height: containerHeight ?? 65,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(myPadding / 4),
-        color: AppColors.secondarycolor,
+        color: bagroundColor ?? AppColors.secondarycolor,
       ),
 
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            StringData.advertiser,
-            style: context.myTextTheme.titleSmall?.copyWith(
-              color: AppColors.primaryTextcolor.withValues(alpha: 0.4),
+          if (displyHeding == true)
+            Text(
+              StringData.advertiser,
+              style: context.myTextTheme.titleSmall?.copyWith(
+                color: AppColors.primaryTextcolor.withValues(alpha: 0.4),
+              ),
             ),
-          ),
 
           ListTile(
             contentPadding: const EdgeInsets.symmetric(
@@ -49,13 +60,16 @@ class AdvertiserInfoWidget extends StatelessWidget {
               vertical: 0,
             ),
             minTileHeight: 00,
+
             title: Text(
               advertiserName,
-              style: context.myTextTheme.titleMedium?.copyWith(fontSize: 14),
+              style: context.myTextTheme.titleMedium?.copyWith(
+                fontSize: fontSize ?? 14,
+              ),
             ),
 
             leading: CircleAvatar(
-              radius: 16,
+              radius: radius ?? 16,
               backgroundImage: NetworkImage(advertiserImage),
             ),
 
@@ -69,6 +83,7 @@ class AdvertiserInfoWidget extends StatelessWidget {
                   advertiserPhoneNumber.toString(),
                   style: context.myTextTheme.titleMedium?.copyWith(
                     decoration: TextDecoration.underline,
+                    fontSize: fontSize ?? 14,
                   ),
                 ),
               ],

@@ -74,4 +74,8 @@ mixin StringData {
   static const averagePerHour = 'Average Per hour';
 
   static const pendingApproval = 'Pending Approval';
+  static const viewAdvert = 'View Advert';
+  static const campainName = 'Campaign Name';
+  static const amount = 'Amount';
+  static const approveAllPayments = 'Approve All Payments';
 }

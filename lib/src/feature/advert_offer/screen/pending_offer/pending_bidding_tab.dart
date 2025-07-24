@@ -6,7 +6,7 @@ import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
-import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
+import 'package:city17/src/feature/advert_offer/widgets/costom_container_widget.dart';
 import 'package:city17/src/feature/advert_offer/widgets/display_location.dart';
 import 'package:city17/src/feature/advert_offer/widgets/switch_title_widget.dart';
 import 'package:city17/src/feature/advert_offer/widgets/time_slot_widget.dart';
@@ -22,7 +22,7 @@ class PendingBiddingTab extends StatefulWidget {
 class _PendingBiddingTabState extends State<PendingBiddingTab> {
   //bool isSelected = false;
 
-  Map<DateTime, List<AdvertismentModel>> filterData = {};
+  // Map<DateTime, List<AdvertismentModel>> filterData = {};
 
   final mappedData = AdvertismentModel.getDateMappedData();
 
@@ -104,15 +104,15 @@ class _PendingBiddingTabState extends State<PendingBiddingTab> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        CustomaContainerDate(
+                                        CustomContainerWidget(
                                           title: StringData.hoursperday,
                                           data: ad.hoursPerDay.toString(),
                                         ),
-                                        CustomaContainerDate(
+                                        CustomContainerWidget(
                                           title: StringData.start,
                                           data: ad.startDate.dateFormat(),
                                         ),
-                                        CustomaContainerDate(
+                                        CustomContainerWidget(
                                           title: StringData.end,
                                           data: ad.endDate.dateFormat(),
                                         ),

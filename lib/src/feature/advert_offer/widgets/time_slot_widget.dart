@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
@@ -49,7 +48,7 @@ class TimeSlotWidget extends StatelessWidget {
               alignment: Alignment.center,
               height: 30,
               decoration: BoxDecoration(
-                color: AppColors.successTextcolor.withOpacity(0.3),
+                color: AppColors.successTextcolor.withValues(alpha: 0.3),
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(myPadding / 2),
                 ),

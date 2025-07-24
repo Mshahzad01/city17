@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/string_data.dart';
@@ -24,7 +23,7 @@ class PaymentInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: myPadding / 2),
+      margin: const EdgeInsets.only(top: myPadding / 2),
       height: 100,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -36,11 +35,8 @@ class PaymentInfoWidget extends StatelessWidget {
         children: [
           Container(
             alignment: Alignment.center,
-            padding: const EdgeInsets.only(
-              left: myPadding * 1.5,
-              //right: myPadding / 2,
-            ),
-            margin: EdgeInsets.all(myPadding / 2),
+            padding: const EdgeInsets.only(left: myPadding),
+            margin: const EdgeInsets.all(myPadding / 2),
             height: 40,
             width: double.infinity,
             decoration: BoxDecoration(
