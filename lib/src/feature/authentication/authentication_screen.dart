@@ -5,15 +5,15 @@ import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
-  static const routename = '/splash';
-  const SplashScreen({super.key});
+class AuthenticationScreen extends StatefulWidget {
+  static const routename = '/auth';
+  const AuthenticationScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<AuthenticationScreen> createState() => _AuthenticationScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _AuthenticationScreenState extends State<AuthenticationScreen> {
   @override
   void initState() {
     super.initState();

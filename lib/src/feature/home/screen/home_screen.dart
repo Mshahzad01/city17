@@ -1,4 +1,5 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
@@ -25,35 +26,41 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
+              padding: const EdgeInsets.only(left: myPadding, right: myPadding),
 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const IncomForcast(),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: myPadding / 2),
 
                   Text('Panding Action', style: context.myTextTheme.titleLarge),
 
                   const PandingAcction(),
-
-                  const SizedBox(height: 10),
+                  const SizedBox(height: myPadding / 2),
                   Text(
                     'Manage Business',
                     style: context.myTextTheme.titleLarge,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: myPadding / 2),
                   const MangeBusiness(),
+                  const SizedBox(height: myPadding / 2),
 
-                  CustomButton(
-                    title: StringData.addaDisplayLocation,
+                  SizedBox(
+                    height: 50,
+                    child: CustomButton(
+                      mixumHeight: 50,
+                      title: StringData.addaDisplayLocation,
 
-                    svgicon: AssetString.addoutline,
-                    iconcolor: AppColors.primaryTextcolor,
-                    onPressed: () {
-                      showmodelbottomshett(context);
-                    },
+                      svgicon: AssetString.addoutline,
+                      iconcolor: AppColors.primaryTextcolor,
+                      onPressed: () {
+                        showmodelbottomshett(context);
+                      },
+                    ),
                   ),
+
+                  const SizedBox(height: myPadding / 2),
                 ],
               ),
             ),

@@ -8,6 +8,7 @@ import 'package:city17/src/core/extension/date_formatting_extension.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
 import 'package:city17/src/feature/advert_offer/widgets/box_widget.dart';
 import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
+import 'package:city17/src/feature/advert_offer/widgets/display_location.dart';
 import 'package:city17/src/feature/advert_offer/widgets/switch_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -115,7 +116,7 @@ class _FixedTabState extends State<PendingFixedTab> {
                           vertical: myPadding / 2,
                         ),
 
-                        height: 40,
+                        height: 45,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: AppColors.primarycolor,
@@ -144,7 +145,7 @@ class _FixedTabState extends State<PendingFixedTab> {
                           ],
                         ),
                       ),
-
+                     //Selected un Selected time
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -166,6 +167,8 @@ class _FixedTabState extends State<PendingFixedTab> {
                         ],
                       ),
                       const SizedBox(height: myPadding / 3),
+
+                    
                       Wrap(
                         spacing: myPadding / 2,
                         children: [
@@ -175,7 +178,7 @@ class _FixedTabState extends State<PendingFixedTab> {
                                 vertical: myPadding / 3,
                               ),
                               alignment: Alignment.center,
-                              height: 20,
+                              height: 22,
                               width: 45,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(
@@ -196,49 +199,33 @@ class _FixedTabState extends State<PendingFixedTab> {
                         ],
                       ),
                       const SizedBox(height: myPadding / 3),
-                      SizedBox(
-                        height: 150,
-                        width: double.infinity,
-                        child: Image.network(ad.adImage, fit: BoxFit.fill),
-                      ),
+                      Container(
+                                      height: 150,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          myPadding / 2,
+                                        ),
+                                        image: DecorationImage(
+                                          image: NetworkImage(ad.adImage),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+
 
                       const SizedBox(height: myPadding / 2),
+                        
+                        //Display Location and adress
+                      DisplayLocationWidget(
+                        displayLocation: ad.displayLocation, 
+                        locationAddress: ad.locationAddress),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            StringData.display,
-                            style: context.myTextTheme.titleSmall?.copyWith(
-                              fontSize: 11,
-                              color: AppColors.primaryTextcolor.withValues(
-                                alpha: 0.4,
-                              ),
-                            ),
-                          ),
-
-                          Text(
-                            ad.displayLocation,
-                            style: context.myTextTheme.titleSmall?.copyWith(
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            ad.locationAddress,
-                            style: context.myTextTheme.titleSmall?.copyWith(
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
-
+              
+                   //switch title
                       SwitchTileWidget(
+                        fontzie: 11,
+                        scaleValue: 0.7,
                         title: StringData.atomaticapproval,
                         value: ad.isAproval,
                         backgroundColor: AppColors.primarycolor,
@@ -249,51 +236,12 @@ class _FixedTabState extends State<PendingFixedTab> {
                         },
                       ),
 
-                      // Container(
-                      //   margin: const EdgeInsets.symmetric(
-                      //     vertical: myPadding / 2,
-                      //   ),
-                      //   alignment: Alignment.center,
-                      //   height: 50,
-                      //   width: double.infinity,
-                      //   decoration: BoxDecoration(
-                      //     color: AppColors.primarycolor,
-                      //     borderRadius: BorderRadius.circular(10),
-                      //   ),
-
-                      //   child: ListTile(
-                      //     minTileHeight: 00,
-                      //     titleAlignment: ListTileTitleAlignment.center,
-                      //     contentPadding: const EdgeInsets.symmetric(
-                      //       horizontal: myPadding / 2,
-                      //     ),
-                      //     title: Text(
-                      //       StringData.atomaticapproval,
-                      //       textAlign: TextAlign.start,
-                      //       style: context.myTextTheme.titleSmall?.copyWith(
-                      //         fontSize: 11,
-                      //       ),
-                      //     ),
-
-                      //     trailing: Transform.scale(
-                      //       alignment: Alignment.centerRight,
-                      //       scale: 0.5,
-                      //       child: Switch(
-                      //         value: ad.isAproval,
-                      //         onChanged: (value) {
-                      //           setState(() {
-                      //             mappedData[date]![index].isAproval = value;
-                      //           });
-                      //         },
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                    // Button Approve and Reject  
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomButton(
-                            title: 'Reject',
+                            title: StringData.reject,
                             textcolor: AppColors.warningTextcolor,
                             onPressed: () {},
                             svgicon: AssetString.cancelIcon,
@@ -301,7 +249,7 @@ class _FixedTabState extends State<PendingFixedTab> {
                           ),
 
                           CustomButton(
-                            title: 'Approve',
+                            title: StringData.approve,
                             onPressed: () {},
                             textcolor: AppColors.successTextcolor,
                             svgicon: AssetString.chekCircle,

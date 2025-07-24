@@ -1,7 +1,8 @@
 import 'package:city17/config/dark_theme.dart';
 import 'package:city17/config/ongenerated_route.dart';
+import 'package:city17/src/feature/authentication/authentication_screen.dart';
 import 'package:city17/src/feature/home/cubit/home_cubit.dart';
-import 'package:city17/src/feature/splash/screen/splash_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
 
         theme: DarkTheme.theme,
 
-        initialRoute: SplashScreen.routename,
+        initialRoute: AuthenticationScreen.routename,
       ),
     );
   }

@@ -14,6 +14,7 @@ class CustomButton extends StatelessWidget {
     this.svgicon,
     this.iconcolor,
     this.fontSize,
+    this.mixumHeight,
   });
 
   final String title;
@@ -23,6 +24,7 @@ class CustomButton extends StatelessWidget {
   final String? svgicon;
   final Color? iconcolor;
   final double? fontSize;
+  final double? mixumHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,9 @@ class CustomButton extends StatelessWidget {
           horizontal: myPadding / 2,
           vertical: myPadding / 2,
         ),
+         
+      
+       
       ),
       child: Row(
         // mainAxisSize: MainAxisSize.min,

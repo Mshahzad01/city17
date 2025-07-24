@@ -25,7 +25,7 @@ class CustomaContainerDate extends StatelessWidget {
       margin: const EdgeInsets.only(top: myPadding / 2),
 
       height: height ?? 40,
-      width: width ?? 75,
+      width: width ?? 72,
       decoration: BoxDecoration(
         color: bagroundColor ?? AppColors.secondarycolor,
         borderRadius: BorderRadius.circular(08),
