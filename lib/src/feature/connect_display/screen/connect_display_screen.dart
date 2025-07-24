@@ -74,10 +74,15 @@ class _ConnectDisplyScreenState extends State<ConnectDisplyScreen>
                   indicatorColor: Colors.transparent,
                   dividerHeight: 0,
                   dividerColor: Colors.transparent,
+                  labelColor: AppColors.primaryTextcolor,
+                  unselectedLabelColor: AppColors.primaryTextcolor.withValues(
+                    alpha: 0.3,
+                  ),
+                  labelStyle: context.myTextTheme.titleMedium,
                   tabs: const [
-                    IgnorePointer(child: Tab(text: 'Setp1')),
-                    IgnorePointer(child: Tab(text: 'Setp2')),
-                    IgnorePointer(child: Tab(text: 'Setp3')),
+                    IgnorePointer(child: Tab(text: 'Setp 1')),
+                    IgnorePointer(child: Tab(text: 'Setp 2')),
+                    IgnorePointer(child: Tab(text: 'Setp 3')),
                   ],
                 ),
               ),
@@ -191,7 +196,7 @@ class _StepOneState extends State<_StepOne> {
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: myPadding),
         children: [
-          const SizedBox(height: 24),
+          const SizedBox(height: myPadding),
           Text(
             StringData.displyinstallationdetils,
             style: context.myTextTheme.titleLarge?.copyWith(fontSize: 16),
@@ -341,7 +346,10 @@ class _StepOneState extends State<_StepOne> {
                               });
                             },
                             child: Container(
-                              margin: const EdgeInsets.only(left: 10, top: 05),
+                              margin: const EdgeInsets.only(
+                                left: myPadding,
+                                top: 05,
+                              ),
                               height: 60,
                               width: 95,
                               decoration: BoxDecoration(
@@ -361,7 +369,11 @@ class _StepOneState extends State<_StepOne> {
                               });
                             },
                             child: Container(
-                              margin: const EdgeInsets.only(right: 30, top: 05),
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.only(
+                                right: myPadding * 3,
+                                top: 05,
+                              ),
                               height: 60,
                               width: 40,
                               decoration: BoxDecoration(
@@ -375,7 +387,7 @@ class _StepOneState extends State<_StepOne> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: myPadding / 1.2),
+                      const SizedBox(height: myPadding / 2),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

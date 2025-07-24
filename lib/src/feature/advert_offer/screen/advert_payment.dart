@@ -3,9 +3,12 @@ import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
-import 'package:city17/src/feature/advert_offer/enum/schedule_type_enum.dart';
+import 'package:city17/src/feature/advert_offer/enum/payment_frequency_enum.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
+import 'package:city17/src/feature/advert_offer/widgets/advertiser_info_widget.dart';
 import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
+import 'package:city17/src/feature/advert_offer/widgets/display_location.dart';
+import 'package:city17/src/feature/advert_offer/widgets/payment_info_widget.dart';
 import 'package:flutter/material.dart';
 
 class AdvertPaymentScreen extends StatefulWidget {
@@ -18,7 +21,7 @@ class AdvertPaymentScreen extends StatefulWidget {
 }
 
 class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
-  ScheduleTypeEnum weekly = ScheduleTypeEnum.weekly;
+  PaymentFrequencyEnum weekly = PaymentFrequencyEnum.weekly;
 
   @override
   Widget build(BuildContext context) {
@@ -32,71 +35,17 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
       ),
 
       body: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: myPadding,
           vertical: myPadding,
         ),
         child: ListView(
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: myPadding / 2,
-                vertical: myPadding / 4,
-              ),
-              alignment: Alignment.center,
-              height: 65,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(myPadding / 4),
-                color: AppColors.secondarycolor,
-              ),
-
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    StringData.advertiser,
-                    style: context.myTextTheme.titleSmall?.copyWith(
-                      color: AppColors.primaryTextcolor.withValues(alpha: 0.4),
-                    ),
-                  ),
-
-                  ListTile(
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 0,
-                    ),
-                    minTileHeight: 00,
-                    title: Text(
-                      widget.ads.advertiserName,
-                      style: context.myTextTheme.titleMedium?.copyWith(
-                        fontSize: 14,
-                      ),
-                    ),
-
-                    leading: CircleAvatar(
-                      radius: 16,
-                      backgroundImage: NetworkImage(widget.ads.advertiserImage),
-                    ),
-
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        const Icon(Icons.phone, size: 14),
-                        const SizedBox(width: myPadding / 4),
-                        Text(
-                          widget.ads.advertiserPhoneNumber.toString(),
-                          style: context.myTextTheme.titleMedium?.copyWith(
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            //Advert Info widget
+            AdvertiserInfoWidget(
+              advertiserName: widget.ads.advertiserName,
+              advertiserPhoneNumber: widget.ads.advertiserPhoneNumber,
+              advertiserImage: widget.ads.advertiserImage,
             ),
 
             const SizedBox(height: myPadding),
@@ -108,6 +57,7 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
                   style: context.myTextTheme.titleMedium,
                 ),
 
+                // status information with enum
                 Container(
                   alignment: Alignment.center,
                   height: 30,
@@ -127,7 +77,7 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
                 ),
               ],
             ),
-
+            // Container widgets
             Wrap(
               spacing: myPadding / 1.2,
 
@@ -160,7 +110,7 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
                   height: 40,
                   width: 100,
                   title: StringData.paymentCycle,
-                  data: ScheduleTypeEnum.weekly.title,
+                  data: PaymentFrequencyEnum.weekly.title,
                   bagroundColor: AppColors.secondarycolor,
                 ),
                 CustomaContainerDate(
@@ -180,90 +130,42 @@ class _AdvertPaymentScreenState extends State<AdvertPaymentScreen> {
                 ),
               ],
             ),
-            SizedBox(height: myPadding),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  StringData.display,
-                  style: context.myTextTheme.titleSmall?.copyWith(
-                    fontSize: 11,
-                    color: AppColors.primaryTextcolor.withValues(alpha: 0.4),
-                  ),
-                ),
+            const SizedBox(height: myPadding),
 
-                Text(
-                  widget.ads.displayLocation,
-                  style: context.myTextTheme.titleSmall?.copyWith(fontSize: 12),
-                ),
-              ],
+            // Display Location Widget
+            DisplayLocationWidget(
+              displayLocation: widget.ads.displayLocation,
+              locationAddress: widget.ads.locationAddress,
             ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  widget.ads.locationAddress,
-                  style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
-                ),
-              ],
-            ),
-
-            SizedBox(height: myPadding * 2),
+            const SizedBox(height: myPadding * 2),
 
             Text(
               StringData.paymentOverdue,
               style: context.myTextTheme.titleMedium,
             ),
 
-            Container(
-              height: 100,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.secondarycolor,
-                borderRadius: BorderRadius.circular(myPadding / 2),
-              ),
+            PaymentInfoWidget(
+              dueDate: widget.ads.endDate.dateFormat(),
+              paymentType: widget.ads.paymentFrequency.title,
+              paymentDetail:
+                  '${widget.ads.hoursPerDay.toString()}hours@ ${widget.ads.amount.show()}',
+              totalAmount: widget.ads.amount.show(),
+              textColor: AppColors.errorTextcolor,
+            ),
 
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: myPadding / 2,
-                      vertical: myPadding / 2,
-                    ),
-                    height: 40,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(myPadding / 2),
-                      color: AppColors.primaryTextcolor.withValues(alpha: 0.1),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                          children: [
-                            Text(
-                              StringData.dueDate,
-                              style: context.myTextTheme.titleSmall?.copyWith(),
-                            ),
-                            Text(
-                              StringData.payment,
-                              style: context.myTextTheme.titleSmall?.copyWith(),
-                            ),
-                            Text(
-                              StringData.detail,
-                              style: context.myTextTheme.titleSmall?.copyWith(),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            const SizedBox(height: myPadding * 2),
+            Text(
+              StringData.upComingPayment,
+              style: context.myTextTheme.titleMedium,
+            ),
+            PaymentInfoWidget(
+              textColor: AppColors.accentTextcolor,
+              dueDate: widget.ads.startDate.dateFormat(),
+              paymentType: widget.ads.paymentFrequency.title,
+              paymentDetail:
+                  '${widget.ads.hoursPerDay.toString()}hours@ ${widget.ads.amount.show()}',
+              totalAmount: widget.ads.amount.show(),
             ),
           ],
         ),

@@ -1,4 +1,6 @@
+import 'package:city17/src/feature/advert_offer/enum/payment_frequency_enum.dart';
 import 'package:city17/src/feature/advert_offer/enum/status_enum.dart';
+import 'package:city17/src/feature/home/model/income_model.dart';
 import 'package:intl/intl.dart';
 
 class AdvertismentModel {
@@ -21,6 +23,7 @@ class AdvertismentModel {
   final IAmount amount;
   bool isAproval;
   final StatusEnum status;
+  final PaymentFrequencyEnum paymentFrequency;
 
   AdvertismentModel({
     required this.advertiserName,
@@ -42,6 +45,7 @@ class AdvertismentModel {
     required this.advertiserPhoneNumber,
     required this.status,
     required this.advertiserImage,
+    required this.paymentFrequency,
   });
 
   static List<AdvertismentModel> dummyAds = List.generate(10, (index) {
@@ -69,6 +73,7 @@ class AdvertismentModel {
       amount: IAmount(currency: 'US', amount: 10 + index * 1),
       isAproval: false,
       status: StatusEnum.running,
+      paymentFrequency: PaymentFrequencyEnum.weekly,
       advertiserImage: 'https://randomuser.me/api/portraits/men/$index.jpg',
     );
   });

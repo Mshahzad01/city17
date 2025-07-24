@@ -69,4 +69,9 @@ mixin StringData {
   static const dueDate = 'Due Date';
   static const payment = 'Payment';
   static const detail = 'Detail';
+  static const totalAmount = 'Total Amount';
+  static const totalHours = 'Total Hours';
+  static const averagePerHour = 'Average Per hour';
+
+  static const pendingApproval = 'Pending Approval';
 }

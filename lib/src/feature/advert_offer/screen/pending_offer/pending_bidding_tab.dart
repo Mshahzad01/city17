@@ -12,7 +12,6 @@ import 'package:city17/src/feature/advert_offer/widgets/switch_title_widget.dart
 import 'package:city17/src/feature/advert_offer/widgets/time_slot_widget.dart';
 import 'package:flutter/material.dart';
 
-
 class PendingBiddingTab extends StatefulWidget {
   const PendingBiddingTab({super.key});
 
@@ -62,7 +61,8 @@ class _PendingBiddingTabState extends State<PendingBiddingTab> {
                         padding: const EdgeInsets.only(bottom: myPadding / 2),
                         child: Row(
                           children: [
-                            TimeSlotWidget(ad: ad),
+                            //Time Slot Widgt
+                            TimeSlotWidget(priceCotanier: true, ad: ad),
 
                             Expanded(
                               child: Container(

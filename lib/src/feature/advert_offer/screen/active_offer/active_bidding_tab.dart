@@ -1,7 +1,9 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
+import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
+import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
 import 'package:flutter/material.dart';
 
 class ActiveBiddingTab extends StatefulWidget {
@@ -33,33 +35,45 @@ class _ActiveBiddingTabState extends State<ActiveBiddingTab> {
 
               Text(date.dayOnly()),
               const SizedBox(height: myPadding),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: myPadding / 2,
-                  vertical: myPadding / 2,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.secondarycolor,
 
-                  borderRadius: BorderRadius.circular(myPadding / 2),
-                ),
-
-                child: Column(
+              ...ads.asMap().entries.map((entry) {
+                final index = entry.key;
+                final ad = entry.value;
+                return Column(
                   children: [
-                    ...ads.asMap().entries.map((entry) {
-                      final index = entry.key;
-                      final ad = entry.value;
-                      return Container();
-                    }),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomaContainerDate(
+                          height: 65,
+                          width: 100,
+                          bagroundColor: AppColors.secondarycolor,
+                          title: StringData.totalHours,
+                          data: ad.hoursPerDay.toString(),
+                        ),
+                        CustomaContainerDate(
+                          height: 65,
+                          width: 100,
+                          bagroundColor: AppColors.secondarycolor,
+                          title: StringData.averagePerHour,
+                          data: ad.hoursPerDay.toString(),
+                        ),
+                        CustomaContainerDate(
+                          height: 65,
+                          width: 100,
+                          bagroundColor: AppColors.secondarycolor,
+                          title: StringData.pendingApproval,
+                          data: ad.hoursPerDay.toString(),
+                        ),
+                      ],
+                    ),
                   ],
-                ),
-              ),
+                );
+              }),
             ],
           );
         }),
       ],
-      //   );
-      // },
     );
   }
 }

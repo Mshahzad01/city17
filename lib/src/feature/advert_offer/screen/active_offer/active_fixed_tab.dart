@@ -7,8 +7,8 @@ import 'package:city17/src/core/extension/date_formatting_extension.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
 import 'package:city17/src/feature/advert_offer/screen/advert_detail_screen.dart';
 import 'package:city17/src/feature/advert_offer/widgets/costom_container_date_widget.dart';
+import 'package:city17/src/feature/advert_offer/widgets/time_slot_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class ActiveFixedTab extends StatefulWidget {
   const ActiveFixedTab({super.key});
@@ -33,8 +33,8 @@ class _FixedTabState extends State<ActiveFixedTab> {
               horizontal: myPadding / 2,
               vertical: myPadding / 2,
             ),
-            margin: const EdgeInsets.symmetric(vertical: myPadding),
 
+            margin: const EdgeInsets.symmetric(vertical: myPadding / 2),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(myPadding / 1.5),
               color: AppColors.secondarycolor,
@@ -42,7 +42,6 @@ class _FixedTabState extends State<ActiveFixedTab> {
             child: Column(
               children: [
                 ...ads.asMap().entries.map((e) {
-                  final index = e.key;
                   final ad = e.value;
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,93 +144,19 @@ class _FixedTabState extends State<ActiveFixedTab> {
                       SizedBox(height: myPadding / 4),
                       Row(
                         children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                              bottom: myPadding / 2,
-                            ),
-                            margin: const EdgeInsets.only(right: myPadding / 3),
-                            width: 55,
-                            height: 180,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: AppColors.primarycolor,
-                            ),
+                          //TimesSlot Widget
+                          TimeSlotWidget(
+                            containerHeight: 180,
+                            containerWidth: 55,
+                            fontSize: 08,
+                            timeLineHeight: 20,
+                            timeLineWidth: 03,
+                            priceCotanier: false,
 
-                            child: Column(
-                              children: [
-                                const SizedBox(height: myPadding / 3),
-                                Text(
-                                  ad.startTime.hourOnly(),
-                                  style: context.myTextTheme.titleSmall
-                                      ?.copyWith(fontSize: 08),
-                                ),
-
-                                Expanded(
-                                  child: Stack(
-                                    children: [
-                                      Positioned.fill(
-                                        top: 06,
-                                        left: 27,
-                                        right: 27,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              5,
-                                            ),
-                                            color: AppColors.secondarycolor,
-                                          ),
-                                        ),
-                                      ),
-
-                                      ListView.builder(
-                                        itemCount: ad.scheduledTimes.length,
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 8,
-                                        ),
-                                        itemBuilder: (context, index) {
-                                          final slot = ad.scheduledTimes[index];
-                                          return Column(
-                                            children: [
-                                              Container(
-                                                width: 03,
-                                                height: 20,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  color: slot.isasepted
-                                                      ? AppColors
-                                                            .successTextcolor
-                                                      : AppColors
-                                                            .secondarycolor,
-                                                ),
-                                              ),
-
-                                              Text(
-                                                DateFormat(
-                                                  'hh:mm',
-                                                ).format(slot.time),
-                                                style: context
-                                                    .myTextTheme
-                                                    .titleSmall
-                                                    ?.copyWith(fontSize: 08),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: myPadding / 3),
-                                Text(
-                                  ad.endTime.hourOnly(),
-                                  style: context.myTextTheme.titleSmall
-                                      ?.copyWith(fontSize: 08),
-                                ),
-                              ],
-                            ),
+                            ad: ad,
                           ),
 
+                          // ads image
                           Expanded(
                             child: Container(
                               padding: const EdgeInsets.only(
@@ -254,12 +179,14 @@ class _FixedTabState extends State<ActiveFixedTab> {
                           ),
                         ],
                       ),
-
+                      //View Campaign Button
                       const SizedBox(height: myPadding / 3),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           CustomButton(
+                            mixumHeight: 45,
+
                             fontSize: 10,
                             backgroundColor: AppColors.textButtoncolor,
                             title: StringData.viewCampaign,

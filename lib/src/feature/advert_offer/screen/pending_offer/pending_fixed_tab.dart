@@ -36,7 +36,7 @@ class _FixedTabState extends State<PendingFixedTab> {
               horizontal: myPadding / 2,
               vertical: myPadding / 2,
             ),
-            margin: const EdgeInsets.symmetric(vertical: myPadding),
+            margin: const EdgeInsets.symmetric(vertical: myPadding / 2),
 
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(myPadding / 1.5),
@@ -145,7 +145,7 @@ class _FixedTabState extends State<PendingFixedTab> {
                           ],
                         ),
                       ),
-                     //Selected un Selected time
+                      //Selected un Selected time
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -168,7 +168,6 @@ class _FixedTabState extends State<PendingFixedTab> {
                       ),
                       const SizedBox(height: myPadding / 3),
 
-                    
                       Wrap(
                         spacing: myPadding / 2,
                         children: [
@@ -200,29 +199,26 @@ class _FixedTabState extends State<PendingFixedTab> {
                       ),
                       const SizedBox(height: myPadding / 3),
                       Container(
-                                      height: 150,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          myPadding / 2,
-                                        ),
-                                        image: DecorationImage(
-                                          image: NetworkImage(ad.adImage),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-
+                        height: 150,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(myPadding / 2),
+                          image: DecorationImage(
+                            image: NetworkImage(ad.adImage),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
 
                       const SizedBox(height: myPadding / 2),
-                        
-                        //Display Location and adress
-                      DisplayLocationWidget(
-                        displayLocation: ad.displayLocation, 
-                        locationAddress: ad.locationAddress),
 
-              
-                   //switch title
+                      //Display Location and adress
+                      DisplayLocationWidget(
+                        displayLocation: ad.displayLocation,
+                        locationAddress: ad.locationAddress,
+                      ),
+
+                      //switch title
                       SwitchTileWidget(
                         fontzie: 11,
                         scaleValue: 0.7,
@@ -236,7 +232,7 @@ class _FixedTabState extends State<PendingFixedTab> {
                         },
                       ),
 
-                    // Button Approve and Reject  
+                      // Button Approve and Reject
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
