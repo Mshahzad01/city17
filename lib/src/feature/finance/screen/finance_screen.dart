@@ -68,8 +68,8 @@ class _FinanceScreenState extends State<FinanceScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                PendinPayments(),
-                PaymentApprovalsTab(),
+                const PendinPayments(),
+                const PaymentApprovalsTab(),
                 Center(child: Text('shahzad')),
               ],
             ),

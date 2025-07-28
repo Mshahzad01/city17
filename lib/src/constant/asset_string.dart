@@ -26,4 +26,7 @@ mixin AssetString {
   static const cancelIcon = 'assets/icon/Cancel.svg';
   static const chekCircle = 'assets/icon/Check Circle.svg';
   static const searchIcon = 'assets/icon/searchIcon.svg';
+  static const google = 'assets/icon/google.svg';
+  static const imageError = 'assets/icon/image_error_icon.svg';
+  static const cameraIcon = 'assets/icon/cameraIcon.svg';
 }

@@ -1,8 +1,6 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
-import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
-import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
@@ -233,26 +231,26 @@ class _FixedTabState extends State<PendingFixedTab> {
                       ),
 
                       // Button Approve and Reject
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomButton(
-                            title: StringData.reject,
-                            textcolor: AppColors.warningTextcolor,
-                            onPressed: () {},
-                            svgicon: AssetString.cancelIcon,
-                            backgroundColor: Colors.transparent,
-                          ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     CustomButton(
+                      //       title: StringData.reject,
+                      //       textcolor: AppColors.warningTextcolor,
+                      //       onPressed: () {},
+                      //       svgicon: AssetString.cancelIcon,
+                      //       backgroundColor: Colors.transparent,
+                      //     ),
 
-                          CustomButton(
-                            title: StringData.approve,
-                            onPressed: () {},
-                            textcolor: AppColors.successTextcolor,
-                            svgicon: AssetString.chekCircle,
-                            backgroundColor: AppColors.primarycolor,
-                          ),
-                        ],
-                      ),
+                      //     CustomButton(
+                      //       title: StringData.approve,
+                      //       onPressed: () {},
+                      //       textcolor: AppColors.successTextcolor,
+                      //       svgicon: AssetString.chekCircle,
+                      //       backgroundColor: AppColors.primarycolor,
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   );
                 }),

@@ -1,8 +1,6 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
-import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
-import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/extension/date_formatting_extension.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
@@ -20,10 +18,6 @@ class PendingBiddingTab extends StatefulWidget {
 }
 
 class _PendingBiddingTabState extends State<PendingBiddingTab> {
-  //bool isSelected = false;
-
-  // Map<DateTime, List<AdvertismentModel>> filterData = {};
-
   final mappedData = AdvertismentModel.getDateMappedData();
 
   @override
@@ -156,30 +150,30 @@ class _PendingBiddingTabState extends State<PendingBiddingTab> {
                                     ),
 
                                     //  Button Reject and Approve
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          CustomButton(
-                                            title: 'Reject',
-                                            textcolor:
-                                                AppColors.warningTextcolor,
-                                            onPressed: () {},
-                                            svgicon: AssetString.cancelIcon,
-                                            backgroundColor: Colors.transparent,
-                                          ),
+                                    // Expanded(
+                                    //   child:
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //    MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     CustomButton(
+                                    //       title: 'Reject',
+                                    //       textcolor: AppColors.warningTextcolor,
+                                    //       onPressed: () {},
+                                    //       svgicon: AssetString.cancelIcon,
+                                    //       backgroundColor: Colors.transparent,
+                                    //     ),
 
-                                          CustomButton(
-                                            title: 'Approve',
-                                            onPressed: () {},
-                                            textcolor:
-                                                AppColors.successTextcolor,
-                                            svgicon: AssetString.chekCircle,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    //     CustomButton(
+                                    //       title: 'Approve',
+                                    //       onPressed: () {},
+                                    //       textcolor: AppColors.successTextcolor,
+                                    //       svgicon: AssetString.chekCircle,
+                                    //     ),
+                                    //   ],
+                                    // ),
+
+                                    // ),
                                   ],
                                 ),
                               ),

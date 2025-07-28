@@ -45,6 +45,13 @@ dependencies:
   image_picker: ^1.1.2
   timelines_plus: ^1.0.7
   date_picker_timeline: ^1.2.7
+  dio: ^5.8.0+1
+  firebase_core: ^3.15.2
+  google_sign_in: ^6.2.1
+  firebase_messaging: ^15.2.10
+  firebase_auth: ^5.7.0
+  shared_preferences: ^2.5.3
+  cached_network_image: ^3.4.1
  
 
 dev_dependencies:

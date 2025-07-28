@@ -27,11 +27,11 @@ class _PendinPaymentsState extends State<PendinPayments> {
 
           return Column(
             children: [
-              SizedBox(height: myPadding),
+              const SizedBox(height: myPadding),
               ...data.map((ad) {
                 return Container(
-                  padding: EdgeInsets.all(myPadding / 2),
-                  margin: EdgeInsets.only(top: myPadding / 2),
+                  padding: const EdgeInsets.all(myPadding / 2),
+                  margin: const EdgeInsets.only(top: myPadding / 2),
                   // height: 160,
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -62,7 +62,7 @@ class _PendinPaymentsState extends State<PendinPayments> {
                         textColor: AppColors.errorTextcolor,
                         camepaignName: ad.campaignName,
                       ),
-                      SizedBox(height: myPadding * 1.5),
+                      const SizedBox(height: myPadding * 1.5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

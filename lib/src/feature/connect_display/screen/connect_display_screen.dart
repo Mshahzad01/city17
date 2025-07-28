@@ -8,7 +8,7 @@ import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/component/custom_textfield.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
-import 'package:city17/src/core/utilss/image_picker.dart';
+import 'package:city17/src/core/utils/image_picker.dart';
 import 'package:city17/src/feature/connect_display/enum/display_orientation_enum.dart';
 import 'package:city17/src/feature/connect_display/enum/displaylocation_enum.dart';
 import 'package:city17/src/feature/connect_display/enum/screeen_placement_enum.dart';

@@ -1,7 +1,8 @@
-import 'package:city17/src/feature/authentication/authentication_screen.dart';
+import 'package:city17/src/feature/auth/authentication_screen.dart';
 import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
+import 'package:city17/src/feature/splash/splash_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,12 @@ mixin AppRoute {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const AuthenticationScreen(),
+        );
+
+      case SplashScreen.routeName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const SplashScreen(),
         );
 
       case BottomNavScreen.rotename:

@@ -22,155 +22,61 @@ class PendingPaymentInfoWidget extends StatelessWidget {
   final Color textColor;
   final String camepaignName;
 
-  //@override
-  //Widget build(BuildContext context) {
-  // return Container(
-  //   alignment: Alignment.center,
-  //   padding: const EdgeInsets.only(left: myPadding / 2, right: myPadding / 2),
-  //   margin: EdgeInsets.only(top: myPadding / 3),
-  //   height: 40,
-  //   width: double.infinity,
-  //   decoration: BoxDecoration(
-  //     color: AppColors.primaryTextcolor.withValues(alpha: 0.1),
-  //     borderRadius: BorderRadius.circular(myPadding / 3),
-  //   ),
-  //   child: Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     mainAxisAlignment: MainAxisAlignment.center,
-  //     children: [
-  //       Row(
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         children: [
-  //           Text(
-  //             StringData.dueDate,
-  //             style: context.myTextTheme.titleSmall?.copyWith(
-  //               fontSize: 08,
-  //               color: AppColors.primaryTextcolor.withValues(alpha: 0.3),
-  //             ),
-  //           ),
-
-  //           Text(
-  //             StringData.payment,
-  //             style: context.myTextTheme.titleSmall?.copyWith(
-  //               fontSize: 08,
-  //               color: AppColors.primaryTextcolor.withValues(alpha: 0.3),
-  //             ),
-  //           ),
-
-  //           Text(
-  //             StringData.campaignName,
-  //             style: context.myTextTheme.titleSmall?.copyWith(
-  //               fontSize: 08,
-  //               color: AppColors.primaryTextcolor.withValues(alpha: 0.3),
-  //             ),
-  //           ),
-
-  //           Text(
-  //             StringData.amount,
-  //             style: context.myTextTheme.titleSmall?.copyWith(
-  //               fontSize: 09,
-  //               color: AppColors.primaryTextcolor.withValues(alpha: 0.3),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-
-  //       Row(
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         children: [
-  //           Text(
-  //             dueDate,
-  //             style: context.myTextTheme.titleSmall?.copyWith(
-  //               fontSize: 10,
-  //               color: textColor,
-  //             ),
-  //           ),
-
-  //           Text(
-  //             payment,
-  //             style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
-  //           ),
-
-  //           Text(
-  //             camepaignName,
-  //             style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
-  //           ),
-  //           SizedBox(width: 04),
-  //           Text(
-  //             amount,
-
-  //             style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
-  //           ),
-  //         ],
-  //       ),
-  //     ],
-  //   ),
-  // );
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: myPadding / 2,
-        horizontal: myPadding / 2,
-      ),
-      margin: EdgeInsets.only(top: myPadding / 2),
+      alignment: Alignment.center,
+      padding: const EdgeInsets.only(left: myPadding / 2, right: myPadding / 2),
+      margin: EdgeInsets.only(top: myPadding / 3),
+      height: 40,
+      width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.primaryTextcolor.withAlpha(25), // Simplified alpha
+        color: AppColors.primaryTextcolor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(myPadding / 3),
       ),
-      child: Table(
-        // Sab columns ko barabar ki width dega, bilkul Expanded ki tarah
-        defaultColumnWidth: const FlexColumnWidth(1.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Pehli Row (Headers)
-          TableRow(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 StringData.dueDate,
                 style: context.myTextTheme.titleSmall?.copyWith(
-                  fontSize: 8,
-                  color: AppColors.primaryTextcolor.withAlpha(
-                    77,
-                  ), // Simplified alpha
+                  fontSize: 08,
+                  color: AppColors.primaryTextcolor.withValues(alpha: 0.3),
                 ),
               ),
+
               Text(
                 StringData.payment,
                 style: context.myTextTheme.titleSmall?.copyWith(
-                  fontSize: 8,
-                  color: AppColors.primaryTextcolor.withAlpha(77),
+                  fontSize: 08,
+                  color: AppColors.primaryTextcolor.withValues(alpha: 0.3),
                 ),
               ),
+
               Text(
                 StringData.campaignName,
                 style: context.myTextTheme.titleSmall?.copyWith(
-                  fontSize: 8,
-                  color: AppColors.primaryTextcolor.withAlpha(77),
+                  fontSize: 08,
+                  color: AppColors.primaryTextcolor.withValues(alpha: 0.3),
                 ),
               ),
+
               Text(
                 StringData.amount,
                 style: context.myTextTheme.titleSmall?.copyWith(
-                  fontSize: 9,
-                  color: AppColors.primaryTextcolor.withAlpha(77),
+                  fontSize: 09,
+                  color: AppColors.primaryTextcolor.withValues(alpha: 0.3),
                 ),
               ),
             ],
           ),
 
-          // Thora sa vertical space dene ke liye
-          const TableRow(
-            children: [
-              SizedBox(height: 3),
-              SizedBox(height: 3),
-              SizedBox(height: 3),
-              SizedBox(height: 3),
-            ],
-          ),
-
-          // Doosri Row (Data)
-          TableRow(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 dueDate,
@@ -178,27 +84,22 @@ class PendingPaymentInfoWidget extends StatelessWidget {
                   fontSize: 10,
                   color: textColor,
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                payment,
-                style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                camepaignName,
-                style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis, // Lambe text ke liye
               ),
 
               Text(
-                amount,
+                payment,
                 style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              ),
+
+              Text(
+                camepaignName,
+                style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
+              ),
+              const SizedBox(width: 04),
+              Text(
+                amount,
+
+                style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
               ),
             ],
           ),

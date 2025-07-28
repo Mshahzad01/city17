@@ -78,4 +78,8 @@ mixin StringData {
   static const campainName = 'Campaign Name';
   static const amount = 'Amount';
   static const approveAllPayments = 'Approve All Payments';
+  static const signInWithGoogle = 'Sign in with Google';
+  static const fullName = 'Full Name';
+  static const email = 'Email';
+  static const phoneNumber = 'Phone Number';
 }
