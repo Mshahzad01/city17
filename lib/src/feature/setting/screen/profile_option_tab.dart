@@ -4,8 +4,10 @@ import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/utils/shared_pref_utils.dart';
+import 'package:city17/src/feature/auth/authentication_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class ProfileOptionTab extends StatefulWidget {
   const ProfileOptionTab({super.key});
@@ -21,21 +23,17 @@ class _ProfileOptionTabState extends State<ProfileOptionTab> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(height: myPadding),
+        const SizedBox(height: myPadding * 2),
         Stack(
           children: [
             Align(
               alignment: Alignment.topCenter,
               child: CircleAvatar(
                 radius: 70,
-
-                backgroundImage:
-                    currentLoginInfo?.user?.personalInformation != null
-                    ? NetworkImage(
-                        currentLoginInfo!.user!.personalInformation.profilePic,
-                      )
+                backgroundColor: AppColors.secondarycolor,
+                backgroundImage: currentLoginInfo?.user.profilePic != null
+                    ? NetworkImage(currentLoginInfo!.user.profilePic)
                     : null,
-                // currentLoginInfo?.user?.personalInformation.profilePic ??
               ),
             ),
 
@@ -86,9 +84,7 @@ class _ProfileOptionTabState extends State<ProfileOptionTab> {
             borderRadius: BorderRadius.circular(10),
             color: AppColors.secondarycolor,
           ),
-          child: Text(
-            currentLoginInfo?.user?.personalInformation.name ?? 'Name',
-          ),
+          child: Text(currentLoginInfo?.user.name ?? 'Name'),
         ),
         const SizedBox(height: myPadding),
         Text(
@@ -98,36 +94,20 @@ class _ProfileOptionTabState extends State<ProfileOptionTab> {
             fontSize: 14,
           ),
         ),
-
+        SizedBox(height: myPadding / 2),
         Row(
           children: [
-            Container(
-              margin: const EdgeInsets.only(top: myPadding / 2),
-              height: 45,
-              width: 45,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(myPadding / 2),
-
-                color: AppColors.secondarycolor,
-              ),
-              child: Text(
-                currentLoginInfo?.user?.personalInformation.phoneNumber!
-                        .substring(0, 2) ??
-                    '00',
-              ),
-            ),
             Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(
-                  left: myPadding / 2,
-                  top: myPadding / 2,
-                ),
-                height: 45,
-
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(myPadding / 2),
-
-                  color: AppColors.secondarycolor,
+              child: IntlPhoneField(
+                initialValue: currentLoginInfo?.user.phoneNumber ?? '',
+                enabled: false,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(myPadding / 2),
+                  ),
+                  fillColor: AppColors.secondarycolor,
+                  filled: true,
                 ),
               ),
             ),
@@ -154,8 +134,25 @@ class _ProfileOptionTabState extends State<ProfileOptionTab> {
             borderRadius: BorderRadius.circular(10),
             color: AppColors.secondarycolor,
           ),
+          child: Text(currentLoginInfo?.user.email ?? 'Email'),
+        ),
+
+        const SizedBox(height: myPadding),
+
+        TextButton(
+          onPressed: () async {
+            if (currentLoginInfo?.user != null) {
+              final navigator = Navigator.of(context);
+              await SharedPrefUtils.clearAll();
+
+              navigator.pushReplacementNamed(AuthenticationScreen.routename);
+            }
+          },
           child: Text(
-            currentLoginInfo?.user?.credentialDetails.email ?? 'Email',
+            StringData.logOut,
+            style: context.myTextTheme.titleMedium?.copyWith(
+              color: AppColors.errorTextcolor,
+            ),
           ),
         ),
       ],

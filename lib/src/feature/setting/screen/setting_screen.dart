@@ -1,6 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/setting/screen/payment_method_tab.dart';
 import 'package:city17/src/feature/setting/screen/profile_option_tab.dart';
 import 'package:flutter/material.dart';
 
@@ -66,8 +67,8 @@ class _FinanceScreenState extends State<SettingScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                ProfileOptionTab(),
-                Center(child: Text('shahzad')),
+                const ProfileOptionTab(),
+                const PaymentMethodTab(),
                 Center(child: Text('shahzad')),
               ],
             ),

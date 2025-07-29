@@ -31,6 +31,18 @@ class AuthDataSrc {
   //   return res;
   // }
 
+  Future devlogin() async {
+    final res = await APIServices.instance.request(
+      '/auth/dev',
+      DioMethod.post,
+      param: {
+        'id': '66a3771271117c91b6f9cbd3', // Luis
+      },
+    );
+
+    return res;
+  }
+
   Future deleteAccount() async {
     final res = await APIServices.instance.request(
       '/auth/delete',

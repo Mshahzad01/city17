@@ -7,7 +7,8 @@ class APIServices {
 
   static final APIServices instance = APIServices._singleton();
 
-  String get baseUrl => 'https://city17-production.up.railway.app/api/v1';
+  String get baseUrl =>
+      'http://192.168.1.14:5000'; //'https://city17-production.up.railway.app/api/v1';
 
   String get baseVersionUrl {
     return '$baseUrl/api/v1';
@@ -24,7 +25,7 @@ class APIServices {
     try {
       final dio = Dio(
         BaseOptions(
-          baseUrl: baseUrl,
+          baseUrl: baseVersionUrl,
 
           contentType: contentType ?? Headers.formUrlEncodedContentType,
         ),

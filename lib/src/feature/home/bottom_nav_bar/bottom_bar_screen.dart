@@ -1,8 +1,8 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
-import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/enum/bottom_bar_enum.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/core/utils/shared_pref_utils.dart';
 import 'package:city17/src/feature/finance/screen/finance_screen.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
 import 'package:city17/src/feature/setting/screen/setting_screen.dart';
@@ -46,29 +46,23 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
               children: [
                 Row(
                   children: [
-                    const CircleAvatar(
-                      backgroundImage: AssetImage(AssetString.userimage),
+                    CircleAvatar(
+                      backgroundImage: currentLoginInfo?.user.profilePic != null
+                          ? NetworkImage(currentLoginInfo!.user.profilePic)
+                          : null,
                       radius: 18,
                     ),
 
                     const SizedBox(width: myPadding),
 
                     Text(
-                      'Hi',
+                      currentLoginInfo?.user.name ?? 'Name',
                       style: context.myTextTheme.titleSmall?.copyWith(
                         color: AppColors.primaryTextcolor,
                         fontSize: 14,
                       ),
                     ),
-                    const SizedBox(width: 04),
 
-                    Text(
-                      'Ela',
-                      style: context.myTextTheme.titleSmall?.copyWith(
-                        color: AppColors.primaryTextcolor,
-                        fontSize: 14,
-                      ),
-                    ),
                     const Spacer(),
 
                     IconButton(

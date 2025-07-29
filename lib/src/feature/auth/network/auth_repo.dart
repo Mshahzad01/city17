@@ -9,6 +9,8 @@ abstract class _AuthRepo {
   Future<AuthResponse> authProfile();
 
   Future deleteAccount();
+
+  Future<AuthResponse> devAuth();
 }
 
 class AuthRepo implements _AuthRepo {
@@ -56,5 +58,16 @@ class AuthRepo implements _AuthRepo {
       return;
     }
     throw MyException(res.data['message']);
+  }
+
+  @override
+  Future<AuthResponse> devAuth() async {
+    final res = await _dataSrc.devlogin();
+    if (res.data['success'] as bool) {
+      return AuthResponse.fromMap(res.data);
+    }
+
+    final message = res.data['message'];
+    throw MyException(message);
   }
 }

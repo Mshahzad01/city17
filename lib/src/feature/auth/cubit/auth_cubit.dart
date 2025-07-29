@@ -32,7 +32,6 @@ class AuthCubit extends Cubit<AuthState> {
       );
 
       final idToken = await userCreds.user?.getIdToken();
-      debugPrint('ID Tokendddddddddddddd: $idToken');
 
       if (idToken == null) {
         emit(AuthAlert(message: 'ID Token in null'));
@@ -41,6 +40,19 @@ class AuthCubit extends Cubit<AuthState> {
       }
 
       final res = await _repo.signInWithGoogle(idToken);
+
+      await SharedPrefUtils.saveLoginInfo(res);
+
+      emit(AuthSuccess(authResponse: res));
+    } catch (e) {
+      emit(AuthAlert(message: e.toString()));
+      rethrow;
+    }
+  }
+
+  Future devAuth() async {
+    try {
+      final res = await _repo.devAuth();
 
       await SharedPrefUtils.saveLoginInfo(res);
 

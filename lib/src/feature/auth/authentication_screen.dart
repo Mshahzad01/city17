@@ -7,7 +7,7 @@ import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/utils/alert_utills.dart';
 import 'package:city17/src/feature/auth/cubit/auth_cubit.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
-import 'package:city17/src/feature/home/screen/home_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,19 +20,6 @@ class AuthenticationScreen extends StatefulWidget {
 }
 
 class _AuthenticationScreenState extends State<AuthenticationScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    // _dely();
-  }
-
-  Future<void> _dely() async {
-    final navigator = Navigator.of(context);
-    await Future.delayed(const Duration(seconds: 02));
-    navigator.pushReplacementNamed(BottomNavScreen.rotename);
-  }
-
   List<String> verticalTexts = const [
     'Decentralized Advertisement Network',
     'Dezentrales Werbenetzwerk',
@@ -51,68 +38,67 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: _listener,
         builder: (context, state) {
-          return SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: verticalTexts.map((text) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: text
-                            .split('')
-                            .map(
-                              (char) => Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 0.5,
-                                ),
-                                child: Text(
-                                  char,
-                                  style: context.myTextTheme.titleSmall
-                                      ?.copyWith(
-                                        color: AppColors.primaryTextcolor
-                                            .withValues(alpha: 0.1),
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: myPadding,
+              vertical: myPadding / 2,
+            ),
+            child: SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: verticalTexts.map((text) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: text
+                              .split('')
+                              .map(
+                                (char) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 0.5,
+                                  ),
+                                  child: Text(
+                                    char,
+                                    style: context.myTextTheme.titleSmall
+                                        ?.copyWith(
+                                          color: AppColors.primaryTextcolor
+                                              .withValues(alpha: 0.1),
 
-                                        fontSize: 12,
-                                      ),
+                                          fontSize: 12,
+                                        ),
+                                  ),
                                 ),
-                              ),
-                            )
-                            .toList(),
-                      );
-                    }).toList(),
+                              )
+                              .toList(),
+                        );
+                      }).toList(),
+                    ),
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Spacer(),
-                    Image.asset(AssetString.logo, height: 60, width: 150),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Spacer(),
+                      Image.asset(AssetString.logo, height: 60, width: 150),
 
-                    const SizedBox(height: 6),
-                    Text(
-                      'Display Manager',
-                      style: context.myTextTheme.titleLarge?.copyWith(
-                        fontSize: 12,
-                        color: AppColors.primaryTextcolor.withValues(
-                          alpha: 0.4,
+                      const SizedBox(height: 6),
+                      Text(
+                        'Display Manager',
+                        style: context.myTextTheme.titleLarge?.copyWith(
+                          fontSize: 12,
+                          color: AppColors.primaryTextcolor.withValues(
+                            alpha: 0.4,
+                          ),
                         ),
                       ),
-                    ),
-                    const Spacer(),
+                      const Spacer(),
 
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: myPadding / 1.5,
-                        right: myPadding / 1.5,
-                      ),
-
-                      child: CustomButton(
+                      CustomButton(
                         iconAtStart: true,
                         svgicon: AssetString.google,
                         title: StringData.signInWithGoogle,
@@ -121,38 +107,49 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                           context.read<AuthCubit>().signInWithGoogle();
                         },
                       ),
-                    ),
-                    const SizedBox(height: myPadding),
-                    Text(
-                      'By proceeding you accept all terms and conditions',
-                      style: context.myTextTheme.titleLarge?.copyWith(
-                        fontSize: 12,
-                        color: AppColors.primaryTextcolor,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                      if (kDebugMode)
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 10,
+                            horizontal: myPadding / 1.5,
+                            vertical: myPadding,
                           ),
-                          child: Text(
+
+                          child: CustomButton(
+                            iconAtStart: true,
+                            svgicon: AssetString.google,
+                            title: 'Dev auth',
+                            isLoading: state is AuthLoading && state.google,
+                            onPressed: context.read<AuthCubit>().devAuth,
+                          ),
+                        ),
+
+                      const SizedBox(height: myPadding),
+                      Text(
+                        'By proceeding you accept all terms and conditions',
+                        style: context.myTextTheme.titleLarge?.copyWith(
+                          fontSize: 12,
+                          color: AppColors.primaryTextcolor,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
                             'V1.0 M',
                             style: context.myTextTheme.titleLarge?.copyWith(
                               fontSize: 12,
                               color: Colors.grey.shade300,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -168,7 +165,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
     if (state is AuthSuccess) {
       Navigator.pushNamedAndRemoveUntil(
         context,
-        HomeScreen.routename,
+        BottomNavScreen.rotename,
         (route) => false,
       );
     }

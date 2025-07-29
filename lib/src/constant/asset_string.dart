@@ -29,4 +29,8 @@ mixin AssetString {
   static const google = 'assets/icon/google.svg';
   static const imageError = 'assets/icon/image_error_icon.svg';
   static const cameraIcon = 'assets/icon/cameraIcon.svg';
+  static const cashIcon = 'assets/icon/cashicon.svg';
+  static const bankIcon = 'assets/icon/bank.svg';
+  static const customCash = 'assets/icon/custom_cash.svg';
+  static const infromationCircle = 'assets/icon/information-circle.svg';
 }

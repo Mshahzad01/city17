@@ -5,7 +5,6 @@ import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/utils/shared_pref_utils.dart';
 import 'package:city17/src/feature/auth/authentication_screen.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
-import 'package:city17/src/feature/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,22 +19,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    // _dely();
+    getData();
   }
 
   Future getData() async {
     final nav = Navigator.of(context);
     final authRes = await SharedPrefUtils.getLoginInfo();
     nav.pushReplacementNamed(
-      authRes == null ? AuthenticationScreen.routename : HomeScreen.routename,
+      authRes == null
+          ? AuthenticationScreen.routename
+          : BottomNavScreen.rotename,
     );
-  }
-
-  Future<void> _dely() async {
-    final navigator = Navigator.of(context);
-    await Future.delayed(const Duration(seconds: 02));
-    navigator.pushReplacementNamed(BottomNavScreen.rotename);
   }
 
   List<String> verticalTexts = const [
@@ -85,8 +79,10 @@ class _SplashScreenState extends State<SplashScreen> {
               }).toList(),
             ),
           ),
+
           Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Spacer(),
               Image.asset(AssetString.logo, height: 60, width: 150),
@@ -102,13 +98,7 @@ class _SplashScreenState extends State<SplashScreen> {
               const Spacer(),
 
               const SizedBox(height: myPadding),
-              Text(
-                'By proceeding you accept all terms and conditions',
-                style: context.myTextTheme.titleLarge?.copyWith(
-                  fontSize: 12,
-                  color: AppColors.primaryTextcolor,
-                ),
-              ),
+
               const SizedBox(height: 4),
 
               Row(

@@ -82,4 +82,5 @@ mixin StringData {
   static const fullName = 'Full Name';
   static const email = 'Email';
   static const phoneNumber = 'Phone Number';
+  static const logOut = 'Logout';
 }

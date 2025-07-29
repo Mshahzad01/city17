@@ -1,0 +1,41 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+class PaymentHaddingWidget extends StatelessWidget {
+  const PaymentHaddingWidget({
+    Key? key,
+    required this.leadingIcon,
+    required this.title,
+    required this.onChanged,
+  }) : super(key: key);
+
+  final SvgPicture leadingIcon;
+  final String title;
+  final ValueChanged<bool> onChanged;
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 00),
+      minTileHeight: 00,
+      leading: leadingIcon,
+      title: Text(
+        title,
+        style: context.myTextTheme.titleSmall?.copyWith(fontSize: 14),
+      ),
+      trailing: Transform.scale(
+        alignment: Alignment.centerRight,
+        scale: 0.6,
+        child: const Switch(
+          focusColor: AppColors.primaryTextcolor,
+          inactiveThumbColor: AppColors.successTextcolor,
+
+          value: false,
+          onChanged: null,
+        ),
+      ),
+    );
+  }
+}

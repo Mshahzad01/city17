@@ -13,6 +13,8 @@ class CustomTextfield extends StatelessWidget {
     this.onChanged,
 
     this.suffixSVG,
+    this.bagroundColor,
+    this.keyboardType,
   });
 
   final String? hinttext;
@@ -24,12 +26,15 @@ class CustomTextfield extends StatelessWidget {
   final String? suffixSVG;
   final TextEditingController? controller;
 
+  final Color? bagroundColor;
+  final TextInputType? keyboardType;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       onChanged: onChanged,
-
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.only(
           left: myPadding,
@@ -38,7 +43,7 @@ class CustomTextfield extends StatelessWidget {
         ),
         hintText: hinttext,
         labelText: labeltext,
-        fillColor: AppColors.secondarycolor,
+        fillColor: bagroundColor ?? AppColors.secondarycolor,
         filled: true,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(myPadding)),
