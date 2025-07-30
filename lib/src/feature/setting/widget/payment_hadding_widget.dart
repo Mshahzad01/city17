@@ -10,11 +10,13 @@ class PaymentHaddingWidget extends StatelessWidget {
     required this.leadingIcon,
     required this.title,
     required this.onChanged,
+    required this.isSelected,
   }) : super(key: key);
 
   final SvgPicture leadingIcon;
   final String title;
   final ValueChanged<bool> onChanged;
+  final bool isSelected;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -28,12 +30,12 @@ class PaymentHaddingWidget extends StatelessWidget {
       trailing: Transform.scale(
         alignment: Alignment.centerRight,
         scale: 0.6,
-        child: const Switch(
+        child: Switch(
           focusColor: AppColors.primaryTextcolor,
           inactiveThumbColor: AppColors.successTextcolor,
 
-          value: false,
-          onChanged: null,
+          value: isSelected,
+          onChanged: onChanged,
         ),
       ),
     );

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:city17/src/core/utils/shared_pref_utils.dart';
 import 'package:dio/dio.dart';
 
 enum DioMethod { get, post, put, patch, delete }
@@ -7,8 +10,8 @@ class APIServices {
 
   static final APIServices instance = APIServices._singleton();
 
-  String get baseUrl =>
-      'http://192.168.1.14:5000'; //'https://city17-production.up.railway.app/api/v1';
+  String get baseUrl => 'https://city17-production.up.railway.app';
+  // 'http://192.168.1.14:5000';
 
   String get baseVersionUrl {
     return '$baseUrl/api/v1';
@@ -28,6 +31,11 @@ class APIServices {
           baseUrl: baseVersionUrl,
 
           contentType: contentType ?? Headers.formUrlEncodedContentType,
+          headers: {
+            if (currentLoginInfo != null && currentLoginInfo?.token != null)
+              HttpHeaders.authorizationHeader:
+                  'Bearer ${currentLoginInfo?.token}',
+          },
         ),
       );
 

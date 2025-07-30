@@ -1,5 +1,6 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
+import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -42,6 +43,7 @@ class CustomTextfield extends StatelessWidget {
           top: 05,
         ),
         hintText: hinttext,
+        hintStyle: context.myTextTheme.titleSmall?.copyWith(fontSize: 13),
         labelText: labeltext,
         fillColor: bagroundColor ?? AppColors.secondarycolor,
         filled: true,

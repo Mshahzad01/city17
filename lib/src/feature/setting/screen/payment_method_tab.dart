@@ -1,6 +1,8 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
+import 'package:city17/src/constant/string_data.dart';
+import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/component/custom_textfield.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/setting/widget/payment_hadding_widget.dart';
@@ -19,6 +21,9 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
   late TextEditingController _bankAccountNameController;
   late TextEditingController _bankRountingNumberController;
   late TextEditingController _bankAccountNumberController;
+  late TextEditingController _customAccounttitleController;
+  late TextEditingController _customInstructionController;
+  late TextEditingController _customlinkController;
 
   @override
   void initState() {
@@ -26,6 +31,9 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
     _bankAccountNameController = TextEditingController();
     _bankRountingNumberController = TextEditingController();
     _bankAccountNumberController = TextEditingController();
+    _customAccounttitleController = TextEditingController();
+    _customInstructionController = TextEditingController();
+    _customlinkController = TextEditingController();
 
     super.initState();
   }
@@ -37,9 +45,14 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
 
     _bankAccountNumberController.dispose();
     _bankRountingNumberController.dispose();
+    _customAccounttitleController.dispose();
+    _customInstructionController.dispose();
+    _customlinkController.dispose();
+
     super.dispose();
   }
 
+  bool isSeleted = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -56,7 +69,8 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
             color: AppColors.secondarycolor,
           ),
           child: PaymentHaddingWidget(
-            title: 'Cash',
+            isSelected: isSeleted,
+            title: StringData.cash,
             onChanged: (value) {},
             leadingIcon: SvgPicture.asset(AssetString.cashIcon),
           ),
@@ -76,7 +90,8 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
           child: Column(
             children: [
               PaymentHaddingWidget(
-                title: 'Bank',
+                isSelected: isSeleted,
+                title: StringData.bank,
                 onChanged: (value) {},
                 leadingIcon: SvgPicture.asset(AssetString.bankIcon),
               ),
@@ -87,7 +102,7 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
                 controller: _bankNameController,
                 bagroundColor: AppColors.primarycolor,
                 keyboardType: TextInputType.name,
-                hinttext: 'Bank Name',
+                hinttext: StringData.bankName,
               ),
               const SizedBox(height: myPadding),
 
@@ -95,7 +110,7 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
                 controller: _bankAccountNameController,
                 bagroundColor: AppColors.primarycolor,
                 keyboardType: TextInputType.name,
-                hinttext: 'Bank Account Name',
+                hinttext: StringData.bankAccountName,
               ),
               const SizedBox(height: myPadding),
 
@@ -103,7 +118,7 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
                 controller: _bankRountingNumberController,
                 bagroundColor: AppColors.primarycolor,
                 keyboardType: TextInputType.name,
-                hinttext: 'Rounting Number',
+                hinttext: StringData.rountingNumber,
               ),
 
               const SizedBox(height: myPadding),
@@ -111,7 +126,7 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
                 controller: _bankAccountNumberController,
                 bagroundColor: AppColors.primarycolor,
                 keyboardType: TextInputType.name,
-                hinttext: 'Bank Account Number',
+                hinttext: StringData.bankAccountNumber,
               ),
             ],
           ),
@@ -132,25 +147,35 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
           child: Column(
             children: [
               PaymentHaddingWidget(
+                isSelected: isSeleted,
                 leadingIcon: SvgPicture.asset(AssetString.customCash),
-                title: 'Custom Payment Option',
-                onChanged: (value) {},
+                title: StringData.customPaymentOption,
+                onChanged: (value) {
+                  setState(() {
+                    // isSeleted = value;
+                  });
+                },
               ),
 
-              // const SizedBox(height: myPadding / 2),
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 00),
                 minTileHeight: 00,
                 leading: SvgPicture.asset(AssetString.infromationCircle),
                 title: Text(
-                  'Add a custom payment option to your profile.This will allow your clients to pay using this custom payment option.',
+                  StringData
+                      .addaCustomPaymentOptiontoYourprofileThisWillAllowYourClintstoPayusingThisCustomPaymentOption,
                   style: context.myTextTheme.titleSmall?.copyWith(fontSize: 10),
                 ),
               ),
 
               ExpansionTile(
-                childrenPadding: const EdgeInsets.only(right: 08, left: 08),
-                tilePadding: const EdgeInsets.only(left: 08, right: 08),
+                childrenPadding: const EdgeInsets.symmetric(
+                  horizontal: myPadding / 2,
+                  vertical: myPadding / 2,
+                ),
+                tilePadding: const EdgeInsets.symmetric(
+                  horizontal: myPadding / 2,
+                ),
                 backgroundColor: AppColors.primarycolor,
 
                 shape: RoundedRectangleBorder(
@@ -158,30 +183,38 @@ class _PaymentMethodState extends State<PaymentMethodTab> {
                 ),
 
                 title: Text(
-                  'Add Custom Payment Option',
+                  StringData.addCustomPaymentOption,
                   style: context.myTextTheme.titleSmall,
                 ),
                 children: [
                   CustomTextfield(
-                    controller: _bankAccountNumberController,
+                    controller: _customAccounttitleController,
                     bagroundColor: AppColors.secondarycolor,
                     keyboardType: TextInputType.name,
-                    hinttext: 'Bank Account Number',
+                    hinttext: StringData.enterYourAccountTitleHere,
                   ),
-                  SizedBox(height: myPadding),
+                  const SizedBox(height: myPadding),
                   CustomTextfield(
-                    controller: _bankAccountNumberController,
+                    controller: _customInstructionController,
                     bagroundColor: AppColors.secondarycolor,
                     keyboardType: TextInputType.name,
-                    hinttext: 'Bank Account Number',
+                    hinttext: StringData.enterYourInstructionHere,
                   ),
-                  SizedBox(height: myPadding),
+                  const SizedBox(height: myPadding),
                   CustomTextfield(
-                    controller: _bankAccountNumberController,
+                    controller: _customlinkController,
                     bagroundColor: AppColors.secondarycolor,
                     keyboardType: TextInputType.name,
-                    hinttext: 'Bank Account Number',
+                    hinttext: StringData.enterTheLinkHere,
                   ),
+                  const SizedBox(height: myPadding),
+
+                  CustomButton(
+                    title: StringData.save,
+                    onPressed: () {},
+                    backgroundColor: AppColors.accentTextcolor,
+                  ),
+                  const SizedBox(height: myPadding),
                 ],
               ),
             ],

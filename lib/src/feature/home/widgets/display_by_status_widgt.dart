@@ -1,7 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
-import 'package:city17/src/feature/home/model/display_model.dart';
+import 'package:city17/src/feature/home/model/dumy_disply_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -96,7 +96,13 @@ class DisplaysByStatusWidget extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(width: 4),
-                              SvgPicture.asset(AssetString.arrowicon,colorFilter: const ColorFilter.mode(AppColors.successTextcolor, BlendMode.srcIn),),
+                              SvgPicture.asset(
+                                AssetString.arrowicon,
+                                colorFilter: const ColorFilter.mode(
+                                  AppColors.successTextcolor,
+                                  BlendMode.srcIn,
+                                ),
+                              ),
                             ],
                           ),
                         ),

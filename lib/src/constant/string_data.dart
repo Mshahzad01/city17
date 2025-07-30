@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 mixin StringData {
   static const incomeforcat = 'Income forecast';
 
@@ -83,4 +85,20 @@ mixin StringData {
   static const email = 'Email';
   static const phoneNumber = 'Phone Number';
   static const logOut = 'Logout';
+  static const addCustomPaymentOption = 'Add Custom Payment Option';
+  static const enterYourAccountTitleHere = 'Enter Your Account title here';
+  static const enterYourInstructionHere = 'Enter your insturction here';
+  static const enterTheLinkHere = 'Enter the link here';
+  static const save = 'Save';
+
+  static const customPaymentOption = 'Custom Payment Option';
+  static const addaCustomPaymentOptiontoYourprofileThisWillAllowYourClintstoPayusingThisCustomPaymentOption =
+      'Add a custom payment option to your profile.This will allow your clients to pay using this custom payment option.';
+
+  static const cash = 'Cash';
+  static const bank = 'Bank';
+  static const bankName = 'Bank Name';
+  static const bankAccountName = 'Bank Accout Name';
+  static const rountingNumber = 'Rounting Number';
+  static const bankAccountNumber = 'Bank Account Number';
 }

@@ -2,22 +2,16 @@ import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
-import 'package:city17/src/feature/home/model/display_model.dart';
+import 'package:city17/src/feature/home/model/business_model.dart';
+import 'package:city17/src/feature/home/model/dumy_disply_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../constant/asset_string.dart';
-import '../../location_setting/screen/location_setting.dart';
-import 'display_by_status_widgt.dart';
 
-class MangeBusiness extends StatefulWidget {
-  const MangeBusiness({super.key});
-
-  @override
-  State<MangeBusiness> createState() => _MangeBusinessState();
-}
-
-class _MangeBusinessState extends State<MangeBusiness> {
+class MangeBusiness extends StatelessWidget {
+  const MangeBusiness({super.key, required this.displayData});
+  final List<BusinessModel> displayData;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,9 +26,9 @@ class _MangeBusinessState extends State<MangeBusiness> {
       child: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: dumyDisplays.length,
+        itemCount: displayData.length,
         itemBuilder: (BuildContext context, int index) {
-          final data = dumyDisplays[index];
+          final data = displayData[index];
 
           return Container(
             padding: const EdgeInsets.all(02),
@@ -72,7 +66,8 @@ class _MangeBusinessState extends State<MangeBusiness> {
                         children: [
                           Expanded(
                             child: Text(
-                              data.address,
+                              '',
+                              //  data.addressModel.city, //address
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
 
@@ -87,13 +82,13 @@ class _MangeBusinessState extends State<MangeBusiness> {
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: InkWell(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      LocationSetting(data: data),
-                                ),
-                              ),
+                              // onTap: () => Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) =>
+                              //         LocationSetting(data: ),
+                              //   ),
+                              // ),
                               //LocationSetting(indexx: index),
                               child: SvgPicture.asset(AssetString.settingicon),
                             ),
@@ -101,7 +96,8 @@ class _MangeBusinessState extends State<MangeBusiness> {
                         ],
                       ),
                       Text(
-                        data.type.title,
+                        '',
+                        // data.displaySize, // Data type
                         style: context.myTextTheme.titleSmall,
                       ),
 
@@ -110,7 +106,8 @@ class _MangeBusinessState extends State<MangeBusiness> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            '• ${data.displaydumydata.length} Display',
+                            '',
+                            //'• ${data.displaydumydata.length} Display',
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.linkTextcolor,
                             ),
@@ -152,10 +149,10 @@ class _MangeBusinessState extends State<MangeBusiness> {
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(width: 1, color: x.color),
                       ),
-                      child: DisplaysByStatusWidget(
-                        status: x,
-                        displays: data.displaydumydata,
-                      ),
+                      // child: DisplaysByStatusWidget(
+                      //   status: x,
+                      //   displays: data.displaydumydata,
+                      // ),
                     );
                   }).toList(),
                 ),

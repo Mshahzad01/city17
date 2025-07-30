@@ -3,9 +3,9 @@ import 'package:city17/config/ongenerated_route.dart';
 import 'package:city17/firebase_options.dart';
 import 'package:city17/src/core/utils/shared_pref_utils.dart';
 import 'package:city17/src/feature/auth/cubit/auth_cubit.dart';
+import 'package:city17/src/feature/home/bussiness_cubit/bussiness_cubit.dart';
 import 'package:city17/src/feature/home/cubit/home_cubit.dart';
 import 'package:city17/src/feature/splash/splash_screen.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,6 +37,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(create: (_) => HomeCubit()),
         BlocProvider(create: (_) => AuthCubit()),
+        BlocProvider(create: (_) => BussinessCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
