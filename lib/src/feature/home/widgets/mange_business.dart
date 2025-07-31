@@ -6,6 +6,7 @@ import 'package:city17/src/feature/connect_display/screen/connect_display_screen
 import 'package:city17/src/feature/home/model/business_model.dart';
 import 'package:city17/src/feature/home/model/dumy_disply_model.dart';
 import 'package:city17/src/feature/home/widgets/display_by_status_widgt.dart';
+import 'package:city17/src/feature/location_setting/screen/location_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -90,14 +91,14 @@ class MangeBusiness extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: myPadding),
                             child: InkWell(
-                              // onTap: () => Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) =>
-                              //         LocationSetting(data: ),
-                              //   ),
-                              // ),
-                              //LocationSetting(indexx: index),
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      LocationSetting(data: data),
+                                ),
+                              ),
+                              // LocationSetting(indexx: index),
                               child: SvgPicture.asset(AssetString.settingicon),
                             ),
                           ),

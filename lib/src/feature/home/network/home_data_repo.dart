@@ -18,11 +18,6 @@ class HomeRepo implements _HomeRepo {
     LogUtils.printLog(['...........Busines Response', res.data]);
     if (res.data['success']) {
       if (res.data != null) {
-        LogUtils.printLog([
-          '...........Busines Response..............',
-          res.data,
-        ]);
-
         return List<BusinessModel>.from(
           res.data['businesses'].map((e) => BusinessModel.fromMap(e)),
         );

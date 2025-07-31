@@ -1,3 +1,4 @@
+import 'package:city17/src/feature/home/forcast_income/model/forcast_model.dart';
 import 'package:city17/src/feature/home/model/business_model.dart';
 
 abstract class BussinessState {
@@ -12,7 +13,7 @@ class BussinessInitilaState extends BussinessState {
 
 class BussinesLoadingState extends BussinessState {
   BussinesLoadingState({
-    required super.businessResponse,
+    super.businessResponse,
     this.loading = false,
     this.loaded = false,
     this.hasError = false,

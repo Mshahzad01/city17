@@ -31,81 +31,79 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<BussinessCubit, BussinessState>(
-        builder: (context, state) {
-          if (state is BussinesLoadingState &&
-              state.loading &&
-              state.businessResponse == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: myPadding, right: myPadding),
 
-          if (state is BussinesLoadingState && state.hasError) {
-            return Center(child: Text(state.message ?? ''));
-          }
-
-          if (state is BussinesLoadingState && state.loaded) {
-            final List<BusinessModel>? item = state.businessResponse;
-
-            if (item == null || item.isEmpty) {
-              return const Center(child: Text('No data available'));
-            }
-
-            return SafeArea(
-              child: ListView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: myPadding,
-                      right: myPadding,
-                    ),
+                  const IncomForcast(),
+                  const SizedBox(height: myPadding / 2),
 
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const IncomForcast(),
-                        const SizedBox(height: myPadding / 2),
+                  Text('Panding Action', style: context.myTextTheme.titleLarge),
 
-                        Text(
-                          'Panding Action',
-                          style: context.myTextTheme.titleLarge,
-                        ),
+                  const PandingAcction(),
+                  const SizedBox(height: myPadding / 2),
 
-                        const PandingAcction(),
-                        const SizedBox(height: myPadding / 2),
-                        Text(
-                          'Manage Business',
-                          style: context.myTextTheme.titleLarge,
-                        ),
-                        const SizedBox(height: myPadding / 2),
+                  Text(
+                    'Manage Business',
+                    style: context.myTextTheme.titleLarge,
+                  ),
 
-                        MangeBusiness(displayData: item),
-                        const SizedBox(height: myPadding / 2),
+                  const SizedBox(height: myPadding / 2),
 
-                        SizedBox(
-                          height: 50,
-                          child: CustomButton(
-                            mixumHeight: 50,
-                            title: StringData.addaDisplayLocation,
+                  BlocBuilder<BussinessCubit, BussinessState>(
+                    builder: (context, state) {
+                      if (state is BussinesLoadingState &&
+                          state.loading &&
+                          state.businessResponse == null) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
 
-                            svgicon: AssetString.addoutline,
-                            iconcolor: Colors.grey,
-                            onPressed: () {
-                              showmodelbottomshett(context);
-                            },
-                          ),
-                        ),
+                      if (state is BussinesLoadingState && state.hasError) {
+                        return Center(child: Text(state.message ?? ''));
+                      }
 
-                        const SizedBox(height: myPadding / 2),
-                      ],
+                      if (state is BussinesLoadingState && state.loaded) {
+                        final List<BusinessModel>? item =
+                            state.businessResponse;
+
+                        if (item == null || item.isEmpty) {
+                          return const Center(child: Text('No data available'));
+                        }
+
+                        return MangeBusiness(displayData: item);
+                      }
+
+                      return SizedBox();
+                    },
+                  ),
+
+                  const SizedBox(height: myPadding / 2),
+
+                  SizedBox(
+                    height: 50,
+                    child: CustomButton(
+                      mixumHeight: 50,
+                      title: StringData.addaDisplayLocation,
+
+                      svgicon: AssetString.addoutline,
+                      iconcolor: Colors.grey,
+                      onPressed: () {
+                        showmodelbottomshett(context);
+                      },
                     ),
                   ),
+
+                  const SizedBox(height: myPadding / 2),
                 ],
               ),
-            );
-          }
-
-          return SizedBox();
-        },
+            ),
+          ],
+        ),
       ),
     );
   }

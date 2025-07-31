@@ -4,6 +4,7 @@ import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
+import 'package:city17/src/feature/home/model/business_model.dart';
 import 'package:city17/src/feature/home/model/dumy_disply_model.dart';
 import 'package:city17/src/feature/location_setting/widget/add_business_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,10 @@ import 'package:flutter/material.dart';
 import '../../home/widgets/display_by_status_widgt.dart';
 
 class LocationSetting extends StatefulWidget {
-  final DisplayLocationModel data;
   static const routename = '/locationsetting';
   const LocationSetting({super.key, required this.data});
+
+  final BusinessModel data;
 
   @override
   State<LocationSetting> createState() => _LocationSettingState();
@@ -27,7 +29,7 @@ class _LocationSettingState extends State<LocationSetting> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Location Settings',
+          StringData.locationSetting,
           style: context.myTextTheme.titleMedium?.copyWith(fontSize: 18),
         ),
         centerTitle: true,
@@ -40,11 +42,13 @@ class _LocationSettingState extends State<LocationSetting> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //add business name address and type
+              // add business name address and type
               AddBusinessWidget(
-                address: widget.data.address,
+                address:
+                    widget.data.address?.formattedAddress ??
+                    'Address Not Found ',
                 bsname: widget.data.name,
-                type: widget.data.type.title,
+                type: widget.data.category,
               ),
 
               // ad Binding Offer
@@ -183,7 +187,8 @@ class _LocationSettingState extends State<LocationSetting> {
                       children: [
                         Expanded(
                           child: Text(
-                            widget.data.address,
+                            '',
+                            // widget.data.address,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
 
@@ -196,22 +201,21 @@ class _LocationSettingState extends State<LocationSetting> {
                         ),
                       ],
                     ),
-                    Text(
-                      widget.data.type.title,
-                      style: context.myTextTheme.titleSmall,
-                    ),
 
+                    // Text(
+                    //   widget.data.type.title,
+                    //   style: context.myTextTheme.titleSmall,
+                    // ),
                     const SizedBox(height: 05),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          '• ${widget.data.displaydumydata.length} Display',
-                          style: context.myTextTheme.titleSmall?.copyWith(
-                            color: AppColors.linkTextcolor,
-                          ),
-                        ),
-
+                        // Text(
+                        //   '• ${widget.data.displaydumydata.length} Display',
+                        //   style: context.myTextTheme.titleSmall?.copyWith(
+                        //     color: AppColors.linkTextcolor,
+                        //   ),
+                        // ),
                         Text(
                           '• ert online',
 

@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:image_picker/image_picker.dart';
+
 enum IncomeType {
   day,
   week,
@@ -74,4 +77,10 @@ class ChartData {
   final double value;
 
   ChartData(this.day, this.value);
+}
+
+class newModel {
+  final String image;
+  final XFile Image;
+  newModel({required this.image, required this.Image});
 }

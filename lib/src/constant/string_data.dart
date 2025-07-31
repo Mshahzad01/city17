@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 mixin StringData {
   static const incomeforcat = 'Income forecast';
 
@@ -101,4 +99,6 @@ mixin StringData {
   static const bankAccountName = 'Bank Accout Name';
   static const rountingNumber = 'Rounting Number';
   static const bankAccountNumber = 'Bank Account Number';
+
+  static const locationSetting = 'Location Settings';
 }
