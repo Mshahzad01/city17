@@ -253,7 +253,8 @@ class _LocationSettingState extends State<LocationSetting> {
                         children: [
                           DisplaysByStatusWidget(
                             status: DisplayStatus.online,
-                            displays: widget.data.displaydumydata,
+                            displays: [],
+                            // displays: widget.data.displaydumydata,
                           ),
                         ],
                       ),
@@ -276,7 +277,8 @@ class _LocationSettingState extends State<LocationSetting> {
                         children: [
                           DisplaysByStatusWidget(
                             status: DisplayStatus.offline,
-                            displays: widget.data.displaydumydata,
+                            displays: [],
+                            // displays: widget.data.displaydumydata,
                           ),
                         ],
                       ),
@@ -301,7 +303,8 @@ class _LocationSettingState extends State<LocationSetting> {
                         children: [
                           DisplaysByStatusWidget(
                             status: DisplayStatus.draft,
-                            displays: widget.data.displaydumydata,
+                            displays: [],
+                            // displays: widget.data.displaydumydata,
                           ),
                         ],
                       ),

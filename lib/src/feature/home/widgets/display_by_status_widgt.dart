@@ -1,6 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/home/model/displays_model.dart';
 import 'package:city17/src/feature/home/model/dumy_disply_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,11 +14,13 @@ class DisplaysByStatusWidget extends StatelessWidget {
   });
 
   final DisplayStatus status;
-  final List<Display> displays;
+  final List<DisplaysModel> displays;
 
   @override
   Widget build(BuildContext context) {
-    final requiredDisplays = displays.where((e) => e.status == status);
+    // final requiredDisplays = displays.where((e) => e.displays == status);
+
+    final requiredDisplys = displays.where((e) => e.isOnline == true);
 
     return Column(
       children: [
@@ -34,7 +37,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
 
         Column(
           children: [
-            ...requiredDisplays.map(
+            ...requiredDisplys.map(
               (x) => Container(
                 height: 50,
                 margin: const EdgeInsets.only(top: 8, bottom: 5),
@@ -56,7 +59,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          x.time.toString(),
+                          x.displaySize.toString(),
                           style: context.myTextTheme.titleSmall?.copyWith(
                             fontSize: 10,
                             color: Colors.white.withValues(alpha: 0.3),
@@ -66,12 +69,12 @@ class DisplaysByStatusWidget extends StatelessWidget {
                         SvgPicture.asset(AssetString.growthicon),
                         const SizedBox(width: 5),
                         Text(
-                          x.uptime.toString(),
+                          x.isOnline.toString(),
                           style: context.myTextTheme.titleSmall,
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          '\$ ${x.revenue}',
+                          x.displaySize.toString(),
                           style: context.myTextTheme.titleSmall,
                         ),
                         const SizedBox(width: 10),
@@ -89,7 +92,7 @@ class DisplaysByStatusWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                '${x.growth}',
+                                x.displaySize.toString(),
                                 style: context.myTextTheme.titleSmall?.copyWith(
                                   color: AppColors.successTextcolor,
                                   fontSize: 8,

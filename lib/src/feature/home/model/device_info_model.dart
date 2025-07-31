@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class DeviceInfoModel {
   final String id;
@@ -10,9 +12,8 @@ class DeviceInfoModel {
   final String type;
 
   final bool isPhysicalDevice;
-  final DisplyMetrics displyMetrics;
-  final int serialNumber;
 
+  final int serialNumber;
   DeviceInfoModel({
     required this.id,
     required this.brand,
@@ -23,20 +24,72 @@ class DeviceInfoModel {
     required this.product,
     required this.type,
     required this.isPhysicalDevice,
-    required this.displyMetrics,
+
     required this.serialNumber,
   });
-}
 
-class DisplyMetrics {
-  final double widthPx;
-  final double heightPx;
-  final double xDpi;
-  final double yDpi;
-  DisplyMetrics({
-    required this.widthPx,
-    required this.heightPx,
-    required this.xDpi,
-    required this.yDpi,
-  });
+  DeviceInfoModel copyWith({
+    String? id,
+    String? brand,
+    String? device,
+    String? disply,
+    String? manufacturer,
+    String? model,
+    String? product,
+    String? type,
+    bool? isPhysicalDevice,
+
+    int? serialNumber,
+  }) {
+    return DeviceInfoModel(
+      id: id ?? this.id,
+      brand: brand ?? this.brand,
+      device: device ?? this.device,
+      disply: disply ?? this.disply,
+      manufacturer: manufacturer ?? this.manufacturer,
+      model: model ?? this.model,
+      product: product ?? this.product,
+      type: type ?? this.type,
+      isPhysicalDevice: isPhysicalDevice ?? this.isPhysicalDevice,
+
+      serialNumber: serialNumber ?? this.serialNumber,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'brand': brand,
+      'device': device,
+      'disply': disply,
+      'manufacturer': manufacturer,
+      'model': model,
+      'product': product,
+      'type': type,
+      'isPhysicalDevice': isPhysicalDevice,
+
+      'serialNumber': serialNumber,
+    };
+  }
+
+  factory DeviceInfoModel.fromMap(Map<String, dynamic> map) {
+    return DeviceInfoModel(
+      id: map['id'] as String,
+      brand: map['brand'] as String,
+      device: map['device'] as String,
+      disply: map['disply'] as String,
+      manufacturer: map['manufacturer'] as String,
+      model: map['model'] as String,
+      product: map['product'] as String,
+      type: map['type'] as String,
+      isPhysicalDevice: map['isPhysicalDevice'] as bool,
+
+      serialNumber: map['serialNumber'] as int,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory DeviceInfoModel.fromJson(String source) =>
+      DeviceInfoModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

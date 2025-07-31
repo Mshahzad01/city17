@@ -16,7 +16,7 @@ class DisplaysModel {
   final DateTime lastHeartbeat;
   final String userId;
   final bool hasownAdvertisement;
-  final DeviceInfo deviceInfo;
+  final DeviceInfo? deviceInfo;
   final String firebaseId;
   final bool isOnline;
   final AddressModel? addressModel;
@@ -37,7 +37,7 @@ class DisplaysModel {
     required this.deviceInfo,
     required this.firebaseId,
     required this.isOnline,
-     this.addressModel,
+    this.addressModel,
     required this.ownadvertisments,
     required this.createdAt,
     required this.updatedAt,
@@ -86,7 +86,7 @@ class DisplaysModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
+      '_id': id,
       'name': name,
       'loaction': loaction,
       'layout': enumToString(layout),
@@ -95,7 +95,7 @@ class DisplaysModel {
       'lastHeartbeat': lastHeartbeat.millisecondsSinceEpoch,
       'userId': userId,
       'hasownAdvertisement': hasownAdvertisement,
-      'deviceInfo': deviceInfo.toMap(),
+      'deviceInfo': deviceInfo?.toMap(),
       'firebaseId': firebaseId,
       'isOnline': isOnline,
       'addressModel': addressModel?.toMap(),
@@ -106,40 +106,50 @@ class DisplaysModel {
     };
   }
 
-  factory DisplaysModel.fromMap(Map<String, dynamic> map) {
+  static DisplaysModel? fromMap(Map<String, dynamic>? map) {
+    if (map == null || map.isEmpty) {
+      return null;
+    }
+    //factory DisplaysModel.fromMap(Map<String, dynamic> map) {
     return DisplaysModel(
-      id: map['id'],
-      name: map['name'],
-      loaction: map['loaction'],
+      id: map['_id'] ?? '',
+      name: map['name'] ?? '',
+      loaction: map['loaction'] ?? '',
       layout:
           enumFromString(map['layout'], LayoutEnum.values) ??
           LayoutEnum.horizantal,
-      displaySize: map['displaySize'],
-      businessId: map['businessId'],
-      lastHeartbeat: DateTime.fromMillisecondsSinceEpoch(map['lastHeartbeat']),
-      userId: map['userId'],
-      hasownAdvertisement: map['hasownAdvertisement'],
-      deviceInfo: DeviceInfo.fromMap(map['deviceInfo']),
-      firebaseId: map['firebaseId'],
-      isOnline: map['isOnline'],
+      displaySize: (map['displaySize'] ?? 20).toDouble(),
+      businessId: map['businessId'] ?? '',
+      lastHeartbeat:
+          DateTime.tryParse(map['lastHeartbeat']?.toString() ?? '') ??
+          DateTime.now(),
+      userId: map['userId'] ?? '',
+      hasownAdvertisement: map['hasownAdvertisement'] ?? false,
+      deviceInfo: map['deviceInfo'] != null
+          ? DeviceInfo.fromMap(map['deviceInfo'])
+          : null,
+      firebaseId: map['firebaseId'] ?? '',
+      isOnline: map['isOnline'] ?? false,
       addressModel: map['addressModel'] != null
-          ? AddressModel.fromMap(map['addressModel']):null,
-      
-      ownadvertisments: List<OwnAdvertismentsModel>.from(
-        (map['ownadvertisments'] as List<int>).map<OwnAdvertismentsModel>(
-          (x) => OwnAdvertismentsModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      createdAt: map['createdAt'],
-      updatedAt: map['updatedAt'],
-      image: map['image'],
+          ? AddressModel.fromMap(map['addressModel'])
+          : null,
+      ownadvertisments: map['ownadvertisments'] != null
+          ? List<OwnAdvertismentsModel>.from(
+              (map['ownadvertisments'] as List).map(
+                (x) => OwnAdvertismentsModel.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : [],
+      createdAt: map['createdAt'] ?? '',
+      updatedAt: map['updatedAt'] ?? '',
+      image: map['image'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory DisplaysModel.fromJson(String source) =>
-      DisplaysModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  //   factory DisplaysModel.fromJson(String source) =>
+  //       DisplaysModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class OwnAdvertismentsModel {
@@ -200,5 +210,3 @@ class LastHeartbeatConfig {
     required this.offlineNotficationSentAt,
   });
 }
-
-

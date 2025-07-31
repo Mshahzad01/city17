@@ -1,9 +1,11 @@
 import 'package:city17/src/constant/app_color.dart';
+import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
 import 'package:city17/src/feature/home/model/business_model.dart';
 import 'package:city17/src/feature/home/model/dumy_disply_model.dart';
+import 'package:city17/src/feature/home/widgets/display_by_status_widgt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,12 +17,15 @@ class MangeBusiness extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 05),
+      padding: const EdgeInsets.symmetric(
+        horizontal: myPadding / 2,
+        vertical: myPadding / 2,
+      ),
       decoration: const BoxDecoration(
         color: AppColors.secondarycolor,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
+          topLeft: Radius.circular(myPadding / 2),
+          topRight: Radius.circular(myPadding / 2),
         ),
       ),
       child: ListView.builder(
@@ -31,10 +36,9 @@ class MangeBusiness extends StatelessWidget {
           final data = displayData[index];
 
           return Container(
-            padding: const EdgeInsets.all(02),
-            margin: const EdgeInsets.only(top: 05, bottom: 05),
+            margin: const EdgeInsets.symmetric(vertical: myPadding / 3),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(myPadding / 2),
 
               color: AppColors.primarycolor,
             ),
@@ -43,12 +47,16 @@ class MangeBusiness extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ExpansionTile(
-                  childrenPadding: const EdgeInsets.only(right: 08, left: 08),
-                  tilePadding: const EdgeInsets.only(left: 08, right: 08),
+                  childrenPadding: const EdgeInsets.symmetric(
+                    horizontal: myPadding / 2,
+                  ),
+                  tilePadding: const EdgeInsets.symmetric(
+                    horizontal: myPadding / 2,
+                  ),
                   backgroundColor: AppColors.primarycolor,
                   iconColor: AppColors.primarycolor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(myPadding),
                   ),
 
                   showTrailingIcon: false,
@@ -66,7 +74,8 @@ class MangeBusiness extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                                data.address?.formattedAddress ?? 'Address not available', 
+                              data.address?.formattedAddress ??
+                                  'Address not available',
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
 
@@ -79,7 +88,7 @@ class MangeBusiness extends StatelessWidget {
                           ),
 
                           Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                            padding: const EdgeInsets.only(left: myPadding),
                             child: InkWell(
                               // onTap: () => Navigator.push(
                               //   context,
@@ -94,18 +103,13 @@ class MangeBusiness extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(
-                     
-                         data.category, // Data type
-                        style: context.myTextTheme.titleSmall,
-                      ),
 
-                      const SizedBox(height: 05),
+                      const SizedBox(height: myPadding / 3),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '',
+                            data.category,
                             //'• ${data.displaydumydata.length} Display',
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.linkTextcolor,
@@ -113,8 +117,8 @@ class MangeBusiness extends StatelessWidget {
                           ),
 
                           Text(
+                            //data.displays?.businessId ?? 'null',
                             '• ert online',
-
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.successTextcolor,
                             ),
@@ -148,10 +152,10 @@ class MangeBusiness extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(width: 1, color: x.color),
                       ),
-                      // child: DisplaysByStatusWidget(
-                      //   status: x,
-                      //   displays: data.displaydumydata,
-                      // ),
+                      child: DisplaysByStatusWidget(
+                        status: x,
+                        displays: data.displays,
+                      ),
                     );
                   }).toList(),
                 ),
