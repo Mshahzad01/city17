@@ -1,84 +1,90 @@
 import 'dart:convert';
 
+
+
 class AddressModel {
-  final String formattedAddress;
-  final double latitude;
-  final double logitude;
-  final String country;
-
-  final String isoCode;
-  final String state;
-
-  final String city;
-
-  final List<double> coordinates;
-  final String type;
   AddressModel({
     required this.formattedAddress,
     required this.latitude,
-    required this.logitude,
+    required this.longitude,
     required this.country,
     required this.isoCode,
     required this.state,
     required this.city,
     required this.coordinates,
-    required this.type,
   });
+
+  static AddressModel? fromMap(map) {
+    if (map == null || map.isEmpty) {
+      return null;
+    }
+
+
+
+
+
+    if ([map['coordinates'], map['latitude'], map['longitude']]
+        .contains(null)) {
+      return null;
+    }
+
+    return AddressModel(
+      formattedAddress: map['formattedAddress'] ?? '',
+      latitude: map['latitude'] ?? 0.0,
+      longitude: map['longitude'] ?? 0.0,
+      country: map['country'] ?? '',
+      isoCode: map['isoCode'] ?? '',
+      state: map['state'] ?? '',
+      city: map['city'] ?? '',
+      coordinates: List<num>.from(map['coordinates']),
+    );
+  }
+
+  final String formattedAddress;
+  final num latitude;
+  final num longitude;
+  final String country;
+  final String isoCode;
+  final String state;
+  final String city;
+  final List<num> coordinates;
 
   AddressModel copyWith({
     String? formattedAddress,
     double? latitude,
-    double? logitude,
+    double? longitude,
     String? country,
     String? isoCode,
     String? state,
     String? city,
-    List<double>? coordinates,
-    String? type,
+    List<num>? coordinates,
   }) {
     return AddressModel(
       formattedAddress: formattedAddress ?? this.formattedAddress,
       latitude: latitude ?? this.latitude,
-      logitude: logitude ?? this.logitude,
+      longitude: longitude ?? this.longitude,
       country: country ?? this.country,
       isoCode: isoCode ?? this.isoCode,
       state: state ?? this.state,
       city: city ?? this.city,
       coordinates: coordinates ?? this.coordinates,
-      type: type ?? this.type,
     );
   }
+
+ // LatLng get latLng => LatLng(latitude.toDouble(), longitude.toDouble());
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'formattedAddress': formattedAddress,
       'latitude': latitude,
-      'logitude': logitude,
+      'longitude': longitude,
       'country': country,
       'isoCode': isoCode,
       'state': state,
       'city': city,
       'coordinates': coordinates,
-      'type': type,
     };
   }
 
-  factory AddressModel.fromMap(Map<String, dynamic> map) {
-    return AddressModel(
-      formattedAddress: map['formattedAddress'] as String,
-      latitude: map['latitude'] as double,
-      logitude: map['logitude'] as double,
-      country: map['country'] as String,
-      isoCode: map['isoCode'] as String,
-      state: map['state'] as String,
-      city: map['city'] as String,
-      coordinates: List<double>.from((map['coordinates'] as List<double>)),
-      type: map['type'] as String,
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory AddressModel.fromJson(String source) =>
-      AddressModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

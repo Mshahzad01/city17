@@ -66,8 +66,7 @@ class MangeBusiness extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              '',
-                              //  data.addressModel.city, //address
+                                data.address?.formattedAddress ?? 'Address not available', 
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
 
@@ -96,8 +95,8 @@ class MangeBusiness extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        '',
-                        // data.displaySize, // Data type
+                     
+                         data.category, // Data type
                         style: context.myTextTheme.titleSmall,
                       ),
 

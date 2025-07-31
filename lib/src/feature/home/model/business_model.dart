@@ -5,31 +5,31 @@ import 'package:city17/src/feature/home/model/address_model.dart';
 class BusinessModel {
   final String id;
   final String name;
-  //  final AddressModel addressModel;
+    final AddressModel? address;
 
   final String category;
-  // final DateTime createdAt;
+   final DateTime createdAt;
   BusinessModel({
     required this.id,
     required this.name,
-    // required this.addressModel,
+    this.address,
     required this.category,
-    // required this.createdAt,
+   required this.createdAt,
   });
 
   BusinessModel copyWith({
     String? id,
     String? name,
-    AddressModel? addressModel,
+    AddressModel? address,
     String? category,
     DateTime? createdAt,
   }) {
     return BusinessModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      //  addressModel: addressModel ?? this.addressModel,
+        address: address?? this.address,
       category: category ?? this.category,
-      // createdAt: createdAt ?? this.createdAt,
+       createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -37,9 +37,9 @@ class BusinessModel {
     return <String, dynamic>{
       '_id': id,
       'name': name,
-      // 'addressModel': addressModel.toMap(),
+       'address': address?.toMap(),
       'category': category,
-      // 'createdAt': createdAt.millisecondsSinceEpoch,
+       'createdAt': createdAt.millisecondsSinceEpoch,
     };
   }
 
@@ -55,11 +55,11 @@ class BusinessModel {
 
   factory BusinessModel.fromMap(Map<String, dynamic> map) {
     return BusinessModel(
-      id: map['_id'] ?? '',
-      name: map['name'] ?? '',
-      //  addressModel: AddressModel.fromMap(map['addressModel']),
-      category: map['category'] ?? '',
-      //createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] ?? 24),
+      id: map['_id'] ,
+      name: map['name'] ,
+       address: map['address'] != null ? AddressModel.fromMap(map['address']) : null,
+      category: map['category'],
+    createdAt: DateTime.tryParse(map['createdAt']) ?? DateTime.now(),
     );
   }
 
@@ -68,3 +68,7 @@ class BusinessModel {
   factory BusinessModel.fromJson(String source) =>
       BusinessModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
+
+
+
+

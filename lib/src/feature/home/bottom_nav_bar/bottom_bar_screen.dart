@@ -41,7 +41,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           preferredSize: const Size.fromHeight(myPadding / 2),
 
           child: Padding(
-            padding: const EdgeInsets.only(left: myPadding / 2),
+            padding: const EdgeInsets.symmetric(horizontal: myPadding),
             child: Column(
               children: [
                 Row(
@@ -56,19 +56,22 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                     const SizedBox(width: myPadding),
 
                     Text(
-                      currentLoginInfo?.user.name ?? 'Name',
+                      currentLoginInfo!.user.name.length > 20 ? '${currentLoginInfo?.user.name.substring(0, 20)}...' : 'name',
+                      overflow: TextOverflow.ellipsis,
                       style: context.myTextTheme.titleSmall?.copyWith(
                         color: AppColors.primaryTextcolor,
                         fontSize: 14,
                       ),
                     ),
 
-                    const Spacer(),
+                   const Spacer(),
 
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.notifications),
-                    ),
+           
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.notifications),
+                      ),
+                   
                   ],
                 ),
 

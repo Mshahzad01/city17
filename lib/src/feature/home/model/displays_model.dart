@@ -19,7 +19,7 @@ class DisplaysModel {
   final DeviceInfo deviceInfo;
   final String firebaseId;
   final bool isOnline;
-  final AddressModel addressModel;
+  final AddressModel? addressModel;
   final List<OwnAdvertismentsModel> ownadvertisments;
   final String createdAt;
   final String updatedAt;
@@ -37,7 +37,7 @@ class DisplaysModel {
     required this.deviceInfo,
     required this.firebaseId,
     required this.isOnline,
-    required this.addressModel,
+     this.addressModel,
     required this.ownadvertisments,
     required this.createdAt,
     required this.updatedAt,
@@ -98,7 +98,7 @@ class DisplaysModel {
       'deviceInfo': deviceInfo.toMap(),
       'firebaseId': firebaseId,
       'isOnline': isOnline,
-      'addressModel': addressModel.toMap(),
+      'addressModel': addressModel?.toMap(),
       'ownadvertisments': ownadvertisments.map((x) => x.toMap()).toList(),
       'createdAt': createdAt,
       'updatedAt': updatedAt,
@@ -122,9 +122,9 @@ class DisplaysModel {
       deviceInfo: DeviceInfo.fromMap(map['deviceInfo']),
       firebaseId: map['firebaseId'],
       isOnline: map['isOnline'],
-      addressModel: AddressModel.fromMap(
-        map['addressModel'] as Map<String, dynamic>,
-      ),
+      addressModel: map['addressModel'] != null
+          ? AddressModel.fromMap(map['addressModel']):null,
+      
       ownadvertisments: List<OwnAdvertismentsModel>.from(
         (map['ownadvertisments'] as List<int>).map<OwnAdvertismentsModel>(
           (x) => OwnAdvertismentsModel.fromMap(x as Map<String, dynamic>),
@@ -200,3 +200,5 @@ class LastHeartbeatConfig {
     required this.offlineNotficationSentAt,
   });
 }
+
+
