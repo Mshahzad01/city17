@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:city17/src/feature/advert_offer/enum/payment_frequency_enum.dart';
 import 'package:city17/src/feature/advert_offer/enum/status_enum.dart';
 import 'package:intl/intl.dart';

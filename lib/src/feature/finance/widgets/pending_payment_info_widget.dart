@@ -27,7 +27,7 @@ class PendingPaymentInfoWidget extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.only(left: myPadding / 2, right: myPadding / 2),
-      margin: EdgeInsets.only(top: myPadding / 3),
+      margin: const EdgeInsets.only(top: myPadding / 3),
       height: 40,
       width: double.infinity,
       decoration: BoxDecoration(

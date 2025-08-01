@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:city17/src/feature/home/forcast_income/model/forcast_model.dart';
 import 'package:city17/src/feature/home/model/income_model.dart';
 

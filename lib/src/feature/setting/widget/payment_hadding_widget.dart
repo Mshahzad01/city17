@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +5,12 @@ import 'package:flutter_svg/svg.dart';
 
 class PaymentHaddingWidget extends StatelessWidget {
   const PaymentHaddingWidget({
-    Key? key,
+    super.key,
     required this.leadingIcon,
     required this.title,
     required this.onChanged,
     required this.isSelected,
-  }) : super(key: key);
+  });
 
   final SvgPicture leadingIcon;
   final String title;

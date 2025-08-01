@@ -1,3 +1,5 @@
+import 'package:city17/src/constant/app_constants.dart';
+import 'package:city17/src/core/component/custom_textfield.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:flutter/material.dart';
 
@@ -53,19 +55,11 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 'Add a display location',
                 style: context.myTextTheme.titleMedium,
               ),
-              const SizedBox(height: 16),
-
-              TextFormField(
+              const SizedBox(height: myPadding / 2),
+              CustomTextfield(
                 controller: _nameContoller,
-                decoration: InputDecoration(
-                  hintText: 'Business Name',
-                  filled: true,
-                  fillColor: AppColors.secondarycolor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                hinttext: 'Business Name',
+                bagroundColor: AppColors.secondarycolor,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Business name is required';
@@ -74,19 +68,11 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 },
               ),
 
-              const SizedBox(height: 10),
-
-              TextFormField(
+              const SizedBox(height: myPadding / 2),
+              CustomTextfield(
                 controller: _addresscontroller,
-                decoration: InputDecoration(
-                  hintText: 'Business Address',
-                  filled: true,
-                  fillColor: AppColors.secondarycolor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                hinttext: 'Business Address',
+                bagroundColor: AppColors.secondarycolor,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Address is required';
@@ -95,22 +81,14 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 },
               ),
 
-              const SizedBox(height: 10),
-
-              TextFormField(
+              const SizedBox(height: myPadding / 2),
+              CustomTextfield(
                 controller: _businesscatorycontroller,
-                decoration: InputDecoration(
-                  hintText: 'Business Category',
-                  filled: true,
-                  fillColor: AppColors.secondarycolor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                hinttext: 'Business Category',
+                bagroundColor: AppColors.secondarycolor,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Business is  required';
+                    return 'Category is required';
                   }
                   return null;
                 },
@@ -118,21 +96,23 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
 
               const SizedBox(height: 15),
 
-              Align(
-                alignment: Alignment.bottomRight,
-                child: TextButton(
-                  onPressed: () {
-                    if (_formkey.currentState!.validate()) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: Text(
-                    'Add',
-                    style: context.myTextTheme.bodyMedium?.copyWith(
-                      color: AppColors.accentTextcolor,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      if (_formkey.currentState!.validate()) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Text(
+                      'Add',
+                      style: context.myTextTheme.bodyMedium?.copyWith(
+                        color: AppColors.accentTextcolor,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ],
           ),

@@ -8,4 +8,12 @@ class HomeDataSrc {
     );
     return res;
   }
+
+  Future getData(String businessId) async {
+    final res = await APIServices.instance.request(
+      '/seller/display-overview/$businessId', // <-- yeh correct hai
+      DioMethod.get,
+    );
+    return res;
+  }
 }

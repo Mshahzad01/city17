@@ -8,7 +8,7 @@ import 'package:city17/src/feature/home/bussiness_cubit/bussiness_state.dart';
 import 'package:city17/src/feature/home/model/business_model.dart';
 import 'package:city17/src/feature/home/widgets/add_business_bsheet.dart';
 import 'package:city17/src/feature/home/widgets/income_forcast.dart';
-import 'package:city17/src/feature/home/widgets/mange_business.dart';
+import 'package:city17/src/feature/home/widgets/manage_business.dart';
 import 'package:city17/src/feature/home/widgets/pending_acction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     context.read<BussinessCubit>().getBussinesData();
+
     super.initState();
   }
 
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return MangeBusiness(displayData: item);
                       }
 
-                      return SizedBox();
+                      return const SizedBox();
                     },
                   ),
 

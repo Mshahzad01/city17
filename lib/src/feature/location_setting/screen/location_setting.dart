@@ -5,11 +5,8 @@ import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
 import 'package:city17/src/feature/home/model/business_model.dart';
-import 'package:city17/src/feature/home/model/dumy_disply_model.dart';
 import 'package:city17/src/feature/location_setting/widget/add_business_widget.dart';
 import 'package:flutter/material.dart';
-
-import '../../home/widgets/display_by_status_widgt.dart';
 
 class LocationSetting extends StatefulWidget {
   static const routename = '/locationsetting';
@@ -253,13 +250,13 @@ class _LocationSettingState extends State<LocationSetting> {
                           color: AppColors.successTextcolor,
                         ),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          DisplaysByStatusWidget(
-                            status: DisplayStatus.online,
-                            displays: [],
-                            // displays: widget.data.displaydumydata,
-                          ),
+                          // DisplaysByStatusWidget(
+                          //   status: DisplayStatus.online,
+                          //   displays: [],
+                          //   // displays: widget.data.displaydumydata,
+                          // ),
                         ],
                       ),
                     ),
@@ -277,13 +274,13 @@ class _LocationSettingState extends State<LocationSetting> {
                           color: AppColors.warningTextcolor,
                         ),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          DisplaysByStatusWidget(
-                            status: DisplayStatus.offline,
-                            displays: [],
-                            // displays: widget.data.displaydumydata,
-                          ),
+                          // DisplaysByStatusWidget(
+                          //   status: DisplayStatus.offline,
+                          //   displays: [],
+                          //   // displays: widget.data.displaydumydata,
+                          // ),
                         ],
                       ),
                     ),
@@ -303,13 +300,13 @@ class _LocationSettingState extends State<LocationSetting> {
                           ),
                         ),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          DisplaysByStatusWidget(
-                            status: DisplayStatus.draft,
-                            displays: [],
-                            // displays: widget.data.displaydumydata,
-                          ),
+                          // DisplaysByStatusWidget(
+                          //   status: DisplayStatus.draft,
+                          //   displays: [],
+                          //   // displays: widget.data.displaydumydata,
+                          // ),
                         ],
                       ),
                     ),

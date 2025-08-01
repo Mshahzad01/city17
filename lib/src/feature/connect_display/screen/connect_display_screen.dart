@@ -497,6 +497,7 @@ class __SetpTwoState extends State<_SetpTwo> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
+    final contxt = context;
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       try {
@@ -509,7 +510,7 @@ class __SetpTwoState extends State<_SetpTwo> {
       } catch (e) {
         if (context.mounted) {
           ScaffoldMessenger.of(
-            context,
+            contxt,
           ).showSnackBar(const SnackBar(content: Text('Invalid QR Code')));
         }
       }

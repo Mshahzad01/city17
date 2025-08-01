@@ -1,12 +1,11 @@
 import 'dart:async';
-
-import 'package:bloc/bloc.dart';
 import 'package:city17/src/core/utils/shared_pref_utils.dart';
 import 'package:city17/src/feature/auth/model/auth_response.dart';
 import 'package:city17/src/feature/auth/network/auth_repo.dart';
 import 'package:city17/src/services/firebase_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_state.dart';
 

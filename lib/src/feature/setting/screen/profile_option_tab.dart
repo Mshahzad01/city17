@@ -94,7 +94,7 @@ class _ProfileOptionTabState extends State<ProfileOptionTab> {
             fontSize: 14,
           ),
         ),
-        SizedBox(height: myPadding / 2),
+        const SizedBox(height: myPadding / 2),
         Row(
           children: [
             Expanded(

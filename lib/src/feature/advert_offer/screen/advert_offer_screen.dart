@@ -57,7 +57,7 @@ class _AdvertofferState extends State<AdvertOfferScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                PendingOfferScreen(),
+                const PendingOfferScreen(),
                 const ActiveOfferTab(),
                 const Center(child: Text('Completed')),
               ],

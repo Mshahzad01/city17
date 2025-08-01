@@ -1,4 +1,3 @@
-import 'package:city17/src/feature/home/forcast_income/model/forcast_model.dart';
 import 'package:city17/src/feature/home/model/business_model.dart';
 
 abstract class BussinessState {

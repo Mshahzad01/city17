@@ -53,6 +53,11 @@ dependencies:
   shared_preferences: ^2.5.3
   cached_network_image: ^3.4.1
   intl_phone_field: ^3.2.0
+  google_maps_flutter: ^2.12.3
+  geolocator: ^14.0.2
+  geocoding: ^4.0.0
+  location: ^8.0.1
+
  
 
 dev_dependencies:

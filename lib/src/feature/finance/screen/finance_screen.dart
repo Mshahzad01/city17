@@ -49,7 +49,7 @@ class _FinanceScreenState extends State<FinanceScreen>
                 borderRadius: BorderRadius.circular(05),
               ),
               indicatorWeight: 02,
-              labelPadding: EdgeInsets.all(02),
+              labelPadding: const EdgeInsets.all(02),
 
               labelStyle: context.myTextTheme.titleSmall?.copyWith(
                 fontSize: 09,
@@ -70,7 +70,7 @@ class _FinanceScreenState extends State<FinanceScreen>
               children: [
                 const PendinPayments(),
                 const PaymentApprovalsTab(),
-                Center(child: Text('shahzad')),
+                const Center(child: Text('shahzad')),
               ],
             ),
           ),

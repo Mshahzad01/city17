@@ -1,20 +1,33 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
-import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
-import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
+import 'package:city17/src/feature/home/business_overrview/cubit/bussiness_overview_cubit.dart';
+import 'package:city17/src/feature/home/business_overrview/cubit/bussiness_overview_state.dart';
+import 'package:city17/src/feature/home/business_overrview/model/bussiness_overview_model.dart';
 import 'package:city17/src/feature/home/model/business_model.dart';
-import 'package:city17/src/feature/home/model/dumy_disply_model.dart';
-import 'package:city17/src/feature/home/widgets/display_by_status_widgt.dart';
 import 'package:city17/src/feature/location_setting/screen/location_setting.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../constant/asset_string.dart';
+import 'display_by_status_widgt.dart';
 
-class MangeBusiness extends StatelessWidget {
+class MangeBusiness extends StatefulWidget {
   const MangeBusiness({super.key, required this.displayData});
   final List<BusinessModel> displayData;
+
+  @override
+  State<MangeBusiness> createState() => _MangeBusinessState();
+}
+
+class _MangeBusinessState extends State<MangeBusiness> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,9 +45,9 @@ class MangeBusiness extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: displayData.length,
+        itemCount: widget.displayData.length,
         itemBuilder: (BuildContext context, int index) {
-          final data = displayData[index];
+          final data = widget.displayData[index];
 
           return Container(
             margin: const EdgeInsets.symmetric(vertical: myPadding / 3),
@@ -48,6 +61,15 @@ class MangeBusiness extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ExpansionTile(
+                  onExpansionChanged: (val) {
+                    if (val) {
+                      final cubit = BlocProvider.of<BussinessOverViewCubit>(
+                        context,
+                      );
+
+                      cubit.getBussinesData(businessId: data.id);
+                    }
+                  },
                   childrenPadding: const EdgeInsets.symmetric(
                     horizontal: myPadding / 2,
                   ),
@@ -98,7 +120,7 @@ class MangeBusiness extends StatelessWidget {
                                       LocationSetting(data: data),
                                 ),
                               ),
-                              // LocationSetting(indexx: index),
+
                               child: SvgPicture.asset(AssetString.settingicon),
                             ),
                           ),
@@ -111,14 +133,14 @@ class MangeBusiness extends StatelessWidget {
                         children: [
                           Text(
                             data.category,
-                            //'• ${data.displaydumydata.length} Display',
+
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.linkTextcolor,
                             ),
                           ),
 
                           Text(
-                            //data.displays?.businessId ?? 'null',
+                            //item[0].status.toString(),
                             '• ert online',
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.successTextcolor,
@@ -142,38 +164,101 @@ class MangeBusiness extends StatelessWidget {
                       ),
                     ],
                   ),
-                  children: DisplayStatus.values.map((x) {
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 10, top: 10),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(width: 1, color: x.color),
-                      ),
-                      child: DisplaysByStatusWidget(
-                        status: x,
-                        displays: data.displays,
-                      ),
-                    );
-                  }).toList(),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10, bottom: 05),
-                  child: GestureDetector(
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      ConnectDisplyScreen.routeName,
+
+                  children: [
+                    BlocBuilder<BussinessOverViewCubit, BussinessOverViewState>(
+                      buildWhen: (previous, current) {
+                        return (current is BussinesOverViewLoadingState &&
+                            current.id == data.id);
+                      },
+                      builder: (context, state) {
+                        if (state is BussinesOverViewLoadingState &&
+                            state.loading &&
+                            data.id == state.id) {
+                          return const Center(
+                            child: SizedBox(
+                              height: 16,
+                              width: 16,
+                              child: CupertinoActivityIndicator(),
+                            ),
+                          );
+                        }
+
+                        if (state is BussinesOverViewLoadingState &&
+                            state.hasError) {
+                          return Center(
+                            child: Text(
+                              state.message ?? 'Something went wrong',
+                            ),
+                          );
+                        }
+
+                        if (state is BussinesOverViewLoadingState &&
+                            state.loaded) {
+                          final List<BussinessOverviewModel>? item =
+                              state.businessOverViewResponse;
+
+                          if (item == null || item.isEmpty) {
+                            return const Center(
+                              child: Text('No data available'),
+                            );
+                          }
+
+                          return ListView.builder(
+                            shrinkWrap: true,
+
+                            itemCount: item.length,
+                            itemBuilder: (context, index) {
+                              final display = item[index];
+
+                              return Container(
+                                margin: const EdgeInsets.only(
+                                  bottom: 10,
+                                  top: 10,
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: myPadding / 2,
+                                  vertical: myPadding / 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: display.status.color,
+                                  ),
+                                ),
+
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        CircleAvatar(
+                                          backgroundColor: display.status.color,
+                                          radius: 08,
+                                        ),
+                                        const SizedBox(width: 08),
+                                        Text(
+                                          display.status.title,
+                                          style: context.myTextTheme.titleMedium
+                                              ?.copyWith(fontSize: 14),
+                                        ),
+                                      ],
+                                    ),
+
+                                    BussinessDisplayWidget(
+                                      newDisplay: display.displays,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        }
+
+                        return const SizedBox.shrink();
+                      },
                     ),
-                    child: Text(
-                      StringData.connectdisplay,
-                      style: context.myTextTheme.titleMedium?.copyWith(
-                        color: AppColors.accentTextcolor,
-                      ),
-                    ),
-                  ),
+                  ],
                 ),
               ],
             ),
