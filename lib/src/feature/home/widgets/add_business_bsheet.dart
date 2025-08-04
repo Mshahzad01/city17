@@ -1,6 +1,8 @@
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/core/component/custom_textfield.dart';
+import 'package:city17/src/core/component/get_address.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/home/model/address_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constant/app_color.dart';
@@ -81,6 +83,8 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
                 },
               ),
 
+            
+
               const SizedBox(height: myPadding / 2),
               CustomTextfield(
                 controller: _businesscatorycontroller,
@@ -95,6 +99,28 @@ class _AddBusinessBSState extends State<AddBusinessBS> {
               ),
 
               const SizedBox(height: 15),
+
+
+              ElevatedButton(onPressed: ()async{
+
+
+               
+               
+               
+     final AddressModel? address = await showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) => const GetAddressBS(),
+                      enableDrag: false,
+                      clipBehavior: Clip.hardEdge,
+                    );
+
+                    if (address != null) {
+                      setState(() {
+                       // _address = address;
+                      });
+                    }
+              }, child: const Text('press me')),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

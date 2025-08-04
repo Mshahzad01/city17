@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 
 
 class AddressModel {
@@ -71,7 +73,7 @@ class AddressModel {
     );
   }
 
- // LatLng get latLng => LatLng(latitude.toDouble(), longitude.toDouble());
+  LatLng get latLng => LatLng(latitude.toDouble(), longitude.toDouble());
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
