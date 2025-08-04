@@ -101,17 +101,6 @@ class DisplaysOverview {
     };
   }
 
-  // factory DisplaysOverview.fromMap(Map<String, dynamic> map) {
-  //   return DisplaysOverview(
-  //     id: map['_id'] as String,
-  //     name: map['name'] as String,
-  //     revenue: IAmount.fromMap(map['revenue'] as Map<String, dynamic>),
-  //     uptime: map['uptime'] as double,
-  //     bussiness: Bussiness.fromMap(map['bussiness'] as Map<String, dynamic>),
-  //     campaignsThisWeek: map['campaignsThisWeek'] as double,
-  //   );
-  // }
-
   factory DisplaysOverview.fromMap(Map<String, dynamic> map) {
     return DisplaysOverview(
       id: map['_id']?.toString() ?? '',

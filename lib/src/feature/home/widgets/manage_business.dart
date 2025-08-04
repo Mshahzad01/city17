@@ -1,6 +1,7 @@
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/create_bussiness/screen/update_bussiness_screen.dart';
 import 'package:city17/src/feature/home/business_overrview/cubit/bussiness_overview_cubit.dart';
 import 'package:city17/src/feature/home/business_overrview/cubit/bussiness_overview_state.dart';
 import 'package:city17/src/feature/home/business_overrview/model/bussiness_overview_model.dart';
@@ -58,6 +59,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
             ),
 
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ExpansionTile(
@@ -113,13 +115,9 @@ class _MangeBusinessState extends State<MangeBusiness> {
                           Padding(
                             padding: const EdgeInsets.only(left: myPadding),
                             child: InkWell(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      LocationSetting(data: data),
-                                ),
-                              ),
+                              onTap: () {
+                                showmodelbottomshett(context, data);
+                              },
 
                               child: SvgPicture.asset(AssetString.settingicon),
                             ),
@@ -132,7 +130,7 @@ class _MangeBusinessState extends State<MangeBusiness> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            data.category,
+                            '${data.category?.title}',
 
                             style: context.myTextTheme.titleSmall?.copyWith(
                               color: AppColors.linkTextcolor,
@@ -177,8 +175,8 @@ class _MangeBusinessState extends State<MangeBusiness> {
                             data.id == state.id) {
                           return const Center(
                             child: SizedBox(
-                              height: 16,
-                              width: 16,
+                              height: myPadding,
+                              width: myPadding,
                               child: CupertinoActivityIndicator(),
                             ),
                           );
@@ -260,11 +258,49 @@ class _MangeBusinessState extends State<MangeBusiness> {
                     ),
                   ],
                 ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: myPadding / 2,
+                    vertical: myPadding / 2,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(
+                        context,
+                      ).pushNamed(LocationSetting.routename, arguments: data);
+                    },
+                    child: Text(
+                      'Connect a display',
+                      style: context.myTextTheme.titleMedium?.copyWith(
+                        color: AppColors.accentTextcolor,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           );
         },
       ),
+    );
+  }
+
+  Future<dynamic> showmodelbottomshett(
+    BuildContext contxt,
+    BusinessModel bussinessData,
+  ) {
+    return showModalBottomSheet(
+      context: contxt,
+      isScrollControlled: true,
+      builder: (innercontext) {
+        final bottomPadding = MediaQuery.of(innercontext).viewInsets.bottom;
+
+        return UpdateBussinessScreen(
+          bottompanding: bottomPadding,
+          bussinessDate: bussinessData,
+        );
+      },
     );
   }
 }

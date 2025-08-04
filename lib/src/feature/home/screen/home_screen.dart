@@ -3,10 +3,10 @@ import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/feature/create_bussiness/screen/add_bussiness_screen.dart';
 import 'package:city17/src/feature/home/bussiness_cubit/bussiness_cubit.dart';
 import 'package:city17/src/feature/home/bussiness_cubit/bussiness_state.dart';
 import 'package:city17/src/feature/home/model/business_model.dart';
-import 'package:city17/src/feature/home/widgets/add_business_bsheet.dart';
 import 'package:city17/src/feature/home/widgets/income_forcast.dart';
 import 'package:city17/src/feature/home/widgets/manage_business.dart';
 import 'package:city17/src/feature/home/widgets/pending_acction.dart';
@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (innercontext) {
         final bottomPadding = MediaQuery.of(innercontext).viewInsets.bottom;
 
-        return AddBusinessBS(bottompanding: bottomPadding);
+        return AddBussinessScreen(bottompanding: bottomPadding);
       },
     );
   }

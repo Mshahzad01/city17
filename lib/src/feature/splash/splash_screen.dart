@@ -5,6 +5,7 @@ import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/utils/shared_pref_utils.dart';
 import 'package:city17/src/feature/auth/authentication_screen.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
+import 'package:city17/src/services/geo_locator_services.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,6 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Future getData() async {
     final nav = Navigator.of(context);
     final authRes = await SharedPrefUtils.getLoginInfo();
+    GeolocatorService.instance.startUpdatingMyLoc();
+
     nav.pushReplacementNamed(
       authRes == null
           ? AuthenticationScreen.routename

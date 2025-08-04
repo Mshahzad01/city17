@@ -57,6 +57,7 @@ dependencies:
   geolocator: ^14.0.2
   geocoding: ^4.0.0
   location: ^8.0.1
+  fluttertoast: ^8.2.12
 
  
 

@@ -11,7 +11,6 @@ class APIServices {
   static final APIServices instance = APIServices._singleton();
 
   String get baseUrl => 'https://city17-production.up.railway.app';
-  // 'http://192.168.1.14:5000';
 
   String get baseVersionUrl {
     return '$baseUrl/api/v1';
@@ -21,6 +20,7 @@ class APIServices {
     String endpoint,
     DioMethod method, {
     Map<String, dynamic>? param,
+    Map<String, dynamic>? queryParam,
 
     String? contentType,
     formData,
@@ -41,15 +41,27 @@ class APIServices {
 
       switch (method) {
         case DioMethod.post:
-          return await dio.post(endpoint, data: param ?? formData);
+          return await dio.post(
+            endpoint,
+            data: param ?? formData,
+            queryParameters: queryParam,
+          );
         case DioMethod.get:
-          return await dio.get(endpoint, queryParameters: param);
+          return await dio.get(endpoint, queryParameters: queryParam);
         case DioMethod.put:
-          return dio.put(endpoint, data: param ?? formData);
+          return dio.put(
+            endpoint,
+            data: param ?? formData,
+            queryParameters: queryParam,
+          );
         case DioMethod.patch:
-          return dio.patch(endpoint, data: param ?? formData);
+          return dio.patch(
+            endpoint,
+            data: param ?? formData,
+            queryParameters: queryParam,
+          );
         case DioMethod.delete:
-          return dio.delete(endpoint, queryParameters: param ?? formData);
+          return dio.delete(endpoint, data: param, queryParameters: queryParam);
 
         // default:
         //  return dio.post(endpoint, data: param ?? formData);

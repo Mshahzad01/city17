@@ -1,39 +1,37 @@
 import 'dart:convert';
 
-import 'package:city17/src/core/enum/enum_method.dart';
 import 'package:city17/src/feature/home/model/address_model.dart';
 import 'package:city17/src/feature/home/model/displays_model.dart';
-import 'package:city17/src/feature/location_setting/enum/business_category_enum.dart';
 
-class BusinessModel {
+class ResponseBussinessModel {
   final String id;
   final String name;
   final AddressModel? address;
-  final List<DisplaysModel> displays;
-  final BusinessCategoryEnum? category;
+
+  final String category;
   final DateTime createdAt;
-  BusinessModel({
+  ResponseBussinessModel({
     required this.id,
     required this.name,
     this.address,
-    required this.displays,
+
     required this.category,
     required this.createdAt,
   });
 
-  BusinessModel copyWith({
+  ResponseBussinessModel copyWith({
     String? id,
     String? name,
     AddressModel? address,
     List<DisplaysModel>? displays,
-    BusinessCategoryEnum? category,
+    String? category,
     DateTime? createdAt,
   }) {
-    return BusinessModel(
+    return ResponseBussinessModel(
       id: id ?? this.id,
       name: name ?? this.name,
       address: address ?? this.address,
-      displays: displays ?? this.displays,
+
       category: category ?? this.category,
       createdAt: createdAt ?? this.createdAt,
     );
@@ -43,35 +41,29 @@ class BusinessModel {
     return <String, dynamic>{
       'id': id,
       'name': name,
-      'address': address?.toMap(),
-      'displays': displays.map((x) => x.toMap()).toList(),
-      'category': enumToString(category),
+
+      'category': category,
       'createdAt': createdAt.millisecondsSinceEpoch,
     };
   }
 
-  factory BusinessModel.fromMap(Map<String, dynamic> map) {
-    return BusinessModel(
+  factory ResponseBussinessModel.fromMap(Map<String, dynamic> map) {
+    return ResponseBussinessModel(
       id: map['_id'],
       name: map['name'],
       address: map['address'] != null
           ? AddressModel.fromMap(map['address'])
           : null,
 
-      category:
-          enumFromString(map['category'], BusinessCategoryEnum.values) ??
-          BusinessCategoryEnum.returent,
+      category: map['category'],
       createdAt: DateTime.tryParse(map['createdAt']) ?? DateTime.now(),
-
-      displays: (map['displays'])
-          .map((x) => DisplaysModel.fromMap(x as Map<String, dynamic>))
-          .whereType<DisplaysModel>()
-          .toList(),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory BusinessModel.fromJson(String source) =>
-      BusinessModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ResponseBussinessModel.fromJson(String source) =>
+      ResponseBussinessModel.fromMap(
+        json.decode(source) as Map<String, dynamic>,
+      );
 }

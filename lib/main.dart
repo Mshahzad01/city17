@@ -3,6 +3,7 @@ import 'package:city17/config/ongenerated_route.dart';
 import 'package:city17/firebase_options.dart';
 import 'package:city17/src/core/utils/shared_pref_utils.dart';
 import 'package:city17/src/feature/auth/cubit/auth_cubit.dart';
+import 'package:city17/src/feature/create_bussiness/cubit/cubit/add_bussiness_cubit.dart';
 import 'package:city17/src/feature/geocode/cubit/cubit/geocode_cubit.dart';
 import 'package:city17/src/feature/home/business_overrview/cubit/bussiness_overview_cubit.dart';
 import 'package:city17/src/feature/home/bussiness_cubit/bussiness_cubit.dart';
@@ -32,7 +33,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     SharedPrefUtils.getLoginInfo();
 
-  
     super.initState();
   }
 
@@ -45,7 +45,8 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (_) => BussinessCubit()),
         BlocProvider(create: (_) => ForcastCubit()),
         BlocProvider(create: (_) => BussinessOverViewCubit()),
-        BlocProvider(create: (_)=>   GeocodeCubit() ),
+        BlocProvider(create: (_) => GeocodeCubit()),
+        BlocProvider(create: (_) => AddBussinessCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

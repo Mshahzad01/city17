@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
-
 import 'package:city17/src/constant/asset_string.dart';
 import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/feature/geocode/cubit/cubit/geocode_cubit.dart';
-
+import 'package:city17/src/services/geo_locator_services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +28,10 @@ class _GetAddressBSState extends State<GetAddressBS> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  CameraPosition get initialCameraPosition =>
-      const CameraPosition(target: LatLng(30.1575, 71.5249), zoom: 14.4746);
+  CameraPosition get initialCameraPosition => CameraPosition(
+    target: GeolocatorService.instance.latLng ?? const LatLng(30.1575, 71.5249),
+    zoom: 14.4746,
+  );
 
   LatLng? selectedCoords;
   Position? currentPosition;

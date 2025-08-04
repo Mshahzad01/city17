@@ -10,9 +10,7 @@ import 'package:flutter/material.dart';
 
 class LocationSetting extends StatefulWidget {
   static const routename = '/locationsetting';
-  const LocationSetting({super.key, required this.data});
-
-  final BusinessModel data;
+  const LocationSetting({super.key});
 
   @override
   State<LocationSetting> createState() => _LocationSettingState();
@@ -23,6 +21,7 @@ class _LocationSettingState extends State<LocationSetting> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments as BusinessModel;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -41,11 +40,9 @@ class _LocationSettingState extends State<LocationSetting> {
             children: [
               // add business name address and type
               AddBusinessWidget(
-                address:
-                    widget.data.address?.formattedAddress ??
-                    'Address Not Found ',
-                bsname: widget.data.name,
-                type: widget.data.category,
+                address: args.address?.formattedAddress ?? 'Address Not Found ',
+                bsname: args.name,
+                type: args.category!.title.toString(),
               ),
 
               // ad Binding Offer
@@ -175,10 +172,7 @@ class _LocationSettingState extends State<LocationSetting> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.data.name,
-                      style: context.myTextTheme.titleMedium,
-                    ),
+                    Text(args.name, style: context.myTextTheme.titleMedium),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
