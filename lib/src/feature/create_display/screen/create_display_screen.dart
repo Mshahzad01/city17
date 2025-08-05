@@ -8,13 +8,17 @@ import 'package:city17/src/constant/string_data.dart';
 import 'package:city17/src/core/component/custom_button.dart';
 import 'package:city17/src/core/component/custom_textfield.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
+import 'package:city17/src/core/utils/flutter_toast_utils.dart';
 import 'package:city17/src/core/utils/image_picker.dart';
 import 'package:city17/src/feature/connect_display/enum/display_orientation_enum.dart';
 import 'package:city17/src/feature/connect_display/enum/displaylocation_enum.dart';
 import 'package:city17/src/feature/connect_display/enum/screeen_placement_enum.dart';
 import 'package:city17/src/feature/connect_display/enum/screen_installed_enum.dart';
 import 'package:city17/src/feature/connect_display/widgets/custom_radio_widget.dart';
+import 'package:city17/src/feature/create_display/cubit/cubit/display_cubit.dart';
+import 'package:city17/src/feature/create_display/model/image_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
@@ -127,9 +131,9 @@ class _CreateDisplayScreenState extends State<CreateDisplayScreen>
                   final currentIndex = _tabController.index;
 
                   if (currentIndex == 0) {
-                    if (stepOneFormKey.currentState?.validate() ?? false) {
-                      _tabController.animateTo(currentIndex + 1);
-                    }
+                    // if (stepOneFormKey.currentState?.validate() ?? false) {
+                    _tabController.animateTo(currentIndex + 1);
+                    // }
                     return;
                   }
                   if (currentIndex == 1) {
@@ -614,7 +618,7 @@ class _SetpThree extends StatefulWidget {
 }
 
 class __SetpThreeState extends State<_SetpThree> {
-  File? _imageFile;
+  XFile? _imageFile;
 
   Future<void> _pickImage(ImageSource source, BuildContext content) async {
     final file = await ImageUtils.pickImage(source, context);
@@ -622,47 +626,65 @@ class __SetpThreeState extends State<_SetpThree> {
     if (file != null) {
       setState(() {
         _imageFile = file;
-        print(file);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: myPadding,
-        vertical: myPadding,
-      ),
-      child: Column(
-        children: [
-          const SizedBox(height: myPadding),
-
-          Container(
-            margin: const EdgeInsets.only(top: myPadding * 2),
-            width: double.infinity,
-            height: 250,
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.primaryTextcolor, width: 2),
-              borderRadius: BorderRadius.circular(10),
-            ),
-
-            child: _imageFile != null
-                ? Image.file(_imageFile!, fit: BoxFit.cover)
-                : const Center(child: Text('No Image Selected')),
+    return BlocConsumer<DisplayCubit, DisplayState>(
+      listener: (BuildContext context, DisplayState state) {
+        if (state is UploadImageState && (state.error ?? false)) {
+          ToastUtils.errorToast(state.message.toString());
+        }
+      },
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: myPadding,
+            vertical: myPadding,
           ),
+          child: Column(
+            children: [
+              const SizedBox(height: myPadding),
 
-          const SizedBox(height: 30),
+              Container(
+                margin: const EdgeInsets.only(top: myPadding * 2),
+                width: double.infinity,
+                height: 250,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColors.primaryTextcolor,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
 
-          CustomButton(
-            title: 'Add a Disply Image',
-            onPressed: _showImageSourceDialog,
-            textcolor: AppColors.accentTextcolor,
+                // child: _imageFile != null
+                //     ? Image.file(_imageFile!, fit: BoxFit.cover)
+                //     : const Center(child: Text('No Image Selected')),
+              ),
 
-            svgicon: 'assets/icons/camera.svg',
+              const SizedBox(height: myPadding * 2),
+
+              CustomButton(
+                title: 'Add a Disply Image',
+                onPressed: () async {
+                  _showImageSourceDialog();
+
+                  await context.read<DisplayCubit>().uploadImage(
+                    ImageModel(image: _imageFile),
+                  );
+                },
+
+                textcolor: AppColors.accentTextcolor,
+
+                svgicon: 'assets/icons/camera.svg',
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 

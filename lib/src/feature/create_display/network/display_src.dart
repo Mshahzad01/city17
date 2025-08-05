@@ -13,9 +13,11 @@ class DisplaySrc {
   }
 
   Future uploadImage(ImageModel image) async {
+    final formdata = await image.toconvertImage();
     final res = await APIServices.instance.request(
       '/admin/upload-images',
       DioMethod.post,
+      formData: formdata,
     );
 
     return res;

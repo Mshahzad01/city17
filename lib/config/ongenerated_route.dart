@@ -1,5 +1,6 @@
 import 'package:city17/src/feature/auth/authentication_screen.dart';
 import 'package:city17/src/feature/connect_display/screen/connect_display_screen.dart';
+import 'package:city17/src/feature/create_display/screen/create_display_screen.dart';
 import 'package:city17/src/feature/home/bottom_nav_bar/bottom_bar_screen.dart';
 import 'package:city17/src/feature/home/screen/home_screen.dart';
 import 'package:city17/src/feature/location_setting/screen/location_setting.dart';
@@ -33,11 +34,11 @@ mixin AppRoute {
           builder: (context) => const HomeScreen(),
         );
 
-      case ConnectDisplyScreen.routeName:
+      case CreateDisplayScreen.routeName:
         return MaterialPageRoute(
           fullscreenDialog: true,
           settings: settings,
-          builder: (context) => const ConnectDisplyScreen(),
+          builder: (context) => const CreateDisplayScreen(),
         );
       case LocationSetting.routename:
         return MaterialPageRoute(

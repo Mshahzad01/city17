@@ -21,3 +21,19 @@ class CreateDisplayState extends DisplayState {
   final bool? loaded;
   final DisplaysModel? displaysModel;
 }
+
+class UploadImageState extends DisplayState {
+  UploadImageState({
+    this.loading,
+    this.loaded,
+    this.error,
+    this.message,
+    this.imageUrl,
+  });
+
+  final bool? loading;
+  final bool? loaded;
+  final bool? error;
+  final String? message;
+  final ImageUrl? imageUrl;
+}

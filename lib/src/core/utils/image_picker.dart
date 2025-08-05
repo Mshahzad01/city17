@@ -7,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 class ImageUtils {
   static final ImagePicker _picker = ImagePicker();
 
-  static Future<File?> pickImage(
+  static Future<XFile?> pickImage(
     ImageSource source,
     BuildContext context,
   ) async {
@@ -21,7 +21,7 @@ class ImageUtils {
     final XFile? pickedFile = await _picker.pickImage(source: source);
 
     if (pickedFile != null) {
-      return File(pickedFile.path);
+      return XFile(pickedFile.path);
     }
     return null;
   }
