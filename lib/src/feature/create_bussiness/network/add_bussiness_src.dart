@@ -1,4 +1,5 @@
 import 'package:city17/src/feature/create_bussiness/model/add_bussiness_model.dart';
+import 'package:city17/src/feature/create_bussiness/model/update_bussiness_model.dart';
 import 'package:city17/src/services/api_services.dart';
 
 class AddBussinessSrc {
@@ -11,7 +12,7 @@ class AddBussinessSrc {
     return res;
   }
 
-  Future updateBussiness(AddBussinessModel updateBussiness) async {
+  Future updateBussiness(UpdateBussinessModel updateBussiness) async {
     final res = await APIServices.instance.request(
       '/seller/update-business',
       DioMethod.patch,
@@ -25,7 +26,7 @@ class AddBussinessSrc {
       '/seller/delete-business',
       DioMethod.delete,
 
-      queryParam: {'businessId': bussinessId},
+      param: {'businessId': bussinessId},
     );
     return res;
   }

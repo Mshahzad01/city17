@@ -2,6 +2,7 @@ import 'package:city17/src/core/model/my_exception.dart';
 import 'package:city17/src/core/utils/log_utils.dart';
 import 'package:city17/src/feature/create_bussiness/model/add_bussiness_model.dart';
 import 'package:city17/src/feature/create_bussiness/model/response_bussiness_model.dart';
+import 'package:city17/src/feature/create_bussiness/model/update_bussiness_model.dart';
 import 'package:city17/src/feature/create_bussiness/network/add_bussiness_src.dart';
 
 abstract class _AddBussinessRopo {
@@ -9,9 +10,7 @@ abstract class _AddBussinessRopo {
     AddBussinessModel addBussinessModel,
   );
 
-  Future<ResponseBussinessModel> updateBussiness(
-    AddBussinessModel updateBussinessModel,
-  );
+  Future updateBussiness(UpdateBussinessModel updateBussinessModel);
 
   Future deleteBussiness(String bussinessId);
 }
@@ -40,14 +39,12 @@ class AddBussinessRepo extends _AddBussinessRopo {
   }
 
   @override
-  Future<ResponseBussinessModel> updateBussiness(
-    AddBussinessModel updateBussinessModel,
-  ) async {
+  Future updateBussiness(UpdateBussinessModel updateBussinessModel) async {
     final res = await _addBussinessSrc.updateBussiness(updateBussinessModel);
     LogUtils.printLog(['.....Update Bussiness......', res.data]);
 
     if (res.data['success']) {
-      return ResponseBussinessModel.fromMap(res.data);
+      return; //ResponseBussinessModel.fromMap(res.data);
     }
     throw MyException(res.data['message']);
   }

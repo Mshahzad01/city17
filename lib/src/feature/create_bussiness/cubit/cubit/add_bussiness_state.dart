@@ -24,14 +24,12 @@ class AddBussinessLoaded extends AddBussinessState {
 
 class UpdateBussinessState extends AddBussinessState {
   UpdateBussinessState({
-    this.updateBussinessModel,
     this.hasError,
     this.loading,
     this.loaded,
     this.message,
   });
 
-  final ResponseBussinessModel? updateBussinessModel;
   final bool? hasError;
   final bool? loading;
   final bool? loaded;
@@ -44,10 +42,12 @@ class DeleteBussinessState extends AddBussinessState {
     this.deleted,
     this.hasError,
     this.message,
+    this.loading,
   });
 
   final String? bussinessId;
   final bool? deleted;
   final bool? hasError;
   final String? message;
+  final bool? loading;
 }

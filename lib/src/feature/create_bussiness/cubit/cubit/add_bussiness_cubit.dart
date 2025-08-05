@@ -1,5 +1,6 @@
 import 'package:city17/src/feature/create_bussiness/model/add_bussiness_model.dart';
 import 'package:city17/src/feature/create_bussiness/model/response_bussiness_model.dart';
+import 'package:city17/src/feature/create_bussiness/model/update_bussiness_model.dart';
 import 'package:city17/src/feature/create_bussiness/network/add_bussiness_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,11 +27,12 @@ class AddBussinessCubit extends Cubit<AddBussinessState> {
     }
   }
 
-  Future updateBussiness(AddBussinessModel updateBussiness) async {
+  Future updateBussiness(UpdateBussinessModel updateBussiness) async {
     try {
-      final res = await _repo.updateBussiness(updateBussiness);
+      emit(UpdateBussinessState(loading: true));
+      await _repo.updateBussiness(updateBussiness);
 
-      emit(UpdateBussinessState(loaded: true, updateBussinessModel: res));
+      emit(UpdateBussinessState(loaded: true));
     } catch (e) {
       emit(UpdateBussinessState(hasError: true, message: e.toString()));
 
@@ -40,6 +42,7 @@ class AddBussinessCubit extends Cubit<AddBussinessState> {
 
   Future deleteBussiness(String bussinessId) async {
     try {
+      emit(DeleteBussinessState(loading: true));
       await _repo.deleteBussiness(bussinessId);
 
       emit(DeleteBussinessState(bussinessId: bussinessId, deleted: true));

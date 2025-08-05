@@ -5,15 +5,15 @@ import 'package:city17/src/feature/home/model/address_model.dart';
 import 'package:city17/src/feature/home/model/displays_model.dart';
 import 'package:city17/src/feature/location_setting/enum/business_category_enum.dart';
 
-class ResponseBussinessModel {
-  final String id;
+class UpdateBussinessModel {
+  final String businessId;
   final String name;
   final AddressModel? address;
 
   final BusinessCategoryEnum category;
   final DateTime createdAt;
-  ResponseBussinessModel({
-    required this.id,
+  UpdateBussinessModel({
+    required this.businessId,
     required this.name,
     this.address,
 
@@ -21,27 +21,27 @@ class ResponseBussinessModel {
     required this.createdAt,
   });
 
-  ResponseBussinessModel copyWith({
-    String? id,
+  UpdateBussinessModel copyWith({
+    String? businessId,
     String? name,
     AddressModel? address,
     List<DisplaysModel>? displays,
     BusinessCategoryEnum? category,
     DateTime? createdAt,
   }) {
-    return ResponseBussinessModel(
-      id: id ?? this.id,
+    return UpdateBussinessModel(
       name: name ?? this.name,
       address: address ?? this.address,
 
       category: category ?? this.category,
       createdAt: createdAt ?? this.createdAt,
+      businessId: businessId ?? '',
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      '_id': id,
+      'businessId': businessId,
       'name': name,
 
       'category': enumToString(category),
@@ -49,9 +49,9 @@ class ResponseBussinessModel {
     };
   }
 
-  factory ResponseBussinessModel.fromMap(Map<String, dynamic> map) {
-    return ResponseBussinessModel(
-      id: map['_id'],
+  factory UpdateBussinessModel.fromMap(Map<String, dynamic> map) {
+    return UpdateBussinessModel(
+      businessId: map['businessId'],
       name: map['name'],
       address: map['address'] != null
           ? AddressModel.fromMap(map['address'])
@@ -66,8 +66,6 @@ class ResponseBussinessModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ResponseBussinessModel.fromJson(String source) =>
-      ResponseBussinessModel.fromMap(
-        json.decode(source) as Map<String, dynamic>,
-      );
+  factory UpdateBussinessModel.fromJson(String source) =>
+      UpdateBussinessModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
