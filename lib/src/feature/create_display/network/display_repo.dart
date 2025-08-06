@@ -8,7 +8,7 @@ import 'package:city17/src/feature/home/model/displays_model.dart';
 abstract class _DisplayRepo {
   Future<DisplaysModel?> createDisplay(CreateDisplayModel displayModel);
 
-  Future<ImageUrl> uploadImage(ImageModel image);
+  Future<List<ImageUrl>> uploadImage(ImageModel image);
 }
 
 class DisplayRepo implements _DisplayRepo {
@@ -30,13 +30,15 @@ class DisplayRepo implements _DisplayRepo {
   }
 
   @override
-  Future<ImageUrl> uploadImage(ImageModel image) async {
+  Future<List<ImageUrl>> uploadImage(ImageModel image) async {
     final res = await _displaySrc.uploadImage(image);
 
     LogUtils.printLog(['........Upload Image........', res.data]);
 
     if (res.data['success']) {
-      return ImageUrl.fromMap(res.data);
+      return List<ImageUrl>.from(
+        (res.data['data'] as List).map((e) => ImageUrl(image: e.toString())),
+      );
     }
 
     throw MyException(res);

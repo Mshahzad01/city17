@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:city17/src/constant/app_color.dart';
 import 'package:city17/src/constant/app_constants.dart';
 import 'package:city17/src/constant/asset_string.dart';
@@ -10,13 +9,18 @@ import 'package:city17/src/core/component/custom_textfield.dart';
 import 'package:city17/src/core/extension/context_ext.dart';
 import 'package:city17/src/core/utils/flutter_toast_utils.dart';
 import 'package:city17/src/core/utils/image_picker.dart';
-import 'package:city17/src/feature/connect_display/enum/display_orientation_enum.dart';
+import 'package:city17/src/core/utils/shared_pref_utils.dart';
+import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
 import 'package:city17/src/feature/connect_display/enum/displaylocation_enum.dart';
 import 'package:city17/src/feature/connect_display/enum/screeen_placement_enum.dart';
 import 'package:city17/src/feature/connect_display/enum/screen_installed_enum.dart';
 import 'package:city17/src/feature/connect_display/widgets/custom_radio_widget.dart';
 import 'package:city17/src/feature/create_display/cubit/cubit/display_cubit.dart';
+import 'package:city17/src/feature/create_display/model/create_display_model.dart';
 import 'package:city17/src/feature/create_display/model/image_model.dart';
+import 'package:city17/src/feature/home/enum/layout_enum.dart';
+import 'package:city17/src/feature/home/model/business_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -45,6 +49,7 @@ class _CreateDisplayScreenState extends State<CreateDisplayScreen>
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments as BusinessModel;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
@@ -124,29 +129,69 @@ class _CreateDisplayScreenState extends State<CreateDisplayScreen>
               ),
             ),
             const SizedBox(width: myPadding),
-            Expanded(
-              child: CustomButton(
-                title: 'Next',
-                onPressed: () {
-                  final currentIndex = _tabController.index;
+            BlocConsumer<DisplayCubit, DisplayState>(
+              listener: (context, state) {
+                if (state is CreateDisplayState && (state.hasError ?? false)) {
+                  ToastUtils.errorToast(state.message.toString());
+                  print(state.message.toString());
+                }
 
-                  if (currentIndex == 0) {
-                    // if (stepOneFormKey.currentState?.validate() ?? false) {
-                    _tabController.animateTo(currentIndex + 1);
-                    // }
-                    return;
-                  }
-                  if (currentIndex == 1) {
-                    _tabController.animateTo(currentIndex + 1);
-                    return;
-                  }
+                if (state is CreateDisplayState && (state.loaded ?? false)) {
+                  ToastUtils.succesToast('Bussiness Create Successfuly');
+                }
+              },
+              builder: (context, state) {
+                return Expanded(
+                  child: CustomButton(
+                    title: 'Next',
+                    onPressed: () {
+                      final currentIndex = _tabController.index;
 
-                  if (currentIndex == 3) {
-                    return;
-                  }
-                },
-                textcolor: Colors.orange,
-              ),
+                      if (currentIndex == 0) {
+                        if (stepOneFormKey.currentState?.validate() ?? false) {
+                          _tabController.animateTo(currentIndex + 1);
+                        }
+                        return;
+                      }
+                      if (currentIndex == 1) {
+                        _tabController.animateTo(currentIndex + 1);
+                        return;
+                      }
+
+                      if (currentIndex == 2) {
+                        final model = CreateDisplayModel(
+                          businessId: args.id,
+                          userId: currentLoginInfo?.user.id,
+                          addressModel: args.address,
+                          pricing: IAmount(amount: 35, currency: 'USD'),
+                          name: 'shahzad',
+                          loaction: 'Multan',
+                          offerType: DisplayLocationType.mobile,
+                          screenType: ScreenInstallEnum.resturent,
+                          placement: 'horizantal',
+                          firebaseId: currentLoginInfo?.user.googleId,
+                        );
+
+                        //  {success: false, message: Display validation failed: pricing.model:
+                        //   Path `pricing.model` is required., location: Path `location` is required.,
+                        //    offerType: `mobile` is not a valid enum value for path `offerType`.
+                        //    , screenType: `resturent` is not a valid enum value for path
+                        //    `screenType`., placement: `horizantal` is not a valid enum value for path
+                        //    `placement`.}
+                        context.read<DisplayCubit>().setDisplayModel(model);
+
+                        context.read<DisplayCubit>().createDisplay();
+                        print('Data summit');
+                        print('............argsId ${args.id}');
+                        print(
+                          '.............uerrid ${currentLoginInfo?.user.id}',
+                        );
+                      }
+                    },
+                    textcolor: Colors.orange,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -182,7 +227,7 @@ class _StepOneState extends State<_StepOne> {
   ScreenInstallEnum screenlocation = ScreenInstallEnum.resturent;
 
   ScreeenPlacementEnum screenplacement = ScreeenPlacementEnum.facingoutside;
-  DisplayOrientation screenorination = DisplayOrientation.horizontal;
+  LayoutEnum layoutEnum = LayoutEnum.horizantal;
   int selectedIndex = 0;
 
   @override
@@ -238,7 +283,11 @@ class _StepOneState extends State<_StepOne> {
                       return CustomRadioTile<DisplayLocationType>(
                         value: x,
                         groupValue: screenType,
-                        onChanged: (val) => setState(() => screenType = x),
+                        onChanged: (val) {
+                          setState(() => screenType = x);
+                          final model = CreateDisplayModel(offerType: val);
+                          context.read<DisplayCubit>().setDisplayModel(model);
+                        },
                       );
                     }).toList(),
                   ),
@@ -268,8 +317,11 @@ class _StepOneState extends State<_StepOne> {
                         return CustomRadioTile<ScreenInstallEnum>(
                           value: x,
                           groupValue: screenlocation,
-                          onChanged: (val) =>
-                              setState(() => screenlocation = x),
+                          onChanged: (val) {
+                            setState(() => screenlocation = x);
+                            final model = CreateDisplayModel(screenType: val);
+                            context.read<DisplayCubit>().setDisplayModel(model);
+                          },
                         );
                       }),
                     ],
@@ -297,7 +349,13 @@ class _StepOneState extends State<_StepOne> {
                       return CustomRadioTile<ScreeenPlacementEnum>(
                         value: x,
                         groupValue: screenplacement,
-                        onChanged: (val) => setState(() => screenplacement = x),
+                        onChanged: (val) {
+                          setState(() => screenplacement = x);
+                          final model = CreateDisplayModel(
+                            placement: val.title,
+                          );
+                          context.read<DisplayCubit>().setDisplayModel(model);
+                        },
                       );
                     }).toList(),
                   ),
@@ -346,7 +404,7 @@ class _StepOneState extends State<_StepOne> {
                           GestureDetector(
                             onTap: () {
                               setState(() {
-                                screenorination = DisplayOrientation.horizontal;
+                                layoutEnum = LayoutEnum.horizantal;
                               });
                             },
                             child: Container(
@@ -369,7 +427,7 @@ class _StepOneState extends State<_StepOne> {
                           GestureDetector(
                             onTap: () {
                               setState(() {
-                                screenorination = DisplayOrientation.veritcal;
+                                layoutEnum = LayoutEnum.vartical;
                               });
                             },
                             child: Container(
@@ -395,19 +453,30 @@ class _StepOneState extends State<_StepOne> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          CustomRadioTile<DisplayOrientation>(
-                            value: DisplayOrientation.horizontal,
-                            groupValue: screenorination,
-                            onChanged: (val) =>
-                                setState(() => screenorination = val),
+                          CustomRadioTile<LayoutEnum>(
+                            value: LayoutEnum.horizantal,
+                            groupValue: layoutEnum,
+                            onChanged: (val) {
+                              setState(() => layoutEnum = val);
+                              final model = CreateDisplayModel(layout: val);
+                              context.read<DisplayCubit>().setDisplayModel(
+                                model,
+                              );
+                            },
                           ),
 
                           const SizedBox(width: 40),
-                          CustomRadioTile<DisplayOrientation>(
-                            value: DisplayOrientation.veritcal,
-                            groupValue: screenorination,
-                            onChanged: (val) =>
-                                setState(() => screenorination = val),
+
+                          CustomRadioTile<LayoutEnum>(
+                            value: LayoutEnum.vartical,
+                            groupValue: layoutEnum,
+                            onChanged: (val) {
+                              setState(() => layoutEnum = val);
+                              final model = CreateDisplayModel(layout: val);
+                              context.read<DisplayCubit>().setDisplayModel(
+                                model,
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -423,6 +492,10 @@ class _StepOneState extends State<_StepOne> {
           const SizedBox(height: 10),
 
           CustomTextfield(
+            onChanged: (value) {
+              final model = CreateDisplayModel(name: value);
+              context.read<DisplayCubit>().setDisplayModel(model);
+            },
             controller: _namecontroller,
             hinttext: 'Name',
             validator: (value) {
@@ -435,6 +508,12 @@ class _StepOneState extends State<_StepOne> {
           const SizedBox(height: myPadding / 2),
 
           CustomTextfield(
+            onChanged: (value) {
+              final model = CreateDisplayModel(
+                displaySize: double.tryParse(value),
+              );
+              context.read<DisplayCubit>().setDisplayModel(model);
+            },
             controller: _sizecontroller,
             hinttext: 'Size',
             validator: (value) {
@@ -446,6 +525,10 @@ class _StepOneState extends State<_StepOne> {
           ),
           const SizedBox(height: myPadding / 2),
           CustomTextfield(
+            onChanged: (value) {
+              final model = CreateDisplayModel(description: value);
+              context.read<DisplayCubit>().setDisplayModel(model);
+            },
             controller: _discriptioncontroller,
             hinttext: 'Discription',
 
@@ -628,6 +711,8 @@ class __SetpThreeState extends State<_SetpThree> {
         _imageFile = file;
       });
     }
+
+    context.read<DisplayCubit>().uploadImage(ImageModel(image: _imageFile));
   }
 
   @override
@@ -639,6 +724,8 @@ class __SetpThreeState extends State<_SetpThree> {
         }
       },
       builder: (context, state) {
+        final isloading = state is UploadImageState && (state.loading ?? false);
+        final imageUrl = state is UploadImageState ? state.imageUrl : null;
         return Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: myPadding,
@@ -659,10 +746,15 @@ class __SetpThreeState extends State<_SetpThree> {
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
-
-                // child: _imageFile != null
-                //     ? Image.file(_imageFile!, fit: BoxFit.cover)
-                //     : const Center(child: Text('No Image Selected')),
+                child: isloading
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CupertinoActivityIndicator(),
+                      )
+                    : imageUrl != null && imageUrl.isNotEmpty
+                    ? Image.network(imageUrl[0].image, fit: BoxFit.fill)
+                    : const Center(child: Text('Please Select Image')),
               ),
 
               const SizedBox(height: myPadding * 2),
@@ -671,10 +763,8 @@ class __SetpThreeState extends State<_SetpThree> {
                 title: 'Add a Disply Image',
                 onPressed: () async {
                   _showImageSourceDialog();
-
-                  await context.read<DisplayCubit>().uploadImage(
-                    ImageModel(image: _imageFile),
-                  );
+                  final model = CreateDisplayModel(image: imageUrl?[0].image);
+                  context.read<DisplayCubit>().setDisplayModel(model);
                 },
 
                 textcolor: AppColors.accentTextcolor,

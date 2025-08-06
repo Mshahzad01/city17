@@ -35,5 +35,5 @@ class UploadImageState extends DisplayState {
   final bool? loaded;
   final bool? error;
   final String? message;
-  final ImageUrl? imageUrl;
+  final List<ImageUrl>? imageUrl;
 }

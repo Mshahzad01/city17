@@ -4,24 +4,27 @@ import 'package:city17/src/core/enum/enum_method.dart';
 import 'package:city17/src/feature/advert_offer/model/advertisment_model.dart';
 import 'package:city17/src/feature/auth/model/auth_response.dart';
 import 'package:city17/src/feature/connect_display/enum/displaylocation_enum.dart';
+import 'package:city17/src/feature/connect_display/enum/screen_installed_enum.dart';
 import 'package:city17/src/feature/home/enum/layout_enum.dart';
 import 'package:city17/src/feature/home/model/address_model.dart';
 
 class CreateDisplayModel {
-  final String id;
-  final String name;
-  final String loaction;
-  final LayoutEnum layout;
-  final double displaySize;
-  final String businessId;
-  final String userId;
+  final String? id;
+  final String? name;
+  final String? loaction;
+  final LayoutEnum? layout;
+  final double? displaySize;
+  final String? businessId;
+  final String? userId;
   final DeviceInfo? deviceInfo;
-  final String firebaseId;
+  final String? firebaseId;
   final AddressModel? addressModel;
-  final String image;
-  final String placement;
+  final String? image;
+  final String? placement;
   final IAmount? pricing;
-  final DisplayLocationType offerType;
+  final DisplayLocationType? offerType;
+  final ScreenInstallEnum? screenType;
+  final String? description;
 
   // class CreateObjModel {
   //   final double displaySize;
@@ -45,19 +48,21 @@ class CreateDisplayModel {
 
   CreateDisplayModel({
     this.pricing,
-    required this.placement,
-    required this.id,
-    required this.name,
-    required this.loaction,
-    required this.layout,
-    required this.displaySize,
-    required this.businessId,
-    required this.userId,
-    required this.deviceInfo,
-    required this.firebaseId,
+    this.placement,
+    this.id,
+    this.name,
+    this.loaction,
+    this.layout,
+    this.displaySize,
+    this.businessId,
+    this.userId,
+    this.deviceInfo,
+    this.firebaseId,
     this.addressModel,
-    required this.image,
-    required this.offerType,
+    this.image,
+    this.offerType,
+    this.screenType,
+    this.description,
   });
 
   Map<String, dynamic> toMap() {
@@ -81,6 +86,8 @@ class CreateDisplayModel {
       'pricing': pricing,
       'layoutEnum': enumToString(layout),
       'offerType': enumToString(offerType),
+      'screenType': enumToString(screenType),
+      'description': description,
     };
   }
 
@@ -115,6 +122,12 @@ class CreateDisplayModel {
       offerType:
           enumFromString(map['offerType'], DisplayLocationType.values) ??
           DisplayLocationType.mobile,
+
+      screenType:
+          enumFromString(map['screenType'], ScreenInstallEnum.values) ??
+          ScreenInstallEnum.resturent,
+
+      description: map['description'] ?? '',
     );
   }
 

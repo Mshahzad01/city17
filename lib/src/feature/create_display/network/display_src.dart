@@ -10,6 +10,7 @@ class DisplaySrc {
 
       param: display.toMap(),
     );
+    return res;
   }
 
   Future uploadImage(ImageModel image) async {

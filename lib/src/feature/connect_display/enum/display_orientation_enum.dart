@@ -1,9 +1,9 @@
-enum DisplayOrientation {
-  veritcal,
-  horizontal;
+// enum DisplayOrientation {
+//   veritcal,
+//   horizontal;
 
-  String get title => switch (this) {
-    veritcal => 'Vertical',
-    horizontal => 'Horizontal',
-  };
-}
+//   String get title => switch (this) {
+//     veritcal => 'Vertical',
+//     horizontal => 'Horizontal',
+//   };
+// }

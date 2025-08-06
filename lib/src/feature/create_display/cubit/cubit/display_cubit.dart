@@ -14,12 +14,23 @@ class DisplayCubit extends Cubit<DisplayState> {
   }
 
   late DisplayRepo repo;
+  CreateDisplayModel? _displaysModel;
 
-  Future createDisplay(CreateDisplayModel display) async {
+  CreateDisplayModel? get displaymodel => _displaysModel;
+
+  void setDisplayModel(CreateDisplayModel model) {
+    _displaysModel = model;
+  }
+
+  Future createDisplay() async {
+    if (_displaysModel == null) {
+      emit(CreateDisplayState(hasError: true, message: "Model is empty."));
+      return;
+    }
     try {
       emit(CreateDisplayState(loading: true));
 
-      final res = await repo.createDisplay(display);
+      final res = await repo.createDisplay(_displaysModel!);
       emit(CreateDisplayState(displaysModel: res, loaded: true));
     } catch (e) {
       emit(CreateDisplayState(hasError: true, message: e.toString()));
@@ -31,7 +42,7 @@ class DisplayCubit extends Cubit<DisplayState> {
       emit(UploadImageState(loading: true));
       final res = await repo.uploadImage(image);
 
-      emit(UploadImageState(imageUrl: res, loading: true));
+      emit(UploadImageState(imageUrl: res, loaded: true));
     } catch (e) {
       emit(UploadImageState(error: true, message: e.toString()));
     }
